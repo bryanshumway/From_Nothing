@@ -25,13 +25,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Horizontal") > 0 && IsMoveRightPossible())
+        if(Input.GetAxis("Horizontal") > 0)
         {
             transform.localScale = original;
             rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
         }
-        else if(Input.GetAxis("Horizontal") < 0 && IsMoveLeftPossible()){
+        else if(Input.GetAxis("Horizontal") < 0){
             transform.localScale = flipped;
             rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
@@ -51,17 +51,5 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down
         , .1f, layerMask);
         return raycastHit2d.collider !=null;
-    }
-    private bool IsMoveRightPossible()
-    {
-        RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.right
-        , .1f, layerMask);
-        return raycastHit2d.collider ==null;
-    }
-    private bool IsMoveLeftPossible()
-        {
-        RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.left
-        , .1f, layerMask);
-        return raycastHit2d.collider ==null;
     }
 }
