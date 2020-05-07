@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemies.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/CS185/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
