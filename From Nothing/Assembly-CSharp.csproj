@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\TextControl.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/PC/Documents/1College/2D Game Deve/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
