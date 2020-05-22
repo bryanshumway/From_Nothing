@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 198974070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 175e72040262f13418fe7edb0bc32ce7, type: 3}
+  m_Script: {fileID: 11500000, guid: caea572f33fc856419cbb611f9ef2c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textbox: {fileID: 210285177}
@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 1144871322}
   - component: {fileID: 1144871321}
   - component: {fileID: 1144871320}
-  - component: {fileID: 1144871325}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -373,19 +372,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1144871325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144871319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1484b1c412ea75d448ec3e71538fcc60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &1447528417
 GameObject:
   m_ObjectHideFlags: 0
