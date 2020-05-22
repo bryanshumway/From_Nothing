@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 5447e8793ef592b45bb6810479c12adf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Base
+    100002: Blue_Liquid
+    100004: Glass_Tube
+    100006: Pipe_01
+    100008: Pipe_02
+    100010: Pipe_03
+    100012: Pipe_04
+    100014: Pipe_Center
+    100016: transform1
+    100018: transform10
+    100020: transform11
+    100022: transform12
+    100024: transform2
+    100026: transform3
+    100028: transform5
+    100030: transform6
+    100032: transform7
+    100034: transform8
+    100036: //RootNode
+    100038: Tube_Top
+    400000: Base
+    400002: Blue_Liquid
+    400004: Glass_Tube
+    400006: Pipe_01
+    400008: Pipe_02
+    400010: Pipe_03
+    400012: Pipe_04
+    400014: Pipe_Center
+    400016: transform1
+    400018: transform10
+    400020: transform11
+    400022: transform12
+    400024: transform2
+    400026: transform3
+    400028: transform5
+    400030: transform6
+    400032: transform7
+    400034: transform8
+    400036: //RootNode
+    400038: Tube_Top
+    2100000: Base_Gray
+    2100002: lambert2
+    2100004: Base_Red
+    2100006: Tube_Glass1
+    2100008: Tube_Top_Gray
+    2100010: Blue_Liquid1
+    2300000: Base
+    2300002: Blue_Liquid
+    2300004: Glass_Tube
+    2300006: Pipe_01
+    2300008: Pipe_02
+    2300010: Pipe_03
+    2300012: Pipe_04
+    2300014: Pipe_Center
+    2300016: Tube_Top
+    3300000: Base
+    3300002: Blue_Liquid
+    3300004: Glass_Tube
+    3300006: Pipe_01
+    3300008: Pipe_02
+    3300010: Pipe_03
+    3300012: Pipe_04
+    3300014: Pipe_Center
+    3300016: Tube_Top
+    4300000: Tube_Top
+    4300002: Base
+    4300004: Glass_Tube
+    4300006: Pipe_Center
+    4300008: Pipe_01
+    4300010: Pipe_02
+    4300012: Pipe_03
+    4300014: Pipe_04
+    4300016: Blue_Liquid
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
