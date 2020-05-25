@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
+    public GameObject playerObject;
+    public GameObject footprint;
+    public GameObject footprintSpot;
+
     [SerializeField] LayerMask layerMask;
     Vector3 original;
     Rigidbody2D rigidBody;
     Animator playerAnimator;
     Collider2D boxCollider2D;
+    bool canFootprint;
+    public bool isJumping;
     // Start is called before the first frame update
     void Start()
     {
-        //playerAnimator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<Collider2D>();
         original = transform.localScale;
@@ -23,25 +30,57 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //restart
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        //move right
         if(Input.GetKey(KeyCode.D))
         {
             transform.localScale = original;
             rigidBody.velocity = new Vector2(moveSpeed * 1, rigidBody.velocity.y);
-            //playerAnimator.SetBool("IsWalking", true);
+            playerAnimator.SetBool("IsWalking", true);
+            if (IsGrounded() && canFootprint)
+            {
+                StartCoroutine("FootPrint");
+                canFootprint = false;
+            }
         }
+        //move left
         else if(Input.GetKey(KeyCode.A)){
-            transform.localScale = new Vector3(-original.x, original.y, original.z);
+            transform.localScale = new Vector3(original.x, original.y, -original.z);
             rigidBody.velocity = new Vector2(moveSpeed * -1, rigidBody.velocity.y);
-            //playerAnimator.SetBool("IsWalking", true);
+            playerAnimator.SetBool("IsWalking", true);
+            if (IsGrounded() && canFootprint)
+            {
+                StartCoroutine("FootPrint");
+                canFootprint = false;
+            }
         }
+        //not moving
         else
         {
             rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
-            //playerAnimator.SetBool("IsWalking", false);
+            playerAnimator.SetBool("IsWalking", false);
+            if (IsGrounded())
+            {
+                StopCoroutine("FootPrint");
+                canFootprint = true;
+            }
         }
+        //jump
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
+            StartCoroutine(IsJumping());
+            FootPrintStep();
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);      
+        }
+        //landed
+        if (IsGrounded() && isJumping)
+        {
+            FootPrintStep();
+            isJumping = false;
         }
     }
     private bool IsGrounded()
@@ -62,4 +101,28 @@ public class PlayerController : MonoBehaviour
         , .1f, layerMask);
         return !raycastHit2d.collider;
     }
+
+    IEnumerator IsJumping()
+    {
+        yield return new WaitForSeconds(0.01f);
+        isJumping = true;
+    }
+
+    IEnumerator FootPrint()
+    {
+        //yield return new WaitForSeconds(0.1f);
+        if (IsGrounded())
+        {
+            FootPrintStep();
+        }
+        yield return new WaitForSeconds(0.2f);
+        canFootprint = true;
+    }
+
+    public void FootPrintStep()
+    {
+        Vector3 step = new Vector3(transform.position.x, playerObject.transform.localPosition.y - .24f, -3);
+        Instantiate(footprint, step, footprint.transform.rotation);
+    }
+
 }

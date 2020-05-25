@@ -63,32 +63,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\FadeAwayObject.cs" />
+    <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />
-    <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RenderQueue.cs" />
     <Compile Include="Assets\Scripts\TextControl.cs" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
@@ -99,8 +82,26 @@
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
