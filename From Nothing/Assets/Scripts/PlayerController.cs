@@ -30,11 +30,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //restart
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
         //move right
         if(Input.GetKey(KeyCode.D))
         {
@@ -80,7 +75,6 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() && isJumping)
         {
             FootPrintStep();
-            isJumping = false;
         }
     }
     private bool IsGrounded()
@@ -123,6 +117,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 step = new Vector3(transform.position.x, playerObject.transform.localPosition.y - .24f, -3);
         Instantiate(footprint, step, footprint.transform.rotation);
+        isJumping = false;
     }
 
 }
