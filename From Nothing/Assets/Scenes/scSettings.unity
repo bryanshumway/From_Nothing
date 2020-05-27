@@ -609,6 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755707021}
   - component: {fileID: 755707020}
+  - component: {fileID: 755707022}
   m_Layer: 0
   m_Name: SoundContoller
   m_TagString: Untagged
@@ -647,6 +648,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &755707022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755707019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c7151d664e01447acc12d92627184f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicBusVolume: 0
+  sfxBusVolume: 0
 --- !u!1 &757314817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,14 +1697,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2011427276
-AudioListener:
+--- !u!114 &2011427276
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011427275}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!20 &2011427277
 Camera:
   m_ObjectHideFlags: 0
