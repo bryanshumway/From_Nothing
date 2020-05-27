@@ -3603,8 +3603,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137124384}
-  - {fileID: 1181141007}
   - {fileID: 1962698797}
+  - {fileID: 1181141007}
   - {fileID: 430022713}
   - {fileID: 1153697934}
   m_Father: {fileID: 388837141}
@@ -4067,7 +4067,7 @@ Transform:
   - {fileID: 1181141003}
   - {fileID: 7180166620839060514}
   m_Father: {fileID: 862135610}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185262773
 GameObject:
@@ -6578,7 +6578,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: b9785b361d2eae64fa55cbd387f31bfd, type: 3}
 --- !u!4 &1962698797 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 400004, guid: b9785b361d2eae64fa55cbd387f31bfd,
+    type: 3}
   m_PrefabInstance: {fileID: 1962698796}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2100056417
