@@ -1,67 +1,123 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    float moveSpeed = 3f;
-    float jumpSpeed = 1f;
+    public float moveSpeed = 3f;
+    public float jumpSpeed = 1f;
+    public GameObject playerObject;
+    public GameObject footprint;
+    public GameObject footprintSpot;
+
     [SerializeField] LayerMask layerMask;
     Vector3 original;
-    Vector3 flipped;
     Rigidbody2D rigidBody;
     Animator playerAnimator;
-    BoxCollider2D boxCollider2D;
+    Collider2D boxCollider2D;
+    bool canFootprint;
+    public bool isJumping;
     // Start is called before the first frame update
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-        original = new Vector3(1,1,1);
-        flipped = new Vector3(-1,1,1);
+        boxCollider2D = GetComponent<Collider2D>();
+        original = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Horizontal") > 0 && IsMoveRightPossible())
+        //move right
+        if(Input.GetKey(KeyCode.D))
         {
             transform.localScale = original;
-            rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(moveSpeed * 1, rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
+            if (IsGrounded() && canFootprint)
+            {
+                StartCoroutine("FootPrint");
+                canFootprint = false;
+            }
         }
-        else if(Input.GetAxis("Horizontal") < 0 && IsMoveLeftPossible()){
-            transform.localScale = flipped;
-            rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
+        //move left
+        else if(Input.GetKey(KeyCode.A)){
+            transform.localScale = new Vector3(original.x, original.y, -original.z);
+            rigidBody.velocity = new Vector2(moveSpeed * -1, rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
+            if (IsGrounded() && canFootprint)
+            {
+                StartCoroutine("FootPrint");
+                canFootprint = false;
+            }
         }
+        //not moving
         else
         {
             rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", false);
+            if (IsGrounded())
+            {
+                StopCoroutine("FootPrint");
+                canFootprint = true;
+            }
         }
-        if(Input.GetAxis("Jump")!=0 && IsGrounded())
+        //jump
+        if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rigidBody.velocity += Vector2.up*jumpSpeed;
+            StartCoroutine(IsJumping());
+            FootPrintStep();
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);      
+        }
+        //landed
+        if (IsGrounded() && isJumping)
+        {
+            FootPrintStep();
         }
     }
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down
         , .1f, layerMask);
-        return raycastHit2d.collider !=null;
+        return raycastHit2d.collider;
     }
     private bool IsMoveRightPossible()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.right
         , .1f, layerMask);
-        return raycastHit2d.collider ==null;
+        return !raycastHit2d.collider;
     }
     private bool IsMoveLeftPossible()
         {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.left
         , .1f, layerMask);
-        return raycastHit2d.collider ==null;
+        return !raycastHit2d.collider;
     }
+
+    IEnumerator IsJumping()
+    {
+        yield return new WaitForSeconds(0.01f);
+        isJumping = true;
+    }
+
+    IEnumerator FootPrint()
+    {
+        //yield return new WaitForSeconds(0.1f);
+        if (IsGrounded())
+        {
+            FootPrintStep();
+        }
+        yield return new WaitForSeconds(0.2f);
+        canFootprint = true;
+    }
+
+    public void FootPrintStep()
+    {
+        Vector3 step = new Vector3(transform.position.x, playerObject.transform.localPosition.y - .24f, -3);
+        Instantiate(footprint, step, footprint.transform.rotation);
+        isJumping = false;
+    }
+
 }
