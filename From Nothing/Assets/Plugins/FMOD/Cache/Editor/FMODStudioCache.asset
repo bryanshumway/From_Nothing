@@ -1,0 +1,260 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 114668524849120762}
+  - {fileID: 114156293422919582}
+  - {fileID: 114708446515415630}
+  EditorEvents:
+  - {fileID: 114941187619030186}
+  - {fileID: 114010534704329592}
+  - {fileID: 114869774947096746}
+  EditorParameters:
+  - {fileID: 114638674509145566}
+  MasterBanks:
+  - {fileID: 114708446515415630}
+  StringsBanks:
+  - {fileID: 114668524849120762}
+  stringsBankWriteTime: 637261147792350951
+  cacheVersion: 3
+--- !u!114 &114010534704329592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Player/footsteps
+  guid: 1e98c142c3f62f448274833b1c354366
+  Banks:
+  - {fileID: 114708446515415630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 114755029199707666}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &114156293422919582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Lv01.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Lv01.bank
+  SubDir: 
+  lastModified: 637261147791900579
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &114422082507776726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637261130318306204
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &114638674509145566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: fade
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114668524849120762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637261147792350951
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1066
+  Exists: 1
+--- !u!114 &114688896562400642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/footsteps/GroundMaterial
+  m_EditorClassIdentifier: 
+  Name: GroundMaterial
+  Min: 0
+  Max: 5
+  Default: 0
+  Exists: 0
+--- !u!114 &114706708470277862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Lv01.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Lv01.bank
+  SubDir: 
+  lastModified: 637261130317085180
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &114708446515415630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637261147792285892
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &114755029199707666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/footsteps/GroundMaterial
+  m_EditorClassIdentifier: 
+  Name: GroundMaterial
+  Min: 0
+  Max: 5
+  Default: 0
+  Exists: 1
+--- !u!114 &114766237246889012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: fade
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &114869774947096746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Pause
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Pause
+  guid: 99cf6542b3de20449561f7d6f8882b2c
+  Banks:
+  - {fileID: 114708446515415630}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &114941187619030186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/lv01_main
+  m_EditorClassIdentifier: 
+  Path: event:/Music/lv01_main
+  guid: 62e85d5479d6044a8c532508d1325a37
+  Banks:
+  - {fileID: 114156293422919582}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 52786
