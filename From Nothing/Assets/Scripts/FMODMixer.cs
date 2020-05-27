@@ -5,8 +5,8 @@ using UnityEngine;
 public class FMODMixer : MonoBehaviour
 {
 
-    FMOD.Studio.Bus musicBus;
-    FMOD.Studio.Bus sfxBus;
+    public FMOD.Studio.Bus musicBus;
+    public FMOD.Studio.Bus sfxBus;
 
     [SerializeField]
     [Range(-80f, 10f)]

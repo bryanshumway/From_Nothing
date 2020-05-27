@@ -1,32 +1,77 @@
 fileFormatVersion: 2
-guid: a0f27b1416b1c9044801b2e1bf1d8c07
+guid: db11b4f308c07da44b3c98b3d444a14d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: body_JNT
     100002: //RootNode
-    100004: leg_L_handle
-    100006: leg_L_JNT
-    100008: leg_L_NULL
-    100010: leg_R_handle
-    100012: leg_R_JNT
-    100014: leg_R_NULL
-    100016: lens_handle
-    100018: lens_JNT
-    100020: root_JNT
+    100004: cameraBot_GRP
+    100006: cameraBotBody
+    100008: cameraBotNose
+    100010: cameraLens
+    100012: leg_L_GRP
+    100014: leg_L_handle
+    100016: leg_L_JNT
+    100018: leg_L_NULL
+    100020: leg_R
+    100022: leg_R 1
+    100024: leg_R_GRP
+    100026: leg_R_handle
+    100028: leg_R_JNT
+    100030: leg_R_NULL
+    100032: lens_handle
+    100034: lens_JNT
+    100036: pTorus1
+    100038: pTorus2
+    100040: pTorus3
+    100042: pTorus4
+    100044: root_JNT
     400000: body_JNT
     400002: //RootNode
-    400004: leg_L_handle
-    400006: leg_L_JNT
-    400008: leg_L_NULL
-    400010: leg_R_handle
-    400012: leg_R_JNT
-    400014: leg_R_NULL
-    400016: lens_handle
-    400018: lens_JNT
-    400020: root_JNT
-    7400000: Take 001
+    400004: cameraBot_GRP
+    400006: cameraBotBody
+    400008: cameraBotNose
+    400010: cameraLens
+    400012: leg_L_GRP
+    400014: leg_L_handle
+    400016: leg_L_JNT
+    400018: leg_L_NULL
+    400020: leg_R
+    400022: leg_R 1
+    400024: leg_R_GRP
+    400026: leg_R_handle
+    400028: leg_R_JNT
+    400030: leg_R_NULL
+    400032: lens_handle
+    400034: lens_JNT
+    400036: pTorus1
+    400038: pTorus2
+    400040: pTorus3
+    400042: pTorus4
+    400044: root_JNT
+    2100000: cameraBotBody_MAT
+    2100002: cameraBotLeg_MAT
+    2100004: black_phong_MAT
+    2100006: redRay_MAT
+    4300000: cameraBotBody
+    4300002: cameraBotNose
+    4300004: cameraLens
+    4300006: leg_R
+    4300008: pTorus3
+    4300010: pTorus4
+    4300012: leg_R
+    4300014: pTorus1
+    4300016: pTorus2
     9500000: //RootNode
+    13700000: cameraBotBody
+    13700002: cameraBotNose
+    13700004: cameraLens
+    13700006: leg_R
+    13700008: leg_R 1
+    13700010: pTorus1
+    13700012: pTorus2
+    13700014: pTorus3
+    13700016: pTorus4
   externalObjects: {}
   materials:
     importMaterials: 1
