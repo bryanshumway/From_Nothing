@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
-    public GameObject playerObject;
     public GameObject footprint;
     public GameObject footprintSpot;
 
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     public void FootPrintStep()
     {
-        Vector3 step = new Vector3(transform.position.x, playerObject.transform.localPosition.y - .24f, -3);
+        Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
         Instantiate(footprint, step, footprint.transform.rotation);
         isJumping = false;
     }

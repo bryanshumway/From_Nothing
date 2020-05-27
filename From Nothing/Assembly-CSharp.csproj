@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\FadeAwayObject.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
-    <Compile Include="Assets\Scripts\Level_01\Level_01_Interact_Manager.cs" />
+    <Compile Include="Assets\Scripts\Level_01_Interact_Manager.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />

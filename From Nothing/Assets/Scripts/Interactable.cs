@@ -9,14 +9,12 @@ public class Interactable : MonoBehaviour
     private GameObject pickupSpot;
     private GameObject interactPanel;
     private Text interactText;
-    public Color iPanelColorCurrent;
-
-    public bool canPickup;
-    public bool canInteract;
+    private bool canPickup;
+    private bool canInteract;
 
     private void Start()
     {
-        player = GameObject.Find("PlayerModel");
+        player = GameObject.Find("Player");
         pickupSpot = GameObject.Find("PickupSpot");
         interactPanel = GameObject.Find("InteractPanel");
         interactText = GameObject.Find("InteractText").GetComponent<Text>();
@@ -37,7 +35,6 @@ public class Interactable : MonoBehaviour
             else if (canInteract)
             {
                 player.GetComponent<PlayerController>().enabled = false;
-                interactPanel.GetComponent<Animation>().Stop();
                 interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 interactText.color = new Color(255, 255, 255, 0);
                 GetComponent<Level_01_Interact_Manager>().enabled = true;
@@ -50,19 +47,23 @@ public class Interactable : MonoBehaviour
     {
         if (CompareTag("Pickup") && other.CompareTag("Player"))
         {
-            //interactPanel.GetComponent<Animation>().Stop();
-            //interactPanel.GetComponent<Animation>().Play("InteractFadeIn");
-            iPanelColorCurrent = interactPanel.GetComponent<Image>().color;
             interactText.text = "Press F to pick up";
+            interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
+            interactText.color = new Color(255, 255, 255, 1);
             canPickup = true;
         }
-        else if (CompareTag("Interact") && other.CompareTag("Player"))
+        else if (CompareTag("Door") && other.CompareTag("Player"))
         {
-            //interactPanel.GetComponent<Animation>().Stop();
-            //interactPanel.GetComponent<Animation>().Play("InteractFadeIn");
-            iPanelColorCurrent = interactPanel.GetComponent<Image>().color;
+            interactText.text = "Press F to enter";
+            interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
+            interactText.color = new Color(255, 255, 255, 1);
+            canInteract = true;
+        }
+        else
+        {
             interactText.text = "Press F to interact";
-            StartCoroutine("FadeIn");
+            interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
+            interactText.color = new Color(255, 255, 255, 1);
             canInteract = true;
         }
     }
@@ -71,40 +72,58 @@ public class Interactable : MonoBehaviour
     {
         if (CompareTag("Pickup") && other.CompareTag("Player"))
         {
-            //interactPanel.GetComponent<Animation>().Stop();
-            //interactPanel.GetComponent<Animation>().Play("InteractFadeOut");
-            iPanelColorCurrent = interactPanel.GetComponent<Image>().color;
+            interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            interactText.color = new Color(255, 255, 255, 0);
             canPickup = false;
         }
-        else if (CompareTag("Interact") && other.CompareTag("Player"))
+        else
         {
-            //interactPanel.GetComponent<Animation>().Stop();
-            //interactPanel.GetComponent<Animation>().Play("InteractFadeOut");
-            iPanelColorCurrent = interactPanel.GetComponent<Image>().color;
-            StopCoroutine("FadeIn");
-            StartCoroutine("FadeOut");
+            interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            interactText.color = new Color(255, 255, 255, 0);
             canInteract = false;
         }
     }
 
-    IEnumerator FadeIn()
-    {
-        for (float i = iPanelColorCurrent.a; i < 0.3f; i+=0.05f)
-        {
-            iPanelColorCurrent.a = i;
-            interactPanel.GetComponent<Image>().color = iPanelColorCurrent;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
+    //fade code
+    //IEnumerator FadeIn()
+    //{
+    //    for (float i = iPanelColorCurrent.a; i < 0.3f; i+=0.05f)
+    //    {
+    //        iPanelColorCurrent.a = i;
+    //        interactPanel.GetComponent<Image>().color = iPanelColorCurrent;
+    //        yield return new WaitForSeconds(0.05f);
+    //    }
+    //}
 
-    IEnumerator FadeOut()
-    {
-        for (float i = iPanelColorCurrent.a; i > 0; i -= 0.05f)
-        {
-            iPanelColorCurrent.a = i;
-            interactPanel.GetComponent<Image>().color = iPanelColorCurrent;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
+    //IEnumerator FadeInText()
+    //{
+    //    for (float i = iTextColorCurrent.a; i < 1; i += 0.05f)
+    //    {
+    //        iTextColorCurrent.a = i;
+    //        interactText.color = iTextColorCurrent;
+    //        yield return new WaitForSeconds(0.01f);
+    //    }
+    //}
+
+    //IEnumerator FadeOut()
+    //{
+    //    for (float i = iPanelColorCurrent.a; i > 0; i -= 0.05f)
+    //    {
+    //        iPanelColorCurrent.a = i;
+    //        interactPanel.GetComponent<Image>().color = iPanelColorCurrent;
+    //        yield return new WaitForSeconds(0.05f);
+    //    }        
+    //}
+
+    //IEnumerator FadeOutText()
+    //{
+    //    for (float i = iTextColorCurrent.a; i > 0; i -= 0.05f)
+    //    {
+    //        iTextColorCurrent.a = i;
+    //        interactText.color = iTextColorCurrent;
+    //        yield return new WaitForSeconds(0.01f);
+    //    }
+    //}
+
 
 }
