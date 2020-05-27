@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 7910a364843eabd4a874574412d8765d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: body_JNT
+    100002: innerClaw_JNT
+    100004: innerClaw_NULL
+    100006: lid_JNT
+    100008: lid_NULL
+    100010: lowerArm_JNT
+    100012: lowerArm_NULL
+    100014: outerClaw_JNT
+    100016: outerClaw_NULL
+    100018: roombaBody
+    100020: //RootNode
+    100022: roombaInnerClaw
+    100024: roombaLid
+    100026: roombaLowerArm
+    100028: roombaLowerArm1
+    100030: roombaOuterClaw
+    100032: roombaScrubber
+    100034: roombaUpperArm
+    100036: root_handle
+    100038: root_JNT
+    100040: scrubber_JNT
+    100042: upperArm_JNT
+    100044: upperArm_NULL
+    400000: body_JNT
+    400002: innerClaw_JNT
+    400004: innerClaw_NULL
+    400006: lid_JNT
+    400008: lid_NULL
+    400010: lowerArm_JNT
+    400012: lowerArm_NULL
+    400014: outerClaw_JNT
+    400016: outerClaw_NULL
+    400018: roombaBody
+    400020: //RootNode
+    400022: roombaInnerClaw
+    400024: roombaLid
+    400026: roombaLowerArm
+    400028: roombaLowerArm1
+    400030: roombaOuterClaw
+    400032: roombaScrubber
+    400034: roombaUpperArm
+    400036: root_handle
+    400038: root_JNT
+    400040: scrubber_JNT
+    400042: upperArm_JNT
+    400044: upperArm_NULL
+    2100000: roombaBotMetal_MAT
+    2100002: roombaBotBrush_MAT
+    2100004: phong1
+    4300000: roombaScrubber
+    4300002: roombaLowerArm
+    4300004: roombaBody
+    4300006: roombaLowerArm1
+    4300008: roombaUpperArm
+    4300010: roombaOuterClaw
+    4300012: roombaInnerClaw
+    4300014: roombaLid
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: roombaBody
+    13700002: roombaInnerClaw
+    13700004: roombaLid
+    13700006: roombaLowerArm
+    13700008: roombaLowerArm1
+    13700010: roombaOuterClaw
+    13700012: roombaScrubber
+    13700014: roombaUpperArm
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
