@@ -9,13 +9,20 @@
  */
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
 
 public class LoadScene : MonoBehaviour
 {
-    
+
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
-    public Animator animator; //access the animator
+                           //public Animator animator; //access the animator
+
+
+    private void Start()
+    {
+        GetComponent<Animation>().Play("FadeToClear");
+    }
 
     //Gets the level that is to be loaded and fades from the current screen to the next level
     public void FadeToLevel(string scene)
@@ -23,27 +30,38 @@ public class LoadScene : MonoBehaviour
         //Gets the name of the scene that needs to be loaded in next
         SceneToLoad = scene;
         //Set the animation trigger to true
-        animator.SetTrigger("FadeOut");
+        //animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(SceneToLoad);
     }
-    
+
     //Loads the first level
     public void LoadGame(string scene)
     {
         //Calls Unity Scene manger to load the specific scene
-        animator.SetTrigger("FadeOut");
+        //animator.SetTrigger("FadeOut");
+        StartCoroutine(anim(scene));
+
+    }
+
+    IEnumerator anim(string scene)
+    {
+        GetComponent<Animation>().Play("FadeToBlack");
+        yield return new WaitForSeconds(1);
+        if (SceneManager.GetActiveScene().name == "scLevel1")
+        {
+            GameObject.Find("GameObject").GetComponent<LevelStart2>().enabled = true;
+        }
         SceneManager.LoadScene(scene);
     }
 
     //Load the settings option in the main menu. 
-    //Find some way to save these settings
     public void LoadSettings(string settings)
     {
-        animator.SetTrigger("FadeOut");
+        //animator.SetTrigger("FadeOut");
         SceneManager.LoadScene(settings);
     }
 
@@ -53,7 +71,7 @@ public class LoadScene : MonoBehaviour
         //For testing that the game closes while testing in the editor
         Debug.Log("Game Exited");
         //Kills the program
-        Application.Quit();         
+        Application.Quit();
     }
 
 }

@@ -502,7 +502,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneToLoad: SampleScene
   settings: scSettings
-  animator: {fileID: 340617358}
 --- !u!224 &340617357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -576,6 +575,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340617355}
   m_CullTransparentMesh: 0
+--- !u!1001 &463267845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.452216
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.637733
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.3731894
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969421, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807307965847969423, guid: bade1113ebc75a94ba9b2f12d0bbd8a7,
+        type: 3}
+      propertyPath: m_Name
+      value: GameObject
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bade1113ebc75a94ba9b2f12d0bbd8a7, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,14 +662,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
+--- !u!114 &519420029
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -745,7 +818,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: scLevel1
+          m_StringArgument: scLevel1Test
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &533769721

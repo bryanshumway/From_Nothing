@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,10 @@ public class PlayerController : MonoBehaviour
     Collider2D boxCollider2D;
     bool canFootprint;
     public bool isJumping;
+
+    //FMOD
+    //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +122,13 @@ public class PlayerController : MonoBehaviour
         Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
         Instantiate(footprint, step, footprint.transform.rotation);
         isJumping = false;
+
+        //FMOD
+        //footstepSound = RuntimeManager.CreateInstance("event:/Player/footsteps");
+        //footstepSound.setParameterByName("GroundMaterial", "STRING FOR GROUND MATERIAL TYPE GOES HERE");
+        //footstepSound.start();
+        //footstepSound.release();
+        RuntimeManager.PlayOneShot("event:/Player/footsteps");
     }
 
 }
