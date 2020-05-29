@@ -12,6 +12,7 @@ TagManager:
   - DoorExitSpot
   - DoorTrigger
   - DoorButton
+  - ElevatorButton
   layers:
   - Default
   - TransparentFX

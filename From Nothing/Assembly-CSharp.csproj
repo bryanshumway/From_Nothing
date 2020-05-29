@@ -66,14 +66,15 @@
     <Compile Include="Assets\Scripts\FadeAwayObject.cs" />
     <Compile Include="Assets\Scripts\FMODMixer.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Level_01\Enemy_01_movement.cs" />
     <Compile Include="Assets\Scripts\Level_01\Level_01_Interact_Manager.cs" />
-    <Compile Include="Assets\Scripts\Level_01\SceneSwitch.cs" />
     <Compile Include="Assets\Scripts\LevelStart2.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RenderQueue.cs" />
+    <Compile Include="Assets\Scripts\SceneSwitch.cs" />
     <Compile Include="Assets\Scripts\TextControl.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Cinemachine.dll</HintPath>

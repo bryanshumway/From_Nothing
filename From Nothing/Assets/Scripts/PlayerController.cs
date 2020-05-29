@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public static bool canJump = false;
     public static bool footprintActive = true;
 
     public float moveSpeed = 3f;
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //jump
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        if(Input.GetButtonDown("Jump") && IsGrounded() && canJump)
         {
             StartCoroutine(IsJumping());
             FootPrintStep();
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
         if (footprintActive)
         {
             Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
-            Instantiate(footprint, step, footprint.transform.rotation);
+            Instantiate(footprint, footprintSpot.transform.position, footprintSpot.transform.rotation);
             isJumping = false;
         }
         //FMOD

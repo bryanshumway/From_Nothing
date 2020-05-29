@@ -6,17 +6,31 @@ using UnityEngine.UI;
 public class Level_01_Interact_Manager : MonoBehaviour
 {
 
+    public static Vector3 elevatorEnterSpot;
+    public static Vector3 camSpot;
+    private static Vector3 camSpotNew;
+    public static bool elevatorButtonPressed = false;
+
+    public GameObject elevatorPanel;
+
+    private int floor = 5;
     private GameObject player;
+    private GameObject camera;
     private GameObject messagePanel;
     private GameObject closestDoor;
     private GameObject closestEnterSpot;
     private GameObject closestExitSpot;
     private Text messageText;
-    public Vector3 doorEnterSpotNext;
+    private Vector3 doorEnterSpotNext;
+    private Vector3 doorEnterSpotNextCustom;
+    private bool customEnterSpot = false;
     private bool doorEntered;
     //enter door status
     private bool doorEnter;
     public static int doorEnterStatus = 0;
+    //elevator status
+    private bool elevatorActive;
+    public static int elevatorStatus = 0;
     //crystal launcher status
     private bool active01;
     public static int status01 = 0;
@@ -26,10 +40,17 @@ public class Level_01_Interact_Manager : MonoBehaviour
     //boss door pass status
     private bool active03;
     public static int status03 = 0;
+    //boots status
+    private bool activeBoots;
+    public static int statusBoots = 0;
+    //tube status
+    private bool activeTube;
+    public static int statusTube = 0;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
+        camera = GameObject.Find("Main Camera");
         messagePanel = GameObject.Find("MessagePanel");
         messageText = GameObject.Find("MessageText").GetComponent<Text>();
         closestDoor = GameObject.FindGameObjectWithTag("Door");
@@ -101,6 +122,46 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
             }
+            //boots status
+            if (activeBoots)
+            {
+                //normal message exit
+                if (statusBoots == 0)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    PlayerController.canJump = true;
+                    Destroy(gameObject);
+                }
+            }
+            //tube status
+            if (activeTube)
+            {
+                //normal message exit
+                if (statusTube == 0)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeTube = false;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<CapsuleCollider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+            }
+            //eleavtor
+            if (elevatorActive)
+            {
+                //normal message exit
+                if (elevatorStatus == 0)
+                {
+                    elevatorPanel.SetActive(false);
+                    player.GetComponent<PlayerController>().enabled = true;
+                    elevatorActive = false;
+                    GetComponent<Collider2D>().enabled = true;
+                }
+            }
         }
     }
 
@@ -156,6 +217,29 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 active03 = true;
             }
         }
+        //boots
+        else if (name == "boots")
+        {
+            //when player picks up boots
+            if (statusBoots == 0)
+            {
+                messageText.text = "You found some Boots. You can now jump.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeBoots = true;
+            }
+        }
+        //test tube
+        else if (name == "Test_Tube_01")
+        {
+            //when player interacts with test tube
+            if (statusTube == 0)
+            {
+                messageText.text = "Why am I here..?";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                activeTube = true;
+            }
+        }
         //door buttons
         else if (CompareTag("DoorButton"))
         {
@@ -184,9 +268,40 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 DoorOpen();
             }
         }
+        //elevator buttons
+        else if (CompareTag("ElevatorButton"))
+        {
+            if (elevatorStatus == 0)
+            {
+                player.GetComponent<PlayerController>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+                elevatorPanel.SetActive(true);
+                elevatorActive = true;
+            }
+            else if (elevatorStatus == 1)
+            {
+                DoorEnter();
+                elevatorStatus = 0;
+            }
+        }
         //door enter
         else if (CompareTag("Door"))
         {
+            if (name == "floor02door02")
+            {
+                doorEnterSpotNextCustom = GameObject.Find("enterSpotBoots").transform.position;
+                customEnterSpot = true;
+                camSpot = camera.transform.position;
+                camSpotNew = GameObject.Find("camSpotBoots").transform.position;
+                StartCoroutine(DirectionalLightOff());
+            }
+            else if (name == "bootsRoomDoor")
+            {
+                doorEnterSpotNextCustom = GameObject.Find("enterSpotf01d02").transform.position;
+                customEnterSpot = true;
+                camSpotNew = camSpot;
+                StartCoroutine(DirectionalLightOn());
+            }
             DoorEnter();
         }
     }
@@ -210,7 +325,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
             closestDoor.GetComponent<Collider2D>().enabled = true;
         }
-        Debug.Log(closestDoor);
+        //Debug.Log(closestDoor);
     }
 
 
@@ -238,7 +353,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 break;
             }
         }
-        Debug.Log(doorEnterSpotNext);
+        //Debug.Log(doorEnterSpotNext);
         player.transform.position = closestEnterSpot.transform.position;
         doorEntered = true;
         StartCoroutine(DoorClose(0.5f));
@@ -261,6 +376,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
             button.GetComponent<Collider2D>().enabled = true;
         }
         doorEntered = false;
+        if (elevatorButtonPressed)
+        {
+            player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, -player.transform.localScale.z);
+            elevatorButtonPressed = false;
+        }
         player.transform.position = closestExitSpot.transform.position;
         StartCoroutine(DoorClose(0));
     }
@@ -268,8 +388,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
     IEnumerator DoorClose(float closeTime)
     {
         yield return new WaitForSeconds(closeTime);
+        if (doorEntered && customEnterSpot)
+        {
+            GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
+        }
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
-        Debug.Log("Before: " + closestDoor);
+        //Debug.Log("Before: " + closestDoor);
         foreach (GameObject obj in objectsWithTag)
         {
             if (Vector3.Distance(player.transform.position, obj.transform.position) <= Vector3.Distance(player.transform.position, closestDoor.transform.position))
@@ -279,16 +403,101 @@ public class Level_01_Interact_Manager : MonoBehaviour
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         yield return new WaitForSeconds(1);
-        Debug.Log("After: " + closestDoor);
         if (doorEntered)
         {
             yield return new WaitForSeconds(1);
-            player.transform.position = doorEnterSpotNext;
+            if (customEnterSpot)
+            {
+                player.transform.position = doorEnterSpotNextCustom;
+                camera.transform.position = camSpotNew;
+                GameObject.Find("Fade").GetComponent<Animation>().Play("FadeIn");
+                customEnterSpot = false;
+            }
+            else if (elevatorActive)
+            {
+                player.transform.position = elevatorEnterSpot;
+                elevatorActive = false;
+            }
+            else
+            {
+                player.transform.position = doorEnterSpotNext;
+            }
             DoorOpen();
         }
         else
         {
             player.GetComponent<PlayerController>().enabled = true;
+        }
+    }
+
+    IEnumerator DirectionalLightOff()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
+    }
+
+    IEnumerator DirectionalLightOn()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.3f;
+    }
+
+    IEnumerator MessageOff()
+    {
+        yield return new WaitForSeconds(2);
+        messageText.text = "";
+        messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    }
+
+    public void Floor4A()
+    {
+        if (floor == 5)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 5;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf02e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
+        }
+    }
+
+    public void Floor4B()
+    {
+        if (floor == 4)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 4;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
         }
     }
 

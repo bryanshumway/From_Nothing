@@ -52,7 +52,7 @@ public class Interactable : MonoBehaviour
             interactText.color = new Color(255, 255, 255, 1);
             canPickup = true;
         }
-        else if (CompareTag("Door") && other.CompareTag("Player"))
+        else if (CompareTag("Door") && other.CompareTag("Player") || CompareTag("ElevatorButton") && Level_01_Interact_Manager.elevatorButtonPressed)
         {
             interactText.text = "Press F to enter";
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
