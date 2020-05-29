@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public static bool canJump = false;
+    public static bool footprintActive = true;
+
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
-    public GameObject playerObject;
     public GameObject footprint;
     public GameObject footprintSpot;
 
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //move right
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.localScale = original;
             rigidBody.velocity = new Vector2(moveSpeed * 1, rigidBody.velocity.y);
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //jump
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        if(Input.GetButtonDown("Jump") && IsGrounded() && canJump)
         {
             StartCoroutine(IsJumping());
             FootPrintStep();
@@ -120,10 +122,12 @@ public class PlayerController : MonoBehaviour
 
     public void FootPrintStep()
     {
-        Vector3 step = new Vector3(transform.position.x, playerObject.transform.localPosition.y - .24f, -3);
-        Instantiate(footprint, step, footprint.transform.rotation);
-        isJumping = false;
-
+        if (footprintActive)
+        {
+            Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
+            Instantiate(footprint, footprintSpot.transform.position, footprintSpot.transform.rotation);
+            isJumping = false;
+        }
         //FMOD
         //footstepSound = RuntimeManager.CreateInstance("event:/Player/footsteps");
         //footstepSound.setParameterByName("GroundMaterial", "STRING FOR GROUND MATERIAL TYPE GOES HERE");
