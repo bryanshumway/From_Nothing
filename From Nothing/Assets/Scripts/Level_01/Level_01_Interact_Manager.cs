@@ -8,8 +8,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     public static Vector3 elevatorEnterSpot;
     public static Vector3 camSpot;
-    private static Vector3 camSpotNew;
+    public static Vector3 camSpotNew;
     public static bool elevatorButtonPressed = false;
+    public static bool level2Access = false;
+    public static bool level3Access = false;
+    public static bool level4Access = false;
+    public static bool level5Access = false;
 
     public GameObject elevatorPanel;
 
@@ -24,12 +28,17 @@ public class Level_01_Interact_Manager : MonoBehaviour
     private Vector3 doorEnterSpotNext;
     private Vector3 doorEnterSpotNextCustom;
     private bool customEnterSpot = false;
+    private bool customEnterSpotElevator = false;
     private bool doorEntered;
+
+    //status variables
+    #region
+
     //enter door status
     private bool doorEnter;
     public static int doorEnterStatus = 0;
     //elevator status
-    private bool elevatorActive;
+    public bool elevatorActive;
     public static int elevatorStatus = 0;
     //crystal launcher status
     private bool active01;
@@ -46,6 +55,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
     //tube status
     private bool activeTube;
     public static int statusTube = 0;
+    //keycard01 status
+    private bool activeKeycard01;
+    public static int statusKeycard = 0;
+
+    #endregion
 
     private void Awake()
     {
@@ -60,6 +74,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     //door enter/exit logic
     //message box logic
+    #region
+
     private void Update()
     {
         //entering door
@@ -150,6 +166,18 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
             }
+            //keycard01 status
+            if (activeKeycard01)
+            {
+                //normal message exit
+                if (statusKeycard == 0)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    Destroy(gameObject);
+                }
+            }
             //eleavtor
             if (elevatorActive)
             {
@@ -160,12 +188,17 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     player.GetComponent<PlayerController>().enabled = true;
                     elevatorActive = false;
                     GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
             }
         }
     }
 
+    #endregion
+
     //when player presses F on object, this happens first
+    #region
+
     public void StatusCheck()
     {
         GetComponent<Collider2D>().enabled = false;
@@ -240,6 +273,18 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 activeTube = true;
             }
         }
+        //keycard01
+        else if (name == "keycard01")
+        {
+            //when player picks up keycard
+            if (statusKeycard == 0)
+            {
+                messageText.text = "You found a keycard that allows access to Floor 03.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeKeycard01 = true;
+                level2Access = true;
+            }
+        }
         //door buttons
         else if (CompareTag("DoorButton"))
         {
@@ -249,7 +294,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //if crystal hasn't been inserted
                 if (status02 == 0)
                 {
-                    messageText.text = "You press the button. There seems to be no power present.";
+                    messageText.text = "You press the button. There seems to be no power running.";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                     active02 = true;
                 }
@@ -280,8 +325,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
             }
             else if (elevatorStatus == 1)
             {
+                customEnterSpotElevator = true;
                 DoorEnter();
-                elevatorStatus = 0;
             }
         }
         //door enter
@@ -305,6 +350,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
             DoorEnter();
         }
     }
+
+    #endregion
+
+    //door code
+    #region
     void DoorOpen()
     {
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
@@ -323,7 +373,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
-            closestDoor.GetComponent<Collider2D>().enabled = true;
+            if (!elevatorButtonPressed)
+            {
+                closestDoor.GetComponent<Collider2D>().enabled = true;
+            }
         }
         //Debug.Log(closestDoor);
     }
@@ -363,6 +416,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
     {
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("DoorExitSpot");
         GameObject[] doorButtons = GameObject.FindGameObjectsWithTag("DoorButton");
+        GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
         yield return new WaitForSeconds(1);
         foreach (GameObject obj in objectsWithTag)
         {
@@ -375,6 +429,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
         {
             button.GetComponent<Collider2D>().enabled = true;
         }
+        foreach (GameObject button in elevatorButtons)
+        {
+            button.GetComponent<Collider2D>().enabled = true;
+            button.GetComponent<Level_01_Interact_Manager>().enabled = false;
+        }
         doorEntered = false;
         if (elevatorButtonPressed)
         {
@@ -382,6 +441,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             elevatorButtonPressed = false;
         }
         player.transform.position = closestExitSpot.transform.position;
+        elevatorStatus = 0;
         StartCoroutine(DoorClose(0));
     }
 
@@ -403,6 +463,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         yield return new WaitForSeconds(1);
+        Debug.Log(elevatorActive);
+        Debug.Log(customEnterSpot);
+        Debug.Log(elevatorEnterSpot);
         if (doorEntered)
         {
             yield return new WaitForSeconds(1);
@@ -413,9 +476,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 GameObject.Find("Fade").GetComponent<Animation>().Play("FadeIn");
                 customEnterSpot = false;
             }
-            else if (elevatorActive)
+            else if (customEnterSpotElevator)
             {
                 player.transform.position = elevatorEnterSpot;
+                customEnterSpotElevator = false;
                 elevatorActive = false;
             }
             else
@@ -429,25 +493,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
             player.GetComponent<PlayerController>().enabled = true;
         }
     }
+    #endregion
 
-    IEnumerator DirectionalLightOff()
-    {
-        yield return new WaitForSeconds(2);
-        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
-    }
-
-    IEnumerator DirectionalLightOn()
-    {
-        yield return new WaitForSeconds(2);
-        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.3f;
-    }
-
-    IEnumerator MessageOff()
-    {
-        yield return new WaitForSeconds(2);
-        messageText.text = "";
-        messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-    }
+    //elevator code
+    #region
 
     public void Floor4A()
     {
@@ -468,6 +517,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             foreach (GameObject button in elevatorButtons)
             {
                 button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
             }
             elevatorStatus = 1;
             elevatorButtonPressed = true;
@@ -494,6 +544,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             foreach (GameObject button in elevatorButtons)
             {
                 button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
             }
             elevatorStatus = 1;
             elevatorButtonPressed = true;
@@ -501,4 +552,163 @@ public class Level_01_Interact_Manager : MonoBehaviour
         }
     }
 
+    public void Floor3()
+    {
+        if (floor == 3)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else if (!level2Access)
+        {
+            messageText.text = "It seems you need a keycard to access this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 3;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
+        }
+    }
+
+    public void Floor2()
+    {
+        if (floor == 2)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else if (!level3Access)
+        {
+            messageText.text = "It seems you need a keycard to access this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 2;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
+        }
+    }
+
+    public void Floor1()
+    {
+        if (floor == 1)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else if (!level4Access)
+        {
+            messageText.text = "It seems you need a keycard to access this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 1;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
+        }
+    }
+
+    public void Floor0()
+    {
+        if (floor == 0)
+        {
+            messageText.text = "You're already on this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else if (!level5Access)
+        {
+            messageText.text = "It seems you need a keycard to access this floor.";
+            messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            StopCoroutine("MessageOff");
+            StartCoroutine("MessageOff");
+        }
+        else
+        {
+            floor = 0;
+            elevatorPanel.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true;
+            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
+            foreach (GameObject button in elevatorButtons)
+            {
+                button.GetComponent<Collider2D>().enabled = true;
+                button.GetComponent<Level_01_Interact_Manager>().enabled = false;
+            }
+            elevatorStatus = 1;
+            elevatorButtonPressed = true;
+            DoorOpen();
+        }
+    }
+
+    #endregion
+
+    //coroutines
+    #region
+    IEnumerator DirectionalLightOff()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0;
+    }
+
+    IEnumerator DirectionalLightOn()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.Find("Directional Light").GetComponent<Light>().intensity = 0.3f;
+    }
+
+    IEnumerator MessageOff()
+    {
+        yield return new WaitForSeconds(2);
+        messageText.text = "";
+        messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    }
+    #endregion
 }
