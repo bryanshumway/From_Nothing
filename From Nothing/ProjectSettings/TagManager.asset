@@ -7,6 +7,12 @@ TagManager:
   - background
   - Pickup
   - Interact
+  - Door
+  - DoorEnterSpot
+  - DoorExitSpot
+  - DoorTrigger
+  - DoorButton
+  - ElevatorButton
   layers:
   - Default
   - TransparentFX
