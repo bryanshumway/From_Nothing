@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Level_01\Enemy_01_movement.cs" />
     <Compile Include="Assets\Scripts\Level_01\Level_01_Interact_Manager.cs" />
+    <Compile Include="Assets\Scripts\Level01Dialogue.cs" />
     <Compile Include="Assets\Scripts\LevelStart2.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />

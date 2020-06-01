@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 1f;
     public GameObject footprint;
     public GameObject footprintSpot;
+    public GameObject playerBoots;
 
     [SerializeField] LayerMask layerMask;
     Vector3 original;
     Rigidbody2D rigidBody;
     Animator playerAnimator;
     Collider2D boxCollider2D;
-    bool canFootprint;
+    public bool canFootprint;
     public bool isJumping;
 
     //FMOD
@@ -74,14 +75,18 @@ public class PlayerController : MonoBehaviour
         //jump
         if(Input.GetButtonDown("Jump") && IsGrounded() && canJump)
         {
+            GetComponent<Animator>().SetInteger("JumpStatus", 1);
             StartCoroutine(IsJumping());
             FootPrintStep();
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);      
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
         }
         //landed
         if (IsGrounded() && isJumping)
         {
+            Debug.Log("test");
+            GetComponent<Animator>().SetInteger("JumpStatus", 3);
             FootPrintStep();
+            isJumping = false;
         }
     }
     private bool IsGrounded()
@@ -105,8 +110,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator IsJumping()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
         isJumping = true;
+        GetComponent<Animator>().SetInteger("JumpStatus", 2);
     }
 
     IEnumerator FootPrint()
@@ -122,18 +128,24 @@ public class PlayerController : MonoBehaviour
 
     public void FootPrintStep()
     {
+        RuntimeManager.PlayOneShot("event:/Player/footsteps");
         if (footprintActive)
         {
             Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
             Instantiate(footprint, footprintSpot.transform.position, footprintSpot.transform.rotation);
-            isJumping = false;
         }
+        //isJumping = false;
         //FMOD
         //footstepSound = RuntimeManager.CreateInstance("event:/Player/footsteps");
         //footstepSound.setParameterByName("GroundMaterial", "STRING FOR GROUND MATERIAL TYPE GOES HERE");
         //footstepSound.start();
         //footstepSound.release();
-        RuntimeManager.PlayOneShot("event:/Player/footsteps");
+        //RuntimeManager.PlayOneShot("event:/Player/footsteps");
+    }
+
+    public void EnableBoots()
+    {
+        playerBoots.SetActive(true);
     }
 
 }

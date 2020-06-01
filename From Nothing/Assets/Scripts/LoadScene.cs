@@ -17,11 +17,28 @@ public class LoadScene : MonoBehaviour
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
                            //public Animator animator; //access the animator
+    public GameObject settingsPanel;//panel that holds the settings' UI
+    public GameObject menuPanel;//panel that holds the main menu's UI
+    public GameObject fade;//fade panel
+    public GameObject storyText;//story text
+    public GameObject continueText;//press f to continue text
+
+    private bool canContinue = false;//allow player to press f to continue
 
 
     private void Start()
     {
-        GetComponent<Animation>().Play("FadeToClear");
+        fade.GetComponent<Animation>().Play("FadeToClear");
+        StartCoroutine(FadeRemove());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && canContinue)
+        {
+            StartCoroutine(Continue());
+            canContinue = false;
+        }
     }
 
     //Gets the level that is to be loaded and fades from the current screen to the next level
@@ -49,20 +66,38 @@ public class LoadScene : MonoBehaviour
 
     IEnumerator anim(string scene)
     {
-        GetComponent<Animation>().Play("FadeToBlack");
+        fade.SetActive(true);
+        fade.GetComponent<Animation>().Play("FadeToBlack");
         yield return new WaitForSeconds(1);
-        if (SceneManager.GetActiveScene().name == "scLevel1")
-        {
-            GameObject.Find("GameObject").GetComponent<LevelStart2>().enabled = true;
-        }
-        SceneManager.LoadScene(scene);
+        storyText.SetActive(true);
+        storyText.GetComponent<Animation>().Play("StoryTextFade");
+        yield return new WaitForSeconds(3);
+        canContinue = true;
+    }
+
+    IEnumerator Continue()
+    {
+        storyText.GetComponent<Animation>().Play("StoryTextFadeOut");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     //Load the settings option in the main menu. 
     public void LoadSettings(string settings)
     {
         //animator.SetTrigger("FadeOut");
-        SceneManager.LoadScene(settings);
+        //SceneManager.LoadScene(settings);
+        menuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+
+    //Returns to main menu from settings
+    public void SettingsBack()
+    {
+        //animator.SetTrigger("FadeOut");
+        //SceneManager.LoadScene(settings);
+        menuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
     }
 
     //Exits the game for the main start menu
@@ -72,6 +107,13 @@ public class LoadScene : MonoBehaviour
         Debug.Log("Game Exited");
         //Kills the program
         Application.Quit();
+    }
+
+    //remove fade panel after 1 second
+    IEnumerator FadeRemove()
+    {
+        yield return new WaitForSeconds(1);
+        fade.SetActive(false);
     }
 
 }
