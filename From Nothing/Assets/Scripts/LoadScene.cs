@@ -16,12 +16,41 @@ public class LoadScene : MonoBehaviour
 
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
-                           //public Animator animator; //access the animator
-
+    //public Animator animator; //access the animator
+    int count = 1; //Counter for how many times escape is pressed. Must be set to 1. Code checks for odd or even counts
+    public GameObject PauseMenu; //variable for the pause menu game object
+    private GameObject player;  //Variable for the player to disable movement
 
     private void Start()
     {
-        GetComponent<Animation>().Play("FadeToClear");
+        GetComponent<Animation>().Play("FadeToClear");//Animation between scenes
+        PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
+        PauseMenu.SetActive(false);
+        player = GameObject.Find("Player");
+
+    }
+
+    //Checks for input so often
+    private void Update()
+    {
+        //Check to see if the escape key has been pressed. MUST BE KEY DOWN
+        if (Input.GetKeyDown("escape"))
+        {
+            count++;//Add one to the counter to check to see how many times the escape is pressed
+
+            //If the count is even then activate the menu
+            if (count % 2 == 0)
+            {
+                player.GetComponent<PlayerController>().enabled = false;//Disable player movement
+                PauseMenu.SetActive(true);
+            }
+            //Else If the count is odd then, deactivate the menu
+            else
+            {
+                player.GetComponent<PlayerController>().enabled = true;//Enable player movement
+                PauseMenu.SetActive(false);
+            }
+        }
     }
 
     //Gets the level that is to be loaded and fades from the current screen to the next level
