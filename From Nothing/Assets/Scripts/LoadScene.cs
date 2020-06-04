@@ -38,13 +38,13 @@ public class LoadScene : MonoBehaviour
         {
             count++;//Add one to the counter to check to see how many times the escape is pressed
 
-            //If the count is even then activate the menu
+            //If the count is even then activate the menu, disable player movement
             if (count % 2 == 0)
             {
                 player.GetComponent<PlayerController>().enabled = false;//Disable player movement
                 PauseMenu.SetActive(true);
             }
-            //Else If the count is odd then, deactivate the menu
+            //Else If the count is odd then, deactivate the menu, activate player movement
             else
             {
                 player.GetComponent<PlayerController>().enabled = true;//Enable player movement
