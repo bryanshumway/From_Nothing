@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Level_01_Interact_Manager : MonoBehaviour
 {
@@ -578,7 +579,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
             floor = 3;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
-            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            customEnterSpot = true;
+            StartCoroutine(Level02Load());
             GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
             foreach (GameObject button in elevatorButtons)
             {
@@ -697,6 +699,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     //coroutines
     #region
+
     IEnumerator DirectionalLightOff()
     {
         yield return new WaitForSeconds(2);
@@ -721,5 +724,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         statusBoots = 1;
     }
+    IEnumerator Level02Load()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("level02");
+    }
+
     #endregion
 }
