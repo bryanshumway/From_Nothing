@@ -16,28 +16,40 @@ public class LoadScene : MonoBehaviour
 
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
-                           //public Animator animator; //access the animator
-    public GameObject settingsPanel;//panel that holds the settings' UI
-    public GameObject menuPanel;//panel that holds the main menu's UI
-    public GameObject fade;//fade panel
-    public GameObject storyText;//story text
-    public GameObject continueText;//press f to continue text
-
-    private bool canContinue = false;//allow player to press f to continue
-
+    //public Animator animator; //access the animator
+    int count = 1; //Counter for how many times escape is pressed. Must be set to 1. Code checks for odd or even counts
+    public GameObject PauseMenu; //variable for the pause menu game object
+    private GameObject player;  //Variable for the player to disable movement
 
     private void Start()
     {
-        fade.GetComponent<Animation>().Play("FadeToClear");
-        StartCoroutine(FadeRemove());
+        GetComponent<Animation>().Play("FadeToClear");//Animation between scenes
+        PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
+        PauseMenu.SetActive(false);
+        player = GameObject.Find("Player");
+
     }
 
+    //Checks for input so often
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canContinue)
+        //Check to see if the escape key has been pressed. MUST BE KEY DOWN
+        if (Input.GetKeyDown("escape"))
         {
-            StartCoroutine(Continue());
-            canContinue = false;
+            count++;//Add one to the counter to check to see how many times the escape is pressed
+
+            //If the count is even then activate the menu
+            if (count % 2 == 0)
+            {
+                player.GetComponent<PlayerController>().enabled = false;//Disable player movement
+                PauseMenu.SetActive(true);
+            }
+            //Else If the count is odd then, deactivate the menu
+            else
+            {
+                player.GetComponent<PlayerController>().enabled = true;//Enable player movement
+                PauseMenu.SetActive(false);
+            }
         }
     }
 
@@ -66,38 +78,20 @@ public class LoadScene : MonoBehaviour
 
     IEnumerator anim(string scene)
     {
-        fade.SetActive(true);
-        fade.GetComponent<Animation>().Play("FadeToBlack");
+        GetComponent<Animation>().Play("FadeToBlack");
         yield return new WaitForSeconds(1);
-        storyText.SetActive(true);
-        storyText.GetComponent<Animation>().Play("StoryTextFade");
-        yield return new WaitForSeconds(3);
-        canContinue = true;
-    }
-
-    IEnumerator Continue()
-    {
-        storyText.GetComponent<Animation>().Play("StoryTextFadeOut");
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().name == "scLevel1")
+        {
+            GameObject.Find("GameObject").GetComponent<LevelStart2>().enabled = true;
+        }
+        SceneManager.LoadScene(scene);
     }
 
     //Load the settings option in the main menu. 
     public void LoadSettings(string settings)
     {
         //animator.SetTrigger("FadeOut");
-        //SceneManager.LoadScene(settings);
-        menuPanel.SetActive(false);
-        settingsPanel.SetActive(true);
-    }
-
-    //Returns to main menu from settings
-    public void SettingsBack()
-    {
-        //animator.SetTrigger("FadeOut");
-        //SceneManager.LoadScene(settings);
-        menuPanel.SetActive(true);
-        settingsPanel.SetActive(false);
+        SceneManager.LoadScene(settings);
     }
 
     //Exits the game for the main start menu
@@ -107,13 +101,6 @@ public class LoadScene : MonoBehaviour
         Debug.Log("Game Exited");
         //Kills the program
         Application.Quit();
-    }
-
-    //remove fade panel after 1 second
-    IEnumerator FadeRemove()
-    {
-        yield return new WaitForSeconds(1);
-        fade.SetActive(false);
     }
 
 }
