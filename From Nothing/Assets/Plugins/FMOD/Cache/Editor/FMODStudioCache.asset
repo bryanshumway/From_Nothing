@@ -14,20 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114668524849120762}
-  - {fileID: 114157907766773040}
-  - {fileID: 114964724784967054}
+  - {fileID: 114006980142941122}
+  - {fileID: 114732295234677232}
   EditorEvents:
   - {fileID: 114941187619030186}
   - {fileID: 114010534704329592}
   - {fileID: 114869774947096746}
   EditorParameters:
-  - {fileID: 114379029172920060}
+  - {fileID: 114977377203000274}
   MasterBanks:
-  - {fileID: 114964724784967054}
+  - {fileID: 114732295234677232}
   StringsBanks:
   - {fileID: 114668524849120762}
-  stringsBankWriteTime: 637261879943048607
+  stringsBankWriteTime: 637265622400000000
   cacheVersion: 3
+--- !u!114 &114006980142941122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Lv01.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Lv01.bank
+  SubDir: 
+  lastModified: 637265622400000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &114010534704329592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,12 +61,12 @@ MonoBehaviour:
   Path: event:/Player/footsteps
   guid: 1e98c142c3f62f448274833b1c354366
   Banks:
-  - {fileID: 114964724784967054}
+  - {fileID: 114732295234677232}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114497859815921360}
+  - {fileID: 114689503561167338}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -574,7 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637261879943048607
+  lastModified: 637265622400000000
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -597,6 +615,23 @@ MonoBehaviour:
   Max: 5
   Default: 0
   Exists: 0
+--- !u!114 &114689503561167338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/footsteps/GroundMaterial
+  m_EditorClassIdentifier: 
+  Name: GroundMaterial
+  Min: 0
+  Max: 5
+  Default: 0
+  Exists: 1
 --- !u!114 &114706708470277862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +702,24 @@ MonoBehaviour:
   Max: 5
   Default: 0
   Exists: 1
+--- !u!114 &114732295234677232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637265622400000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &114755029199707666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +787,7 @@ MonoBehaviour:
   Path: snapshot:/Pause
   guid: 99cf6542b3de20449561f7d6f8882b2c
   Banks:
-  - {fileID: 114964724784967054}
+  - {fileID: 114732295234677232}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -757,7 +810,7 @@ MonoBehaviour:
   Path: event:/Music/lv01_main
   guid: 62e85d5479d6044a8c532508d1325a37
   Banks:
-  - {fileID: 114157907766773040}
+  - {fileID: 114006980142941122}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -817,4 +870,21 @@ MonoBehaviour:
   lastModified: 637261879943048607
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &114977377203000274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: fade
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
