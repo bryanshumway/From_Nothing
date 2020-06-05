@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping;
 
     //FMOD
-    //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
+    //private FMOD.Studio.EventInstance footstepSound; //(maybe not needed???)
 
     // Start is called before the first frame update
     void Start()
