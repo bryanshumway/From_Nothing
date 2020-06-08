@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = false;
-    public static bool footprintActive = true;
+    public static bool canJump = true;
+    public static bool footprintActive = false;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -22,9 +22,12 @@ public class PlayerController : MonoBehaviour
     Collider2D boxCollider2D;
     public bool canFootprint;
     public bool isJumping;
+    public GameObject[] batteryJump;
+    private int batteryJumpMaxCharge;
+    private int batteryJumpCurrentCharge;
 
     //FMOD
-    //private FMOD.Studio.EventInstance footstepSound; //(maybe not needed???)
+    //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,13 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<Collider2D>();
         original = transform.localScale;
+        batteryJump = GameObject.FindGameObjectsWithTag("BatteryJump");
+        batteryJumpMaxCharge = batteryJump.Length;
+        for (int i = 0; i < batteryJump.Length; i++)
+        {
+            batteryJump[i].SetActive(false);
+        }
+        batteryJumpCurrentCharge = 0;
     }
 
     // Update is called once per frame
@@ -73,17 +83,27 @@ public class PlayerController : MonoBehaviour
             }
         }
         //jump
-        if(Input.GetButtonDown("Jump") && IsGrounded() && canJump)
+        if(Input.GetButtonDown("Jump") && IsGrounded() && canJump && batteryJumpCurrentCharge > 0)
         {
             GetComponent<Animator>().SetInteger("JumpStatus", 1);
+            playerBoots.GetComponent<Animation>().Stop();
+            playerBoots.GetComponent<Animation>().Play();
             StartCoroutine(IsJumping());
             FootPrintStep();
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
+            for (int i = 4; i >= 0; i--)
+            {
+                if (batteryJump[i].activeInHierarchy)
+                {
+                    batteryJump[i].SetActive(false);
+                    batteryJumpCurrentCharge--;
+                    break;
+                }
+            }
         }
         //landed
         if (IsGrounded() && isJumping)
         {
-            Debug.Log("test");
             GetComponent<Animator>().SetInteger("JumpStatus", 3);
             FootPrintStep();
             isJumping = false;
@@ -146,6 +166,18 @@ public class PlayerController : MonoBehaviour
     public void EnableBoots()
     {
         playerBoots.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("ChargeStation"))
+        {
+            for (int i = 0; i < batteryJump.Length; i++)
+            {
+                batteryJump[i].SetActive(true);
+            }
+            batteryJumpCurrentCharge = batteryJumpMaxCharge;
+        }
     }
 
 }

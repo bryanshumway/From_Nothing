@@ -13,6 +13,11 @@ TagManager:
   - DoorTrigger
   - DoorButton
   - ElevatorButton
+  - PauseMenu
+  - ElevatorPanel
+  - ElevatorTrigger
+  - BatteryJump
+  - ChargeStation
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     public GameObject elevatorPanel;
 
-    private int floor = 5;
+    public static int floor = 5;
     private GameObject player;
     private GameObject camera;
     private GameObject messagePanel;
@@ -325,6 +325,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
         //elevator buttons
         else if (CompareTag("ElevatorButton"))
         {
+            //open elevator panel choices
             if (elevatorStatus == 0)
             {
                 player.GetComponent<PlayerController>().enabled = false;
@@ -332,6 +333,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 elevatorPanel.SetActive(true);
                 elevatorActive = true;
             }
+            //enter elevator after making choice
             else if (elevatorStatus == 1)
             {
                 customEnterSpotElevator = true;
@@ -461,6 +463,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
         {
             GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
         }
+        if (floor == 3 && elevatorActive)
+        {
+            GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
+            StartCoroutine(ToLevel2());
+        }
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
         //Debug.Log("Before: " + closestDoor);
         foreach (GameObject obj in objectsWithTag)
@@ -579,8 +586,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             floor = 3;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
-            customEnterSpot = true;
-            StartCoroutine(Level02Load());
+            //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
             GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
             foreach (GameObject button in elevatorButtons)
             {
@@ -699,7 +705,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     //coroutines
     #region
-
     IEnumerator DirectionalLightOff()
     {
         yield return new WaitForSeconds(2);
@@ -724,10 +729,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         statusBoots = 1;
     }
-    IEnumerator Level02Load()
+
+    IEnumerator ToLevel2()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("level02");
+        SceneManager.LoadScene("scLevel2");
     }
 
     #endregion
