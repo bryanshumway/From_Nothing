@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Level_01_Interact_Manager : MonoBehaviour
 {
@@ -17,13 +18,14 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     public GameObject elevatorPanel;
 
-    private int floor = 5;
+    public static int floor = 5;
     private GameObject player;
     private GameObject camera;
     private GameObject messagePanel;
     private GameObject closestDoor;
     private GameObject closestEnterSpot;
     private GameObject closestExitSpot;
+    private Text messageName;
     private Text messageText;
     private Vector3 doorEnterSpotNext;
     private Vector3 doorEnterSpotNextCustom;
@@ -66,6 +68,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
         player = GameObject.Find("Player");
         camera = GameObject.Find("Main Camera");
         messagePanel = GameObject.Find("MessagePanel");
+        messageName = GameObject.Find("MessageName").GetComponent<Text>();
         messageText = GameObject.Find("MessageText").GetComponent<Text>();
         closestDoor = GameObject.FindGameObjectWithTag("Door");
         closestEnterSpot = GameObject.FindGameObjectWithTag("DoorEnterSpot");
@@ -142,7 +145,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             if (activeBoots)
             {
                 //normal message exit
-                if (statusBoots == 0)
+                if (statusBoots == 1)
                 {
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
@@ -158,6 +161,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 if (statusTube == 0)
                 {
                     player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                     activeTube = false;
@@ -259,6 +263,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 messageText.text = "You found some Boots. You can now jump.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeBoots = true;
+                player.GetComponent<PlayerController>().EnableBoots();
+                PlayerController.footprintActive = false;
+                GetComponentInChildren<MeshRenderer>().enabled = false;
+                StartCoroutine(StatusBoots());
             }
         }
         //test tube
@@ -267,6 +275,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player interacts with test tube
             if (statusTube == 0)
             {
+                messageName.text = "You";
                 messageText.text = "Why am I here..?";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 GetComponent<CapsuleCollider2D>().enabled = false;
@@ -316,6 +325,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
         //elevator buttons
         else if (CompareTag("ElevatorButton"))
         {
+            //open elevator panel choices
             if (elevatorStatus == 0)
             {
                 player.GetComponent<PlayerController>().enabled = false;
@@ -323,6 +333,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 elevatorPanel.SetActive(true);
                 elevatorActive = true;
             }
+            //enter elevator after making choice
             else if (elevatorStatus == 1)
             {
                 customEnterSpotElevator = true;
@@ -452,6 +463,11 @@ public class Level_01_Interact_Manager : MonoBehaviour
         {
             GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
         }
+        if (floor == 3 && elevatorActive)
+        {
+            GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
+            StartCoroutine(ToLevel2());
+        }
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
         //Debug.Log("Before: " + closestDoor);
         foreach (GameObject obj in objectsWithTag)
@@ -463,9 +479,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         yield return new WaitForSeconds(1);
-        Debug.Log(elevatorActive);
-        Debug.Log(customEnterSpot);
-        Debug.Log(elevatorEnterSpot);
         if (doorEntered)
         {
             yield return new WaitForSeconds(1);
@@ -573,7 +586,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             floor = 3;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
-            elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
+            //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
             GameObject[] elevatorButtons = GameObject.FindGameObjectsWithTag("ElevatorButton");
             foreach (GameObject button in elevatorButtons)
             {
@@ -710,5 +723,18 @@ public class Level_01_Interact_Manager : MonoBehaviour
         messageText.text = "";
         messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
+
+    IEnumerator StatusBoots()
+    {
+        yield return new WaitForSeconds(0.1f);
+        statusBoots = 1;
+    }
+
+    IEnumerator ToLevel2()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("scLevel2");
+    }
+
     #endregion
 }

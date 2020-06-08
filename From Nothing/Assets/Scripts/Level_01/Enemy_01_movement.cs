@@ -13,6 +13,7 @@ public class Enemy_01_movement : MonoBehaviour
     private float newPos;
     private float currDir;
     private GameObject messagePanel;
+    private Text messageName;
     private Text messageText;
     private bool startPos = true;
 
@@ -22,6 +23,7 @@ public class Enemy_01_movement : MonoBehaviour
         newPos = transform.position.x + distance;
         currDir = transform.localScale.z;
         messagePanel = GameObject.Find("MessagePanel");
+        messageName = GameObject.Find("MessageName").GetComponent<Text>();
         messageText = GameObject.Find("MessageText").GetComponent<Text>();
     }
 
@@ -51,6 +53,7 @@ public class Enemy_01_movement : MonoBehaviour
     {
         if (other.transform.CompareTag("Player") && PlayerController.canJump == false)
         {
+            messageName.text = "You";
             messageText.text = "I need to find a way over this robot...";
             messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
             StopCoroutine("MessageRemove");
@@ -61,6 +64,7 @@ public class Enemy_01_movement : MonoBehaviour
     IEnumerator MessageRemove()
     {
         yield return new WaitForSeconds(2);
+        messageName.text = "";
         messageText.text = "";
         messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
