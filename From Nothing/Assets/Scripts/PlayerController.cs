@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = true;
-    public static bool footprintActive = false;
+    public static bool canJump = false;
+    public static bool doubleJumpActive = false;
+    public static bool footprintActive = true;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -21,10 +22,11 @@ public class PlayerController : MonoBehaviour
     Animator playerAnimator;
     Collider2D boxCollider2D;
     public bool canFootprint;
+    public  bool canJumpDouble = true;
     public bool isJumping;
     public GameObject[] batteryJump;
-    private int batteryJumpMaxCharge;
-    private int batteryJumpCurrentCharge;
+    public int batteryJumpMaxCharge;
+    public int batteryJumpCurrentCharge;
 
     //FMOD
     //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
@@ -38,11 +40,7 @@ public class PlayerController : MonoBehaviour
         original = transform.localScale;
         batteryJump = GameObject.FindGameObjectsWithTag("BatteryJump");
         batteryJumpMaxCharge = batteryJump.Length;
-        for (int i = 0; i < batteryJump.Length; i++)
-        {
-            batteryJump[i].SetActive(false);
-        }
-        batteryJumpCurrentCharge = 0;
+        batteryJumpCurrentCharge = batteryJumpMaxCharge;
     }
 
     // Update is called once per frame
@@ -101,9 +99,29 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        //double jump
+        if (Input.GetButtonDown("Jump") && !IsGrounded() && doubleJumpActive && canJumpDouble && batteryJumpCurrentCharge > 0)
+        {
+            canJumpDouble = false;
+            GetComponent<Animator>().SetInteger("JumpStatus", 1);
+            playerBoots.GetComponent<Animation>().Stop();
+            playerBoots.GetComponent<Animation>().Play();
+            StartCoroutine(IsJumping());
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
+            for (int i = 4; i >= 0; i--)
+            {
+                if (batteryJump[i].activeInHierarchy)
+                {
+                    batteryJump[i].SetActive(false);
+                    batteryJumpCurrentCharge--;
+                    break;
+                }
+            }
+        }
         //landed
         if (IsGrounded() && isJumping)
         {
+            canJumpDouble = true;
             GetComponent<Animator>().SetInteger("JumpStatus", 3);
             FootPrintStep();
             isJumping = false;

@@ -12,6 +12,7 @@ public class Level01Dialogue : MonoBehaviour
     public Text messageName;
     public Text messageText;
 
+    private bool dialogueActive = false;
     private int dialogueStatus;
 
     private void Start()
@@ -23,7 +24,7 @@ public class Level01Dialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && dialogueActive)
         {
             if (dialogueStatus == 0)
             {
@@ -75,6 +76,7 @@ public class Level01Dialogue : MonoBehaviour
     IEnumerator DialogueStart()
     {
         yield return new WaitForSeconds(2);
+        dialogueActive = true;
         messageName.text = "You";
         messageText.text = "Where am I? Why am I invisible??";
         messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
