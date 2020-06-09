@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2483483192150995809
+--- !u!1 &981859957270696046
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6186005228913666147}
-  - component: {fileID: 4949899925648970425}
-  - component: {fileID: 7892623514409445266}
+  - component: {fileID: 1575967792027448844}
+  - component: {fileID: 3349161439508176593}
+  - component: {fileID: 1146941255933960092}
   m_Layer: 0
-  m_Name: chargingStationArm_L
+  m_Name: chargingStationBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6186005228913666147
+--- !u!4 &1575967792027448844
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2483483192150995809}
+  m_GameObject: {fileID: 981859957270696046}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.911709, y: 0.8045706, z: 0}
+  m_LocalPosition: {x: 0.000000114440915, y: 0.13896528, z: -0.00000015258789}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 6146565569373734091}
-  m_RootOrder: 0
+  m_Father: {fileID: 8024885573484326703}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4949899925648970425
+--- !u!33 &3349161439508176593
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2483483192150995809}
-  m_Mesh: {fileID: 4300002, guid: 96d33d2ecf120134ba7189356f5adc15, type: 3}
---- !u!23 &7892623514409445266
+  m_GameObject: {fileID: 981859957270696046}
+  m_Mesh: {fileID: 4300000, guid: 96d33d2ecf120134ba7189356f5adc15, type: 3}
+--- !u!23 &1146941255933960092
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2483483192150995809}
+  m_GameObject: {fileID: 981859957270696046}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,7 +77,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &3220614688659687975
+--- !u!1 &1631158238167491011
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,8 +85,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6146565569373734091}
-  - component: {fileID: 69270823682855007}
+  - component: {fileID: 8024885573484326703}
+  - component: {fileID: 4243793047951899579}
   m_Layer: 0
   m_Name: chargingStation
   m_TagString: ChargeStation
@@ -94,37 +94,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6146565569373734091
+--- !u!4 &8024885573484326703
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3220614688659687975}
-  m_LocalRotation: {x: -0, y: 0.7353479, z: -0, w: 0.67768985}
-  m_LocalPosition: {x: -12.59, y: -0.24, z: -1.7}
+  m_GameObject: {fileID: 1631158238167491011}
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6186005228913666147}
-  - {fileID: 3095502970990579010}
-  - {fileID: 3444150234506796520}
+  - {fileID: 8055805877258552199}
+  - {fileID: 1218098035953034918}
+  - {fileID: 1575967792027448844}
+  - {fileID: 4184655737608688984}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 94.673004, z: 0}
---- !u!61 &69270823682855007
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!61 &4243793047951899579
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3220614688659687975}
+  m_GameObject: {fileID: 1631158238167491011}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.11}
+  m_Offset: {x: 0.03941822, y: 1.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -135,9 +136,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18.93, y: 1.69}
+  m_Size: {x: 2.1348057, y: 1.69}
   m_EdgeRadius: 0
---- !u!1 &4013453103047605130
+--- !u!1 &1758084968028543109
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,45 +146,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3444150234506796520}
-  - component: {fileID: 1470564560850761013}
-  - component: {fileID: 3888896513370535032}
+  - component: {fileID: 8055805877258552199}
+  - component: {fileID: 9125262584840304989}
+  - component: {fileID: 6312596956189199478}
   m_Layer: 0
-  m_Name: chargingStationBase
+  m_Name: chargingStationArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3444150234506796520
+--- !u!4 &8055805877258552199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4013453103047605130}
+  m_GameObject: {fileID: 1758084968028543109}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000114440915, y: 0.13896528, z: -0.00000015258789}
+  m_LocalPosition: {x: -0.911709, y: 0.8045706, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 6146565569373734091}
-  m_RootOrder: 2
+  m_Father: {fileID: 8024885573484326703}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1470564560850761013
+--- !u!33 &9125262584840304989
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4013453103047605130}
-  m_Mesh: {fileID: 4300000, guid: 96d33d2ecf120134ba7189356f5adc15, type: 3}
---- !u!23 &3888896513370535032
+  m_GameObject: {fileID: 1758084968028543109}
+  m_Mesh: {fileID: 4300002, guid: 96d33d2ecf120134ba7189356f5adc15, type: 3}
+--- !u!23 &6312596956189199478
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4013453103047605130}
+  m_GameObject: {fileID: 1758084968028543109}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -214,7 +215,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &8373176342494764500
+--- !u!1 &4184655737608688985
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,9 +223,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3095502970990579010}
-  - component: {fileID: 161606168686117806}
-  - component: {fileID: 78028906437928809}
+  - component: {fileID: 4184655737608688984}
+  - component: {fileID: 4184655737608688987}
+  m_Layer: 0
+  m_Name: triggerRotate
+  m_TagString: ChargeStation
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4184655737608688984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184655737608688985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8024885573484326703}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4184655737608688987
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184655737608688985}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1638.25, y: 0.7439728}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 691406.1, y: 1.3665946}
+  m_EdgeRadius: 0
+--- !u!1 &5629954447846241840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218098035953034918}
+  - component: {fileID: 4047823250566670410}
+  - component: {fileID: 4253602397653978253}
   m_Layer: 0
   m_Name: chargingStationArm_R
   m_TagString: Untagged
@@ -232,35 +290,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3095502970990579010
+--- !u!4 &1218098035953034918
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373176342494764500}
+  m_GameObject: {fileID: 5629954447846241840}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.91170895, y: 0.8045706, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 6146565569373734091}
+  m_Father: {fileID: 8024885573484326703}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &161606168686117806
+--- !u!33 &4047823250566670410
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373176342494764500}
+  m_GameObject: {fileID: 5629954447846241840}
   m_Mesh: {fileID: 4300004, guid: 96d33d2ecf120134ba7189356f5adc15, type: 3}
---- !u!23 &78028906437928809
+--- !u!23 &4253602397653978253
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373176342494764500}
+  m_GameObject: {fileID: 5629954447846241840}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
