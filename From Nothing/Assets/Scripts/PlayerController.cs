@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = false;
-    public static bool doubleJumpActive = false;
-    public static bool footprintActive = true;
+    public static bool canJump;
+    public static bool doubleJumpActive;
+    public static bool footprintActive;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     Animator playerAnimator;
     Collider2D boxCollider2D;
     public bool canFootprint;
-    public  bool canJumpDouble = true;
+    public bool canJumpDouble;
     public bool isJumping;
     public GameObject[] batteryJump;
     public int batteryJumpMaxCharge;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canFootprint = true;
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<Collider2D>();

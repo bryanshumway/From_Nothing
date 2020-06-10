@@ -6226,6 +6226,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &782354707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7006058823807861880, guid: 0b0aee8986e00114e8aa3b52eacae9ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1041606051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800771460
 GameObject:
   m_ObjectHideFlags: 0
@@ -7504,6 +7510,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994132027}
   m_CullTransparentMesh: 0
+--- !u!1 &1036243944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5404342630867434565, guid: e5afd79547783ac4a89cfa056cbdf6aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710162420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1041606051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10411,6 +10423,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 200, y: 10}
   m_EdgeRadius: 0
+--- !u!1 &1585954463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6017397626252410661, guid: cae6edaffd396fd4f81b5216fb7f6f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1446130039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1586061966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11989,8 +12007,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce6691b8cb0d8447bb6054eebfae454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 2365838859735556317}
   fade: {fileID: 457557412}
+  dialogue: {fileID: 9232543}
+  platform: {fileID: 4287259759362939629}
+  keycard: {fileID: 586753082}
+  crystal: {fileID: 1585954463}
+  crystalInserted: {fileID: 1036243944}
+  boots: {fileID: 782354707}
 --- !u!1 &1976854013
 GameObject:
   m_ObjectHideFlags: 0

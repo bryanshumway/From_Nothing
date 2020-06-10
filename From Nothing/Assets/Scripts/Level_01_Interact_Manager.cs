@@ -142,6 +142,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 else if (statusCrystal2 == 1)
                 {
                     player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                     active01 = false;
@@ -338,7 +339,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 messageName.text = "You";
                 messageText.text = "That platform seems to be working now.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
-                active01 = true;
+                activeCrystal2 = true;
             }
         }
         //crystal
