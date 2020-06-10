@@ -17,11 +17,14 @@ public class LoadScene : MonoBehaviour
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
                            //public Animator animator; //access the animator
+    int count = 1; //Counter for how many times escape is pressed. Must be set to 1. Code checks for odd or even counts
     public GameObject settingsPanel;//panel that holds the settings' UI
     public GameObject menuPanel;//panel that holds the main menu's UI
     public GameObject fade;//fade panel
     public GameObject storyText;//story text
     public GameObject continueText;//press f to continue text
+    public GameObject player;  //Variable for the player to disable movement
+    public GameObject PauseMenu; //variable for the pause menu game object
 
     private bool canContinue = false;//allow player to press f to continue
 
@@ -30,6 +33,9 @@ public class LoadScene : MonoBehaviour
     {
         fade.GetComponent<Animation>().Play("FadeToClear");
         StartCoroutine(FadeRemove());
+        PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
+        PauseMenu.SetActive(false);
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -38,6 +44,25 @@ public class LoadScene : MonoBehaviour
         {
             StartCoroutine(Continue());
             canContinue = false;
+        }
+        
+        //Check to see if the escape key has been pressed. MUST BE KEY DOWN
+        if (Input.GetKeyDown("escape"))
+        {
+            count++;//Add one to the counter to check to see how many times the escape is pressed
+
+            //If the count is even then activate the menu, disable player movement
+            if (count % 2 == 0)
+            {
+                player.GetComponent<PlayerController>().enabled = false;//Disable player movement
+                PauseMenu.SetActive(true);
+            }
+            //Else If the count is odd then, deactivate the menu, activate player movement
+            else
+            {
+                player.GetComponent<PlayerController>().enabled = true;//Enable player movement
+                PauseMenu.SetActive(false);
+            }
         }
     }
 
