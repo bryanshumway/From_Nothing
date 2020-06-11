@@ -18,6 +18,9 @@ TagManager:
   - ElevatorTrigger
   - BatteryJump
   - ChargeStation
+  - BatteryShoot
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX

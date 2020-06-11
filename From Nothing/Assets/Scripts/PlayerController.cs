@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump;
-    public static bool doubleJumpActive;
+    public static bool canJump = true;
+    public static bool doubleJumpActive = true;
     public static bool footprintActive;
+    public static bool canShoot = true;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
     public GameObject footprint;
     public GameObject footprintSpot;
     public GameObject playerBoots;
+    public GameObject playerGlove;
+    public GameObject gloveShot;
+    public GameObject shotSpawn;
 
     [SerializeField] LayerMask layerMask;
     Vector3 original;
@@ -27,6 +31,9 @@ public class PlayerController : MonoBehaviour
     public GameObject[] batteryJump;
     public int batteryJumpMaxCharge;
     public int batteryJumpCurrentCharge;
+    public GameObject[] batteryShoot;
+    public int batteryShootMaxCharge;
+    public int batteryShootCurrentCharge;
 
     //FMOD
     //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
@@ -42,6 +49,9 @@ public class PlayerController : MonoBehaviour
         batteryJump = GameObject.FindGameObjectsWithTag("BatteryJump");
         batteryJumpMaxCharge = batteryJump.Length;
         batteryJumpCurrentCharge = batteryJumpMaxCharge;
+        batteryShoot = GameObject.FindGameObjectsWithTag("BatteryShoot");
+        batteryShootMaxCharge = batteryShoot.Length;
+        batteryShootCurrentCharge = batteryShootMaxCharge;
     }
 
     // Update is called once per frame
@@ -51,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.localScale = original;
+            shotSpawn.transform.localRotation = Quaternion.Euler(0, 90, 0);
             rigidBody.velocity = new Vector2(moveSpeed * 1, rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
             if (IsGrounded() && canFootprint)
@@ -62,6 +73,7 @@ public class PlayerController : MonoBehaviour
         //move left
         else if(Input.GetKey(KeyCode.A)){
             transform.localScale = new Vector3(original.x, original.y, -original.z);
+            shotSpawn.transform.localRotation = Quaternion.Euler(0, -90, 0);
             rigidBody.velocity = new Vector2(moveSpeed * -1, rigidBody.velocity.y);
             playerAnimator.SetBool("IsWalking", true);
             if (IsGrounded() && canFootprint)
@@ -109,15 +121,7 @@ public class PlayerController : MonoBehaviour
             playerBoots.GetComponent<Animation>().Play();
             StartCoroutine(IsJumping());
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
-            for (int i = 4; i >= 0; i--)
-            {
-                if (batteryJump[i].activeInHierarchy)
-                {
-                    batteryJump[i].SetActive(false);
-                    batteryJumpCurrentCharge--;
-                    break;
-                }
-            }
+            JumpLose();
         }
         //landed
         if (IsGrounded() && isJumping)
@@ -126,6 +130,14 @@ public class PlayerController : MonoBehaviour
             GetComponent<Animator>().SetInteger("JumpStatus", 3);
             FootPrintStep();
             isJumping = false;
+        }
+        //glove shot
+        if (Input.GetButtonDown("Fire1") && canShoot && batteryShootCurrentCharge > 0)
+        {
+            playerGlove.GetComponent<Animation>().Play();
+            Instantiate(gloveShot, shotSpawn.transform.position, shotSpawn.transform.rotation);
+            StartCoroutine(GloveShoot());
+            ShotLose();
         }
     }
     private bool IsGrounded()
@@ -165,6 +177,13 @@ public class PlayerController : MonoBehaviour
         canFootprint = true;
     }
 
+    IEnumerator GloveShoot()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(0.5f);
+        canShoot = true;
+    }
+
     public void FootPrintStep()
     {
         RuntimeManager.PlayOneShot("event:/Player/footsteps");
@@ -187,6 +206,37 @@ public class PlayerController : MonoBehaviour
         playerBoots.SetActive(true);
     }
 
+    public void EnableGlove()
+    {
+        playerGlove.SetActive(true);
+    }
+
+    public void JumpLose()
+    {
+        for (int i = 4; i >= 0; i--)
+        {
+            if (batteryJump[i].activeInHierarchy)
+            {
+                batteryJump[i].SetActive(false);
+                batteryJumpCurrentCharge--;
+                break;
+            }
+        }
+    }
+
+    public void ShotLose()
+    {
+        for (int i = 9; i >= 0; i--)
+        {
+            if (batteryShoot[i].activeInHierarchy)
+            {
+                batteryShoot[i].SetActive(false);
+                batteryShootCurrentCharge--;
+                break;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("ChargeStation"))
@@ -196,6 +246,11 @@ public class PlayerController : MonoBehaviour
                 batteryJump[i].SetActive(true);
             }
             batteryJumpCurrentCharge = batteryJumpMaxCharge;
+            for (int i = 0; i < batteryShoot.Length; i++)
+            {
+                batteryShoot[i].SetActive(true);
+            }
+            batteryShootCurrentCharge = batteryShootMaxCharge;
         }
     }
 

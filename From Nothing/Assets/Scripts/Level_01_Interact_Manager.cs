@@ -23,6 +23,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     private GameObject player;
     private GameObject camera;
+    public GameObject gloveIcon;
     private GameObject messagePanel;
     private GameObject closestDoor;
     private GameObject closestEnterSpot;
@@ -68,9 +69,18 @@ public class Level_01_Interact_Manager : MonoBehaviour
     //double jump boots status
     private bool activeBoots2;
     public static int statusBoots2 = 0;
-    //double jump boots status
+    //crystal 2 status
     private bool activeCrystal2;
     public static int statusCrystal2 = 0;
+    //crystal 3 status
+    private bool activeCrystal3;
+    public static int statusCrystal3 = 0;
+    //crystal launcher lvl 3 status
+    private bool activeLauncherLvl3;
+    public static int statusLauncherLvl3 = 0;
+    //glove status
+    private bool activeGlove;
+    public static int statusGlove = 0;
 
     #endregion
 
@@ -134,7 +144,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     messageName.text = "";
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    active01 = false;
+                    activeCrystal2 = false;
                     GetComponent<Collider2D>().enabled = true;
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
@@ -145,8 +155,67 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     messageName.text = "";
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-                    active01 = false;
-                    status01 = 2;
+                    activeCrystal2 = false;
+                    statusCrystal2 = 2;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+            }
+            //crystal3 insert status
+            if (activeCrystal3)
+            {
+                //normal message exit
+                if (statusCrystal3 == 0 || statusCrystal3 == 2)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeCrystal3 = false;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+                //crystal inserted
+                else if (statusCrystal3 == 1)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeCrystal3 = false;
+                    statusCrystal3 = 2;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+            }
+            //crystal launcher lvl3 status
+            if (activeLauncherLvl3)
+            {
+                //you power it on
+                if (statusLauncherLvl3 == 0)
+                {
+                    messageName.text = "";
+                    messageText.text = "You notice that a button needs to be pressed to turn on the power.";
+                    statusLauncherLvl3 = 1;
+                }
+                //button pressed
+                else if (statusLauncherLvl3 == 1)
+                {
+                    GameObject.Find("forceWallRed").GetComponent<Animation>().Play();
+                    GameObject.Find("forceWallRed").GetComponentInChildren<Collider2D>().enabled = false;
+                    messageName.text = "You";
+                    messageText.text = "Well that did something.";
+                    statusLauncherLvl3 = 2;
+                }
+                //exit message
+                else if (statusLauncherLvl3 == 2 || statusLauncherLvl3 == 4)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeLauncherLvl3 = false;
+                    statusLauncherLvl3 = 3;
                     GetComponent<Collider2D>().enabled = true;
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
@@ -216,6 +285,31 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                     PlayerController.doubleJumpActive = true;
+                    Destroy(gameObject);
+                }
+            }
+            //glove status
+            if (activeGlove)
+            {
+                //talk about boots
+                if (statusGlove == 1)
+                {
+                    messageName.text = "You";
+                    messageText.text = "This glove uses battery as well.";
+                    statusGlove = 2;
+                }
+                //normal message exit
+                else if (statusGlove == 2)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    PlayerController.canShoot = true;
+                    gloveIcon.SetActive(true);
+                    player.GetComponent<PlayerController>().batteryShoot = GameObject.FindGameObjectsWithTag("BatteryShoot");
+                    player.GetComponent<PlayerController>().batteryShootMaxCharge = player.GetComponent<PlayerController>().batteryShoot.Length;
+                    player.GetComponent<PlayerController>().batteryShootCurrentCharge = player.GetComponent<PlayerController>().batteryShootMaxCharge;
                     Destroy(gameObject);
                 }
             }
@@ -333,13 +427,65 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 activeCrystal2 = true;
                 statusCrystal2 = 2;
             }
-            //after door opened
+            //after inserted crystal
             else if (statusCrystal2 == 2)
             {
                 messageName.text = "You";
                 messageText.text = "That platform seems to be working now.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeCrystal2 = true;
+            }
+        }
+        //lvl3 crystal launcher
+        if (name == "crystalReceptaclelvl3")
+        {
+            //no crystal picked up
+            if (statusCrystal3 == 0)
+            {
+                messageName.text = "You";
+                messageText.text = "Need a crystal again.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal3 = true;
+            }
+            //if player has crystal
+            else if (statusCrystal3 == 1)
+            {
+                Destroy(GameObject.Find("crystal3"));
+                GameObject.Find("crystalInserted3").GetComponent<MeshRenderer>().enabled = true;
+                GameObject.Find("platformFloating (6)").GetComponent<Animation>().Play();
+                messageText.text = "You've inserted the Crystal. You hear something powered on.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal3 = true;
+                statusCrystal3 = 2;
+            }
+            //after inserted crystal
+            else if (statusCrystal3 == 2)
+            {
+                messageName.text = "You";
+                messageText.text = "How do these things actually work?";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal3 = true;
+            }
+        }
+        //lvl3 crystal launcher 2
+        if (name == "crystalReceptaclelvl3_02")
+        {
+            // initial message
+            if (statusLauncherLvl3 == 0)
+            {
+                messageName.text = "You";
+                messageText.text = "Huh, this one already has a crystal in it.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeLauncherLvl3 = true;
+            }
+            // button pressed
+            else if (statusLauncherLvl3 == 3)
+            {
+                messageName.text = "You";
+                messageText.text = "Seems like this turned off that wall over there.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeLauncherLvl3 = true;
+                statusLauncherLvl3 = 4;
             }
         }
         //crystal
@@ -358,6 +504,15 @@ public class Level_01_Interact_Manager : MonoBehaviour
             if (statusCrystal2 == 0)
             {
                 statusCrystal2 = 1;
+            }
+        }
+        //crystal3
+        else if (name == "crystal3")
+        {
+            //if picked up change 01's status
+            if (statusCrystal3 == 0)
+            {
+                statusCrystal3 = 1;
             }
         }
         //pass scan
@@ -397,6 +552,22 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 activeBoots2 = true;
                 GetComponentInChildren<MeshRenderer>().enabled = false;
                 StartCoroutine(StatusBoots2());
+            }
+        }
+        //glove
+        else if (name == "glove")
+        {
+            //when player picks up boots
+            if (statusGlove == 0)
+            {
+                messageText.text = "You found a power glove. You can now shoot power orbs.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeGlove = true;
+                player.GetComponent<PlayerController>().EnableGlove();
+                PlayerController.canShoot = true;
+                GetComponentInChildren<MeshRenderer>().enabled = false;
+                statusGlove = 1;
+                //StartCoroutine(StatusBoots());
             }
         }
         //test tube

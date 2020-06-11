@@ -12,6 +12,7 @@ public class SceneSwitch : MonoBehaviour
 
     private bool cameraMove = false;
     private float camXStart;
+    private bool lvl3Triggered = false;
 
     public int status;
 
@@ -65,6 +66,12 @@ public class SceneSwitch : MonoBehaviour
             }
             else if (status == 1)
             {
+                if (name == "SceneSwitchLvl3" && !lvl3Triggered)
+                {
+                    camMove += 10;
+                    triggerMove -= 8;
+                    lvl3Triggered = true;
+                }
                 Vector3 newTrigPos = new Vector3(transform.position.x + triggerMove, transform.position.y, transform.position.z);
                 transform.position = newTrigPos;
             }
