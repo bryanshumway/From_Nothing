@@ -66,6 +66,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
     //keycard02 status
     private bool activeKeycard02;
     public static int statusKeycard2 = 0;
+    //keycard03 status
+    private bool activeKeycard03;
+    public static int statusKeycard3 = 0;
     //double jump boots status
     private bool activeBoots2;
     public static int statusBoots2 = 0;
@@ -78,6 +81,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
     //crystal launcher lvl 3 status
     private bool activeLauncherLvl3;
     public static int statusLauncherLvl3 = 0;
+    //crystal 4 status
+    private bool activeCrystal4;
+    public static int statusCrystal4 = 0;
     //glove status
     private bool activeGlove;
     public static int statusGlove = 0;
@@ -188,6 +194,42 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
             }
+            //crystal launcher lvl3 2 status
+            if (activeCrystal4)
+            {
+                //normal message exit
+                if (statusCrystal4 == 0 || statusCrystal4 == 2)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeCrystal3 = false;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+                //button pressed
+                else if (statusCrystal4 == 1)
+                {
+                    GameObject.Find("forceWallRed").GetComponent<Animation>().Play();
+                    GameObject.Find("forceWallRed").GetComponentInChildren<Collider2D>().enabled = false;
+                    messageName.text = "You";
+                    messageText.text = "Well that did something.";
+                    statusLauncherLvl3 = 2;
+                }
+                //exit message
+                else if (statusLauncherLvl3 == 2 || statusLauncherLvl3 == 4)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    activeLauncherLvl3 = false;
+                    statusLauncherLvl3 = 3;
+                    GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+            }
             //crystal launcher lvl3 status
             if (activeLauncherLvl3)
             {
@@ -203,6 +245,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 {
                     GameObject.Find("forceWallRed").GetComponent<Animation>().Play();
                     GameObject.Find("forceWallRed").GetComponentInChildren<Collider2D>().enabled = false;
+                    StartCoroutine(WallDestroy());
                     messageName.text = "You";
                     messageText.text = "Well that did something.";
                     statusLauncherLvl3 = 2;
@@ -353,6 +396,19 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            //keycard03 status
+            if (activeKeycard03)
+            {
+                //normal message exit
+                if (statusKeycard3 == 1)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageName.text = "";
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    Destroy(gameObject);
+                }
+            }
             //eleavtor
             if (elevatorActive)
             {
@@ -488,6 +544,37 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 statusLauncherLvl3 = 4;
             }
         }
+        //lvl3 crystal launcher 3
+        if (name == "crystalReceptaclelvl3_03")
+        {
+            // initial message
+            if (statusCrystal4 == 0)
+            {
+                messageName.text = "You";
+                messageText.text = "Gotta find the crystal.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal4 = true;
+            }
+            // insert crystal
+            else if (statusCrystal4 == 1)
+            {
+                Destroy(GameObject.Find("crystal4"));
+                GameObject.Find("crystalInserted4").GetComponent<MeshRenderer>().enabled = true;
+                GameObject.Find("platformFloatinglvl3").GetComponent<Animation>().Play();
+                messageText.text = "You've inserted the Crystal. You hear something powered on.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal4 = true;
+                statusCrystal4 = 2;
+            }
+            // crystal inserted
+            else if (statusCrystal4 == 2)
+            {
+                messageName.text = "You";
+                messageText.text = "Got the platform working now.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                activeCrystal4 = true;
+            }
+        }
         //crystal
         else if (name == "crystal")
         {
@@ -513,6 +600,15 @@ public class Level_01_Interact_Manager : MonoBehaviour
             if (statusCrystal3 == 0)
             {
                 statusCrystal3 = 1;
+            }
+        }
+        //crystal3
+        else if (name == "crystal4")
+        {
+            //if picked up change 01's status
+            if (statusCrystal4 == 0)
+            {
+                statusCrystal4 = 1;
             }
         }
         //pass scan
@@ -589,7 +685,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard == 0)
             {
-                messageText.text = "You found a keycard that allows access to Floor 03.";
+                messageText.text = "You found a keycard that allows access to Floor 02.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeKeycard01 = true;
                 level2Access = true;
@@ -604,7 +700,21 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 activeKeycard02 = true;
                 StartCoroutine(StatusKeycard2());
                 level3Access = true;
-                messageText.text = "You found a keycard that allows access to Floor 02.";
+                messageText.text = "You found a keycard that allows access to Floor 01.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+            }
+        }
+        //keycard03
+        else if (name == "keycard03")
+        {
+            //when player picks up keycard
+            if (statusKeycard3 == 0)
+            {
+                activeKeycard03 = true;
+                StartCoroutine(StatusKeycard3());
+                level4Access = true;
+                messageName.text = "You";
+                messageText.text = "Huh, this keycard seems kinda different...";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
             }
         }
@@ -680,9 +790,24 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 camSpotNew = GameObject.Find("camSpotBoots").transform.position;
                 StartCoroutine(DirectionalLightOn());
             }
+            else if (name == "doorKeycard")
+            {
+                doorEnterSpotNextCustom = GameObject.Find("enterSpotCard2").transform.position;
+                customEnterSpot = true;
+                camSpot = camera.transform.position;
+                camSpotNew = GameObject.Find("camSpotBoots").transform.position;
+                StartCoroutine(DirectionalLightOn());
+            }
             else if (name == "cardRoomDoor")
             {
                 doorEnterSpotNextCustom = GameObject.Find("enterSpotlvl2Card").transform.position;
+                customEnterSpot = true;
+                camSpotNew = camSpot;
+                StartCoroutine(DirectionalLightOn());
+            }
+            else if (name == "cardRoomDoor2")
+            {
+                doorEnterSpotNextCustom = GameObject.Find("enterSpotlvl3Card").transform.position;
                 customEnterSpot = true;
                 camSpotNew = camSpot;
                 StartCoroutine(DirectionalLightOn());
@@ -1092,6 +1217,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
         statusKeycard2 += 1;
     }
 
+    IEnumerator StatusKeycard3()
+    {
+        yield return new WaitForSeconds(0.1f);
+        statusKeycard3 += 1;
+    }
+
     IEnumerator ToLevel1()
     {
         yield return new WaitForSeconds(2);
@@ -1110,9 +1241,40 @@ public class Level_01_Interact_Manager : MonoBehaviour
         SceneManager.LoadScene("scLevel3");
     }
 
+    IEnumerator WallDestroy()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(GameObject.Find("forceWallRed"));
+    }
+
     public void DoorEntered()
     {
         doorEntered = true;
+    }
+
+    public static void Reset()
+    {
+        level2Access = false;
+        level3Access = false;
+        level4Access = false;
+        level5Access = false;
+        floor = 5;
+        doorEnterStatus = 0;
+        elevatorStatus = 0;
+        status01 = 0;
+        status02 = 0;
+        status03 = 0;
+        statusBoots = 0;
+        statusTube = 0;
+        statusKeycard = 0;
+        statusKeycard2 = 0;
+        statusKeycard3 = 0;
+        statusBoots2 = 0;
+        statusCrystal2 = 0;
+        statusCrystal3 = 0;
+        statusLauncherLvl3 = 0;
+        statusCrystal4 = 0;
+        statusGlove = 0;
     }
 
     #endregion

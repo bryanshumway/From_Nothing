@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     int count = 1; //Counter for how many times escape is pressed. Must be set to 1. Code checks for odd or even counts
     public GameObject PauseMenu; //variable for the pause menu game object
     public GameObject player;  //Variable for the player to disable movement
+    public GameObject fade; //fade panel
 
     private void Start()
     {
@@ -27,7 +28,6 @@ public class LevelManager : MonoBehaviour
         PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
         PauseMenu.SetActive(false);
         player = GameObject.Find("Player");
-
     }
 
     //Checks for input so often
@@ -43,12 +43,14 @@ public class LevelManager : MonoBehaviour
             {
                 player.GetComponent<PlayerController>().enabled = false;//Disable player movement
                 PauseMenu.SetActive(true);
+                Time.timeScale = 0; // stop time
             }
             //Else If the count is odd then, deactivate the menu, activate player movement
             else
             {
                 player.GetComponent<PlayerController>().enabled = true;//Enable player movement
                 PauseMenu.SetActive(false);
+                Time.timeScale = 1; // resume time
             }
         }
     }
@@ -76,14 +78,22 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("scMainMenu");
+    }
+
     IEnumerator anim(string scene)
     {
-        GetComponent<Animation>().Play("FadeToBlack");
+        fade.SetActive(true);
+        //fade.GetComponent<Animator>().Play("FadeToBlack");
         yield return new WaitForSeconds(1);
-        //if (SceneManager.GetActiveScene().name == "scLevel1")
-        //{
-        //    GameObject.Find("GameObject").GetComponent<LevelStart2>().enabled = true;
-        //}
+        //reset game values
+        Level_01_Interact_Manager.Reset();
+        LevelStart1.level1Entered = false;
+        LevelStart2.levelEntered = false;
+        LevelStart3.levelEntered = false;
+        //load main menu
         SceneManager.LoadScene(scene);
     }
 

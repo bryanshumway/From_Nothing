@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RenderQueue.cs" />
     <Compile Include="Assets\Scripts\SceneSwitch.cs" />
+    <Compile Include="Assets\Scripts\SlimeStation.cs" />
     <Compile Include="Assets\Scripts\TextControl.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/CodyLarkin/Documents/Github_Reed/From_Nothing/From Nothing/Library/ScriptAssemblies/Cinemachine.dll</HintPath>

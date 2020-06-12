@@ -59,7 +59,7 @@ public class Interactable : MonoBehaviour
             interactText.color = new Color(255, 255, 255, 1);
             canInteract = true;
         }
-        else
+        else if (other.CompareTag("Player"))
         {
             interactText.text = "Press F to interact";
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
@@ -76,7 +76,7 @@ public class Interactable : MonoBehaviour
             interactText.color = new Color(255, 255, 255, 0);
             canPickup = false;
         }
-        else
+        else if (other.CompareTag("Player"))
         {
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             interactText.color = new Color(255, 255, 255, 0);

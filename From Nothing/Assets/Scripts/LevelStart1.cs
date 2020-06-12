@@ -15,6 +15,7 @@ public class LevelStart1 : MonoBehaviour
     public GameObject crystal;
     public GameObject crystalInserted;
     public GameObject boots;
+    public GameObject gloveIcon;
     public GameObject keycard;
     public GameObject sceneSwitch;
     public GameObject floor5Door;
@@ -55,6 +56,10 @@ public class LevelStart1 : MonoBehaviour
                 Vector3 newPlayerPos = new Vector3(30.26f, -4.64f, -1);
                 player.transform.position = newPlayerPos;
                 StartCoroutine(DoorOpen());
+            }
+            if (PlayerController.canShoot)
+            {
+                gloveIcon.SetActive(true);
             }
         }
     }

@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class Enemy_02_movement : MonoBehaviour
 {
+    public static bool spawnActive = false;
+    public static int slimeDead;
+    public static float speedOriginal;
+    public static float healthOriginal;
 
     public GameObject player;
+    public GameObject slime;
+    public GameObject slimeSpawn;
+    public GameObject slimeLight;
+    public GameObject slimeStation;
+    public GameObject crystal;
     public float distanceToMove;
     public float distanceFromPlayer;
     public float speed;
@@ -19,6 +28,7 @@ public class Enemy_02_movement : MonoBehaviour
     private float newPos;
     private float newPos2;
     private bool startPos = true;
+    private bool slimePos = false;
     private bool playerNear = false;
     private bool jumpCall = false;
     private bool dead = false;
@@ -28,13 +38,32 @@ public class Enemy_02_movement : MonoBehaviour
 
     private void Start()
     {
-        currPos = transform.position.x;
-        newPos = transform.position.x + distanceToMove;
-        newPos2 = transform.position.x - distanceToMove;
+        if (spawnActive)
+        {
+            slimePos = true;
+            speed = 0;
+            StartCoroutine(SlimeStart());
+        }
+        else
+        {
+            currPos = transform.position.x;
+            newPos = transform.position.x + distanceToMove;
+            newPos2 = transform.position.x - distanceToMove;
+        }
+        player = GameObject.Find("Player");
+        slimeSpawn = GameObject.Find("slimeSpawn");
+        slimeLight = GameObject.Find("slimeLight");
+        slimeStation = GameObject.Find("slimeStation");
     }
 
     private void Update()
     {
+
+        if (slimePos)
+        {
+            transform.Translate(-speed * Time.deltaTime, 0, 0);
+        }
+
         if (Vector3.Distance(transform.position, player.transform.position) < distanceFromPlayer)
         {
             playerNear = true;
@@ -53,7 +82,7 @@ public class Enemy_02_movement : MonoBehaviour
 
         if (!playerNear)
         {
-            if (startPos)
+            if (startPos && !slimePos)
             {
                 transform.Translate(-speed * Time.deltaTime, 0, 0);
                 if (transform.position.x >= newPos)
@@ -61,7 +90,7 @@ public class Enemy_02_movement : MonoBehaviour
                     startPos = false;
                 }
             }
-            else
+            else if (!startPos && !slimePos)
             {
                 transform.Translate(speed * Time.deltaTime, 0, 0);
                 if (transform.position.x <= newPos2)
@@ -72,9 +101,9 @@ public class Enemy_02_movement : MonoBehaviour
         }
         else
         {
-            target = new Vector2(player.transform.position.x, transform.position.y);
+            target = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
             step = speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
+            transform.position = Vector3.MoveTowards(transform.position, target, step);
         }
 
         if (health <= 0 && !dead)
@@ -87,7 +116,23 @@ public class Enemy_02_movement : MonoBehaviour
 
     void Death()
     {
+        print(slimeDead);
+        print(SlimeStation.enemySpawns);
+        healthOriginal = health;
+        speedOriginal = speed;
+        GameObject.Find("slimeStation").GetComponent<SlimeStation>().enabled = true;
+        if (spawnActive)
+        {
+            slimeDead += 1;
+            if (slimeDead == slimeStation.GetComponent<SlimeStation>().slimeCount && Level_01_Interact_Manager.statusCrystal4 < 2)
+            {
+                Vector3 crystalPos = new Vector3(transform.position.x, -3.5f, transform.position.z);
+                GameObject key = Instantiate(crystal, crystalPos, crystal.transform.rotation);
+                key.name = "crystal4";
+            }
+        }
         Destroy(gameObject);
+        spawnActive = true;
     }
 
     IEnumerator SlimeJump()
@@ -98,6 +143,17 @@ public class Enemy_02_movement : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpSpeed);
             yield return new WaitForSeconds(jumpTime);
         }
+    }
+
+    IEnumerator SlimeStart()
+    {
+        yield return new WaitForSeconds(1);
+        slimePos = false;
+        speed = speedOriginal;
+        yield return new WaitForSeconds(2);
+        currPos = transform.position.x;
+        newPos = transform.position.x + distanceToMove + 10;
+        newPos2 = currPos;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

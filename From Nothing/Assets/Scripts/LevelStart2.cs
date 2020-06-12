@@ -14,6 +14,7 @@ public class LevelStart2 : MonoBehaviour
     public GameObject crystal;
     public GameObject crystalInserted;
     public GameObject boots;
+    public GameObject gloveIcon;
 
     private void Awake()
     {
@@ -41,6 +42,10 @@ public class LevelStart2 : MonoBehaviour
                 PlayerController.doubleJumpActive = true;
                 player.GetComponent<PlayerController>().canJumpDouble = true;
                 boots.SetActive(false);
+            }
+            if (PlayerController.canShoot)
+            {
+                gloveIcon.SetActive(true);
             }
         }
     }
