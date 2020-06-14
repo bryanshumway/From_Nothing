@@ -31,11 +31,17 @@ public class LoadScene : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         fade.GetComponent<Animation>().Play("FadeToClear");
         StartCoroutine(FadeRemove());
         PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
-        PauseMenu.SetActive(false);
+        //PauseMenu.SetActive(false);
         player = GameObject.Find("Player");
+        //reset game values
+        Level_01_Interact_Manager.Reset();
+        LevelStart1.level1Entered = false;
+        LevelStart2.levelEntered = false;
+        LevelStart3.levelEntered = false;
     }
 
     private void Update()
