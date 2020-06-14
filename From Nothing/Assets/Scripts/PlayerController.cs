@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
     public int batteryJumpMaxCharge;
     public int batteryJumpCurrentCharge;
 
-    //FMOD
-    //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
-
     // Start is called before the first frame update
     void Start()
     {

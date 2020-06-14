@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using FMODUnity;
 public class Level_01_Interact_Manager : MonoBehaviour
 {
 
@@ -288,6 +288,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (status01 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageText.text = "Some sort of pedestal. You notice something can be inserted on top.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active01 = true;
@@ -295,6 +298,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player has crystal
             else if (status01 == 1)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gemplace");
+
                 Destroy(GameObject.Find("crystal"));
                 GameObject.Find("crystalInserted").GetComponent<MeshRenderer>().enabled = true;
                 messageText.text = "You've inserted the Crystal. You hear something powered on.";
@@ -316,6 +322,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (statusCrystal2 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageName.text = "You";
                 messageText.text = "Another one of those pedestals.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -324,6 +333,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player has crystal
             else if (statusCrystal2 == 1)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gemplace");
+
                 Destroy(GameObject.Find("crystal2"));
                 GameObject.Find("crystalInserted2").GetComponent<MeshRenderer>().enabled = true;
                 GameObject.Find("platformFloating (2)").GetComponent<Animation>().Play();
@@ -347,6 +359,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (status01 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+                
                 status01 = 1;
             }
         }
@@ -356,6 +371,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal2 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal2 = 1;
             }
         }
@@ -365,6 +383,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player doesn't have pass
             if (status03 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageText.text = "It's a pass scanner.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active03 = true;
@@ -448,9 +469,15 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     messageText.text = "You press the button. There seems to be no power running.";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                     active02 = true;
+
+                    // play sound
+                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 }
                 else if (status02 == 1)
                 {
+                    // play sound
+                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                     player.GetComponent<PlayerController>().enabled = true;
                     GetComponent<Collider2D>().enabled = false;
                     DoorOpen();
@@ -459,6 +486,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //any non-specific door button
             else
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                 player.GetComponent<PlayerController>().enabled = true;
                 GetComponent<Collider2D>().enabled = false;
                 DoorOpen();
@@ -525,6 +555,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
     #region
     public void DoorOpen()
     {
+        // play door open sound
+        RuntimeManager.PlayOneShot("event:/Environment/Interactables/dooropen");
+
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
         foreach (GameObject obj in objectsWithTag)
         {
@@ -552,6 +585,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     void DoorEnter()
     {
+        
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("DoorEnterSpot");
         //disable player movement
         player.GetComponent<PlayerController>().enabled = false;
@@ -646,6 +680,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
             }
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
+
+        // play door open sound
+        RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorclose");
+
         yield return new WaitForSeconds(1);
         if (doorEntered)
         {
