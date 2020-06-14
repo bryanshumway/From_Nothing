@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour
         , .1f, layerMask);
         return raycastHit2d.collider;
     }
+
     private bool IsMoveRightPossible()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.right
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator GloveShoot()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         canShoot = true;
     }
 
@@ -254,6 +255,16 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
+        if (healthCurrent <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        StopAllCoroutines();
+        GameObject.Find("PlayerDeath").GetComponent<PlayerDeath>().StartCoroutine("Death");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -5,33 +5,45 @@ using UnityEngine.AI;
 
 public class Chimera : MonoBehaviour
 {
+    public static bool bossStop = false;
+    public static bool bossDead = false;
 
     public GameObject player;
     public GameObject attackTrigger;
+    public GameObject bossShot;
+    public GameObject debris;
     public GameObject[] healthIcons;
     public int healthCurrent;
     public int healthMax;
     public GameObject[] spots;
+    public GameObject[] balconies;
     public Transform currSpot;
     public Transform newSpot;
     public Transform prevSpot;
+    List<int> balconyChoices = new List<int>();
 
+    private GameObject shotSpawn;
     private bool bossStart = false;
     private bool dead = false;
     private bool isJumping = false;
     private int jumpLevel = 0;
     private float jumpDistance;
     private bool isRotating = false;
+    public int attackStatus;
     public float currRot;
     private float oldRot;
     public int rotStatus = 0;
+    private bool floorActive = false;
+    private bool ceilingActive = false;
     private Rigidbody2D rb;
 
     private void Start()
     {
         SetHealth();
         player = GameObject.Find("Player");
+        shotSpawn = GameObject.Find("shotSpawnBoss");
         spots = GameObject.FindGameObjectsWithTag("BossSpot");
+        balconies = GameObject.FindGameObjectsWithTag("Balcony");
         rb = GetComponent<Rigidbody2D>();
         //StartCoroutine(JumpToSpot());
         StartCoroutine(HowlAttack());
@@ -77,7 +89,14 @@ public class Chimera : MonoBehaviour
                         Vector2 stop = new Vector2(0, 0);
                         rb.velocity = stop;
                         currSpot = newSpot;
-                        PlayerCheckAttack();
+                        if (attackStatus == 0)
+                        {
+                            attackStatus = 1;
+                        }
+                        if (!bossStop)
+                        {
+                            PlayerCheckAttack();
+                        }
                         isJumping = false;
                     }
                 }
@@ -99,7 +118,14 @@ public class Chimera : MonoBehaviour
                         Vector2 stop = new Vector2(0, 0);
                         rb.velocity = stop;
                         currSpot = newSpot;
-                        PlayerCheckAttack();
+                        if (attackStatus == 0)
+                        {
+                            attackStatus = 1;
+                        }
+                        if (!bossStop)
+                        {
+                            PlayerCheckAttack();
+                        }
                         isJumping = false;
                     }
                 }
@@ -114,7 +140,14 @@ public class Chimera : MonoBehaviour
                     Vector2 stop = new Vector2(0, 0);
                     rb.velocity = stop;
                     currSpot = newSpot;
-                    PlayerCheckAttack();
+                    if (attackStatus == 0)
+                    {
+                        attackStatus = 1;
+                    }
+                    if (!bossStop)
+                    {
+                        PlayerCheckAttack();
+                    }
                     isJumping = false;
                 }
             }
@@ -133,6 +166,10 @@ public class Chimera : MonoBehaviour
                 {
                     GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     rotStatus = 1;
+                    if (attackStatus == 1)
+                    {
+                        attackStatus = 2;
+                    }
                     PlayerCheckAttack();
                     isRotating = false;
                 }
@@ -143,6 +180,10 @@ public class Chimera : MonoBehaviour
                 {
                     GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     rotStatus = 0;
+                    if (attackStatus == 1)
+                    {
+                        attackStatus = 2;
+                    }
                     PlayerCheckAttack();
                     isRotating = false;
                 }
@@ -150,11 +191,97 @@ public class Chimera : MonoBehaviour
         }
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            FindNextSpot();
-        }
+    }
 
+    IEnumerator CeilingAttack()
+    {
+        ceilingActive = true;
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < 5; i++)
+        {
+            float xPos = Random.Range(-14, 14.1f);
+            Vector3 position = new Vector3(xPos, 22, 0);
+            Instantiate(debris, position, debris.transform.rotation);
+            yield return new WaitForSeconds(2);
+        }
+        ceilingActive = false;
+    }
+
+    IEnumerator FloorAttack()
+    {
+        floorActive = true;
+        for (int i = 0; i < 6; i ++)
+        {
+            //int choice = Random.Range(0, 9);
+            //if (!balconyChoices.Contains(choice))
+            //{
+            //    balconyChoices.Add(choice);
+            //    balconies[choice].GetComponent<Animation>().Play("BalconyRed");
+            //    balconies[choice].GetComponent<BalconyHurt>().enabled = true;
+            //}
+            bool add = false;
+            while (!add)
+            {
+                int choice = Random.Range(0, 9);
+                if (!balconyChoices.Contains(choice))
+                {
+                    balconyChoices.Add(choice);
+                    add = true;
+                    balconies[choice].GetComponent<Animation>().Play("BalconyRed");
+                    balconies[choice].GetComponent<BalconyHurt>().enabled = true;
+                }
+                else
+                {
+                    add = false;
+                }
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(10);
+        floorActive = false;
+        for (int i = 0; i < 9; i++)
+        {
+            if (balconyChoices.Contains(i))
+            {
+                balconies[i].GetComponent<Animation>().Play("BalconyNormal");
+            }
+            balconies[i].GetComponent<BalconyHurt>().enabled = false;
+        }
+        balconyChoices.Clear();
+    }
+
+    IEnumerator ShotAttack()
+    {
+        Vector3 zero = new Vector3(0, 0, 0);
+        bossShot.transform.localScale = zero;
+        bossShot.GetComponent<BossShot>().enabled = false;
+        bossShot.GetComponent<Collider2D>().enabled = false;
+        GameObject shot = (GameObject)Instantiate(bossShot, shotSpawn.transform.position, bossShot.transform.rotation);
+        while (shot.transform.localScale.y < 1.5f)
+        {
+            Vector3 size = new Vector3(.6f, .6f, .6f);
+            shot.transform.localScale += size * Time.deltaTime;
+            yield return null;
+        }
+        Destroy(shot);
+        ShotSpread();
+    }
+
+    void ShotSpread()
+    {
+        Vector3 size = new Vector3(1.5f, 1.5f, 1.5f);
+        bossShot.transform.localScale = size;
+        for (int i = 0; i < 12; i++)
+        {
+            GameObject shot = (GameObject)Instantiate(bossShot, shotSpawn.transform.position, bossShot.transform.rotation);
+            shot.GetComponent<BossShot>().enabled = true;
+            shot.GetComponent<Collider2D>().enabled = true;
+            Vector3 rotation = new Vector3(bossShot.transform.eulerAngles.x,
+                bossShot.transform.eulerAngles.y, bossShot.transform.eulerAngles.z + 30);
+            bossShot.transform.eulerAngles = rotation;
+        }
+        Vector3 zero = new Vector3(0, 0, 0);
+        bossShot.transform.localScale = zero;
     }
 
     IEnumerator HowlAttack()
@@ -165,13 +292,50 @@ public class Chimera : MonoBehaviour
             bossStart = true;
             yield return new WaitForSeconds(3);
             GetComponentInChildren<Animator>().SetBool("isHowling", false);
+            attackStatus = 0;
             FindNextSpot();
         }
         else
         {
             GetComponentInChildren<Animator>().SetBool("isHowling", true);
+            //StartCoroutine(CeilingAttack());
+            bool chosen = false;
+            while (!chosen)
+            {
+                int choice = Random.Range(1, 4);
+                if (choice == 1)
+                {
+                    StartCoroutine(ShotAttack());
+                    chosen = true;
+                }
+                else if (choice == 2)
+                {
+                    if (!floorActive)
+                    {
+                        StartCoroutine(FloorAttack());
+                        chosen = true;
+                    }
+                    else
+                    {
+                        chosen = false;
+                    }
+                }
+                else if (choice == 3)
+                {
+                    if (!ceilingActive)
+                    {
+                        StartCoroutine(CeilingAttack());
+                        chosen = true;
+                    }
+                    else
+                    {
+                        chosen = false;
+                    }
+                }
+            }
             yield return new WaitForSeconds(3);
             GetComponentInChildren<Animator>().SetBool("isHowling", false);
+            attackStatus = 0;
             FindNextSpot();
         }
     }
@@ -198,7 +362,7 @@ public class Chimera : MonoBehaviour
         isRotating = true;
     }
 
-    public bool RotateCheck()
+    public void RotateCheck()
     {
         //jump location check
         if (newSpot.position.x < currSpot.position.x)
@@ -206,11 +370,6 @@ public class Chimera : MonoBehaviour
             if (rotStatus == 0)
             {
                 Rotate();
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
         else if (newSpot.position.x > currSpot.position.x)
@@ -218,11 +377,6 @@ public class Chimera : MonoBehaviour
             if (rotStatus == 1)
             {
                 Rotate();
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
         //current spot check
@@ -231,11 +385,6 @@ public class Chimera : MonoBehaviour
             if (rotStatus == 0)
             {
                 Rotate();
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
         else if (currSpot.name == "1" || currSpot.name == "4" || currSpot.name == "7")
@@ -243,16 +392,7 @@ public class Chimera : MonoBehaviour
             if (rotStatus == 1)
             {
                 Rotate();
-                return true;
             }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
         }
     }
 
@@ -266,11 +406,48 @@ public class Chimera : MonoBehaviour
         else
         {
             RotateCheck();
-            if (!RotateCheck())
+            if (!isRotating)
             {
-                StartCoroutine(HowlAttack());
+                if (attackStatus == 1)
+                {
+                    attackStatus = 2;
+                }
+            }
+            if (attackStatus == 2)
+            {
+                if (healthCurrent == healthMax)
+                {
+                    StartCoroutine(HowlAttack());
+                }
+                else
+                {
+                    int choice = Random.Range(0, 2);
+                    if (choice == 0)
+                    {
+                        StartCoroutine(Heal());
+                    }
+                    else
+                    {
+                        StartCoroutine(HowlAttack());
+                    }
+                }
             }
         }
+    }
+
+    IEnumerator Heal()
+    {
+        GetComponentInChildren<Animator>().SetTrigger("isHealing");
+        GetComponent<Animation>().Play();
+        attackStatus = 0;
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < healthIcons.Length; i++)
+        {
+            healthIcons[i].SetActive(true);
+        }
+        healthCurrent = healthMax;
+        yield return new WaitForSeconds(1);
+        FindNextSpot();
     }
 
     IEnumerator Attack()
@@ -278,8 +455,8 @@ public class Chimera : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GetComponentInChildren<Animator>().SetBool("isAttacking", false);
         player.GetComponent<PlayerController>().HealthLose();
-        yield return new WaitForSeconds(1);
-        RotateCheck();
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(HowlAttack());
     }
 
     IEnumerator JumpToSpot()
@@ -341,8 +518,11 @@ public class Chimera : MonoBehaviour
     public void Death()
     {
         dead = false;
+        StopAllCoroutines();
         GetComponentInChildren<Animator>().SetTrigger("isDead");
         GameObject.Find("Player").GetComponent<PlayerController>().enabled = false;
+        bossDead = true;
+        GetComponent<Chimera>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

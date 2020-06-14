@@ -7,58 +7,37 @@ public class LevelStart4 : MonoBehaviour
     public static bool levelEntered = false;
 
     public GameObject player;
+    public GameObject playerHealth;
     public GameObject fade;
     public GameObject dialogue;
-    public GameObject platform;
-    public GameObject keycard;
-    public GameObject crystal;
-    public GameObject crystalInserted;
-    public GameObject boots;
-    public GameObject gloveIcon;
+    public GameObject boss;
+    public GameObject bossBattery;
 
     private void Awake()
     {
-        fade.GetComponent<Animation>().Play("FadeIn");
-        PlayerController.canJump = true;
-        PlayerController.doubleJumpActive = true;
-        PlayerController.footprintActive = false;
-        PlayerController.canShoot = true;
-        StartCoroutine(DoorOpen());
-        GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = false;
         if (levelEntered)
         {
-            GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = true;
+            Chimera.bossStop = false;
+            bossBattery.SetActive(true);
+            playerHealth.GetComponent<Animation>().Play();
+            Vector3 pos = new Vector3(0, 0, 0);
+            player.transform.position = pos;
+            player.GetComponent<PlayerController>().enabled = true;
+            fade.GetComponent<Animation>().Play("FadeIn");
             dialogue.SetActive(false);
-            if (Level_01_Interact_Manager.statusCrystal3 >= 2)
-            {
-                GameObject.Find("crystalInserted3").GetComponent<MeshRenderer>().enabled = true;
-                GameObject.Find("platformFloating (6)").GetComponent<Animation>().Play();
-            }
-            if (Level_01_Interact_Manager.statusGlove >= 1)
-            {
-                Destroy(GameObject.Find("glove"));
-            }
-            if (Level_01_Interact_Manager.statusLauncherLvl3 >= 3)
-            {
-                Destroy(GameObject.Find("forceWallRed"));
-                Destroy(GameObject.Find("crystal3"));
-                GameObject.Find("SceneSwitchLvl3_02").GetComponent<Collider2D>().enabled = true;
-            }
-            if (Level_01_Interact_Manager.statusCrystal4 >= 2)
-            {
-                GameObject.Find("crystalInserted4").GetComponent<MeshRenderer>().enabled = true;
-                GameObject.Find("platformFloatinglvl3").GetComponent<Animation>().Play();
-            }
-            if (Level_01_Interact_Manager.statusKeycard3 >= 1)
-            {
-                Destroy(GameObject.Find("keycard03"));
-            }
-            if (PlayerController.canShoot)
-            {
-                gloveIcon.SetActive(true);
-            }
-            SlimeStation.enemySpawns = 0;
-            Enemy_02_movement.slimeDead = 0;
+            boss.GetComponent<Chimera>().enabled = true;
+            GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
+            GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+        }
+        else
+        {
+            fade.GetComponent<Animation>().Play("FadeIn");
+            PlayerController.canJump = true;
+            PlayerController.doubleJumpActive = true;
+            PlayerController.footprintActive = false;
+            PlayerController.canShoot = true;
+            StartCoroutine(DoorOpen());
+            GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = false;
         }
     }
 

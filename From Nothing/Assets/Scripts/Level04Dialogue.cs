@@ -9,7 +9,6 @@ public class Level04Dialogue : MonoBehaviour
     public GameObject player;
     public GameObject messagePanel;
     public GameObject boss;
-    public GameObject bossMain;
     public GameObject healthPanel;
     public GameObject bossBattery;
     public Text messageName;
@@ -41,7 +40,7 @@ public class Level04Dialogue : MonoBehaviour
             }
             else if (dialogueStatus == 2)
             {
-                boss.GetComponent<Animator>().SetBool("isHowling", true);
+                boss.GetComponentInChildren<Animator>().SetBool("isHowling", true);
                 StartCoroutine(Howl());
                 dialogueActive = false;
                 messageName.text = "";
@@ -88,9 +87,11 @@ public class Level04Dialogue : MonoBehaviour
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 player.GetComponent<PlayerController>().enabled = true;
                 bossBattery.SetActive(true);
-                bossMain.GetComponent<Chimera>().SetHealth();
+                boss.GetComponent<Chimera>().enabled = true;
+                boss.GetComponent<Chimera>().SetHealth();
                 GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
                 GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+                dialogueStatus = 9;
             }
         }
     }
@@ -107,7 +108,7 @@ public class Level04Dialogue : MonoBehaviour
     IEnumerator Howl()
     {
         yield return new WaitForSeconds(2.5f);
-        boss.GetComponent<Animator>().SetBool("isHowling", false);
+        boss.GetComponentInChildren<Animator>().SetBool("isHowling", false);
         dialogueStatus = 3;
         dialogueActive = true;
         messageName.text = "Overseer";

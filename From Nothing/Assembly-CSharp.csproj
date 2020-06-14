@@ -63,9 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BalconyHurt.cs" />
     <Compile Include="Assets\Scripts\BossAttackTrigger.cs" />
     <Compile Include="Assets\Scripts\BossBattery.cs" />
+    <Compile Include="Assets\Scripts\BossShot.cs" />
     <Compile Include="Assets\Scripts\Chimera.cs" />
+    <Compile Include="Assets\Scripts\Debris.cs" />
     <Compile Include="Assets\Scripts\Enemy_01_movement.cs" />
     <Compile Include="Assets\Scripts\Enemy_02_movement.cs" />
     <Compile Include="Assets\Scripts\FadeAwayObject.cs" />
@@ -86,6 +89,8 @@
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerDeath.cs" />
+    <Compile Include="Assets\Scripts\RandomRotator.cs" />
     <Compile Include="Assets\Scripts\RenderQueue.cs" />
     <Compile Include="Assets\Scripts\SceneSwitch.cs" />
     <Compile Include="Assets\Scripts\SlimeStation.cs" />
