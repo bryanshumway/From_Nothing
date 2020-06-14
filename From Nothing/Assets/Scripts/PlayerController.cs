@@ -38,9 +38,6 @@ public class PlayerController : MonoBehaviour
     public int healthMax;
     public int healthCurrent;
 
-    //FMOD
-    //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
-
     // Start is called before the first frame update
     void Start()
     {

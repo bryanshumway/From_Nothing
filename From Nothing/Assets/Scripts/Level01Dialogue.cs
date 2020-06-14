@@ -28,12 +28,14 @@ public class Level01Dialogue : MonoBehaviour
         {
             if (dialogueStatus == 0)
             {
+                // PA INTRO SOUND HERE
                 messageName.text = "";
                 messageText.text = "You hear an intercom turn on.";
                 dialogueStatus = 1;
             }
             else if (dialogueStatus == 1)
             {
+                // PA LOOP SOUND HERE
                 messageName.text = "Overseer";
                 messageText.text = "I see you're awake.";
                 dialogueStatus = 2;
@@ -46,12 +48,14 @@ public class Level01Dialogue : MonoBehaviour
             }
             else if (dialogueStatus == 3)
             {
+                // PA LOOP SOUND HERE
                 messageName.text = "Overseer";
                 messageText.text = "You'll find out soon enough.";
                 dialogueStatus = 4;
             }
             else if (dialogueStatus == 4)
             {
+                // PA OFF SOUND HERE (need to make)
                 messageName.text = "";
                 messageText.text = "The intercom turns off.";
                 dialogueStatus = 5;
