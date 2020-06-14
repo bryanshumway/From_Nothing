@@ -22,6 +22,11 @@ public class GloveShot : MonoBehaviour
             other.GetComponent<Enemy_02_movement>().health -= 1;
             Destroy(gameObject);
         }
+        if (other.CompareTag("Boss"))
+        {
+            other.GetComponent<Chimera>().HealthLost();
+            Destroy(gameObject);
+        }
     }
 
 }

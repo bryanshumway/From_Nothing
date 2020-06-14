@@ -21,6 +21,10 @@ TagManager:
   - BatteryShoot
   - Wall
   - Enemy
+  - Health
+  - BossHealth
+  - Boss
+  - BossSpot
   layers:
   - Default
   - TransparentFX

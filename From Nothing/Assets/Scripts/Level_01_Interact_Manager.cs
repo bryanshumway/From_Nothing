@@ -35,6 +35,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
     private bool customEnterSpot = false;
     private bool customEnterSpotElevator = false;
     private bool doorEntered;
+    private bool bossDoorEntered;
 
     //status variables
     #region
@@ -288,6 +289,39 @@ public class Level_01_Interact_Manager : MonoBehaviour
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                     active03 = false;
                     GetComponent<Collider2D>().enabled = true;
+                    GetComponent<Level_01_Interact_Manager>().enabled = false;
+                }
+                else if (status03 == 1)
+                {
+                    messageName.text = "Overseer";
+                    messageText.text = "You truly want to leave, don't you?";
+                    status03 = 2;
+                }
+                else if (status03 == 2)
+                {
+                    messageName.text = "You";
+                    messageText.text = "This is the exit, correct?";
+                    status03 = 3;
+                }
+                else if (status03 == 3)
+                {
+                    messageName.text = "Overseer";
+                    messageText.text = "Very well then...";
+                    status03 = 4;
+                }
+                else if (status03 == 4)
+                {
+                    messageName.text = "";
+                    messageText.text = "The intercom turns off.";
+                    status03 = 5;
+                }
+                else if (status03 == 5)
+                {
+                    player.GetComponent<PlayerController>().enabled = true;
+                    messageText.text = "";
+                    messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                    active03 = false;
+                    DoorOpen();
                     GetComponent<Level_01_Interact_Manager>().enabled = false;
                 }
             }
@@ -621,6 +655,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active03 = true;
             }
+            else if (status03 == 1)
+            {
+                messageText.text = "You hear an intercom turn on.";
+                messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
+                active03 = true;
+            }
         }
         //boots
         else if (name == "boots")
@@ -713,6 +753,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 activeKeycard03 = true;
                 StartCoroutine(StatusKeycard3());
                 level4Access = true;
+                status03 = 1;
                 messageName.text = "You";
                 messageText.text = "Huh, this keycard seems kinda different...";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -832,12 +873,27 @@ public class Level_01_Interact_Manager : MonoBehaviour
         }
         if (doorEntered)
         {
-            closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
-            StartCoroutine(DoorExit());
+            if (closestDoor.name == "finalBossDoorEnter")
+            {
+                closestDoor.GetComponent<Animator>().Play("BossDoorOpen");
+                StartCoroutine(DoorExit());
+            }
+            else
+            {
+                closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
+                StartCoroutine(DoorExit());
+            }
         }
         else
         {
-            closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
+            if (closestDoor.name == "finalBossDoor")
+            {
+                closestDoor.GetComponent<Animator>().Play("BossDoorOpen");
+            }
+            else
+            {
+                closestDoor.GetComponent<Animator>().Play("SlidingUpDoorOpen");
+            }
             if (!elevatorButtonPressed)
             {
                 closestDoor.GetComponent<Collider2D>().enabled = true;
@@ -861,6 +917,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
             {
                 closestEnterSpot = obj;
             }
+        }
+        if (closestEnterSpot.name == "enterSpotBoss")
+        {
+            bossDoorEntered = true;
         }
         //set next door spot
         for (int i = 0; i < objectsWithTag.Length; i++)
@@ -941,6 +1001,23 @@ public class Level_01_Interact_Manager : MonoBehaviour
             {
                 closestDoor = obj;
             }
+        }
+        if (closestDoor.name == "finalBossDoor")
+        {
+            yield return new WaitForSeconds(1);
+            closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
+            yield return new WaitForSeconds(1);
+            GameObject.Find("Fade").GetComponent<Animation>().Play("FadeOut");
+            StartCoroutine(ToBoss());
+        }
+        else if (closestDoor.name == "finalBossDoorEnter")
+        {
+            yield return new WaitForSeconds(1);
+            closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
+        }
+        else
+        {
+            closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         yield return new WaitForSeconds(1);
@@ -1239,6 +1316,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("scLevel3");
+    }
+
+    IEnumerator ToBoss()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("scLevel4");
     }
 
     IEnumerator WallDestroy()

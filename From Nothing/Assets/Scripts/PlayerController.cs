@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = false;
-    public static bool doubleJumpActive = false;
-    public static bool footprintActive = true;
-    public static bool canShoot = false;
+    public static bool canJump = true;
+    public static bool doubleJumpActive = true;
+    public static bool footprintActive = false;
+    public static bool canShoot = true;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     public GameObject[] batteryShoot;
     public int batteryShootMaxCharge;
     public int batteryShootCurrentCharge;
+    public GameObject[] health;
+    public int healthMax;
+    public int healthCurrent;
 
     //FMOD
     //private FMOD.Studio.EventInstance footstepSound; (maybe not needed???)
@@ -52,6 +55,9 @@ public class PlayerController : MonoBehaviour
         batteryShoot = GameObject.FindGameObjectsWithTag("BatteryShoot");
         batteryShootMaxCharge = batteryShoot.Length;
         batteryShootCurrentCharge = batteryShootMaxCharge;
+        health = GameObject.FindGameObjectsWithTag("Health");
+        healthMax = health.Length;
+        healthCurrent = healthMax;
     }
 
     // Update is called once per frame
@@ -237,6 +243,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void HealthLose()
+    {
+        for (int i = 4; i >= 0; i--)
+        {
+            if (health[i].activeInHierarchy)
+            {
+                health[i].SetActive(false);
+                healthCurrent--;
+                break;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("ChargeStation"))
@@ -251,6 +270,11 @@ public class PlayerController : MonoBehaviour
                 batteryShoot[i].SetActive(true);
             }
             batteryShootCurrentCharge = batteryShootMaxCharge;
+            for (int i = 0; i < health.Length; i++)
+            {
+                health[i].SetActive(true);
+            }
+            healthCurrent = healthMax;
         }
     }
 
