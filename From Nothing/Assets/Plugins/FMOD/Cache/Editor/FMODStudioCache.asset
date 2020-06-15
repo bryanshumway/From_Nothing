@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114668524849120762}
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   EditorEvents:
   - {fileID: 114010534704329592}
   - {fileID: 114869774947096746}
@@ -43,12 +43,12 @@ MonoBehaviour:
   - {fileID: 114643436012979446}
   - {fileID: 114844735455854334}
   EditorParameters:
-  - {fileID: 114058331321954964}
+  - {fileID: 114607439999057536}
   MasterBanks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   StringsBanks:
   - {fileID: 114668524849120762}
-  stringsBankWriteTime: 637277526544327301
+  stringsBankWriteTime: 637277631588799816
   cacheVersion: 3
 --- !u!114 &114006291072452114
 MonoBehaviour:
@@ -66,7 +66,7 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &114006866955276030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +102,23 @@ MonoBehaviour:
   Max: 2
   Default: 0
   Exists: 0
+--- !u!114 &114010493132887008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/crystal/active
+  m_EditorClassIdentifier: 
+  Name: active
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &114010534704329592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,12 +134,12 @@ MonoBehaviour:
   Path: event:/Player/footsteps
   guid: 1e98c142c3f62f448274833b1c354366
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114787262206844356}
+  - {fileID: 114209941920435582}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -158,7 +175,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/gemplace
   guid: fef34aad0646b54e8f744d1e6c20249a
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -272,7 +289,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &114058459916485708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +360,7 @@ MonoBehaviour:
   lastModified: 637277526544252247
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &114081859647577742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,7 +462,7 @@ MonoBehaviour:
   Path: event:/Player/wallcollide
   guid: 9c6af42582698941bdc29b7584a60ee6
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -468,7 +485,7 @@ MonoBehaviour:
   Path: event:/Environment/overseerhangup
   guid: ec5b6c96046b4545be33a9c21e2c498e
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -629,7 +646,7 @@ MonoBehaviour:
   Path: event:/UI/buttonclick
   guid: 99d5287838c3a448b1675182ba2c165e
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -687,7 +704,7 @@ MonoBehaviour:
   Path: event:/Environment/Emitters/tube
   guid: c24de46f9671184a9b5a2e632a020e33
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -712,6 +729,23 @@ MonoBehaviour:
   Max: 5
   Default: 0
   Exists: 0
+--- !u!114 &114209941920435582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/footsteps/GroundMaterial
+  m_EditorClassIdentifier: 
+  Name: GroundMaterial
+  Min: 0
+  Max: 5
+  Default: 0
+  Exists: 1
 --- !u!114 &114210529454301136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,7 +1065,7 @@ MonoBehaviour:
   Path: event:/Environment/overseerintro
   guid: 2cca68c7b326e94d9da01ae3a7892a44
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1054,7 +1088,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/passpickup
   guid: a087fb2a18771f4fb2848230daab87a0
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1572,7 +1606,7 @@ MonoBehaviour:
   Path: event:/Music/levelbgm
   guid: 62e85d5479d6044a8c532508d1325a37
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1663,7 +1697,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/doorbuttonfail
   guid: 599a9a7d090d32498d60a5790ad0779c
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1809,7 +1843,7 @@ MonoBehaviour:
   Path: event:/Player/jump
   guid: 7675ddf13bd2994bb49fd880b2580e06
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1954,7 +1988,7 @@ MonoBehaviour:
   Path: event:/Environment/powerup
   guid: 34b63d137134814a9be4599ac67f97e5
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2136,6 +2170,24 @@ MonoBehaviour:
   Max: 5
   Default: 0
   Exists: 0
+--- !u!114 &114595982396549012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637277631588769885
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &114596660338597270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,6 +2255,23 @@ MonoBehaviour:
   Name: GroundMaterial
   Min: 0
   Max: 5
+  Default: 0
+  Exists: 1
+--- !u!114 &114607439999057536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: fade
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &114610194340924176
@@ -2358,7 +2427,7 @@ MonoBehaviour:
   Path: event:/Environment/Emitters/chargingstation
   guid: 586c91238287704ab7173c5e338c253f
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -2467,7 +2536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Audio/FMOD/Soundbanks/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637277526544327301
+  lastModified: 637277631588799816
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -2541,7 +2610,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/doorbuttonsuccess
   guid: b3d79528e1a3de4da42cfa4cea184b83
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2616,7 +2685,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/batterycharge
   guid: 8ac06725a34a07498fd8a164eb6d62b8
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2744,7 +2813,7 @@ MonoBehaviour:
   Path: event:/Player/attack
   guid: 8585b4dd15577b47a672294bb6e36cc7
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2767,12 +2836,12 @@ MonoBehaviour:
   Path: event:/Environment/Emitters/crystal
   guid: e03a6d315335a240a6f8a3be87c93231
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114006291072452114}
+  - {fileID: 114010493132887008}
   MinDistance: 1
   MaxDistance: 5.6
   Length: 23875
@@ -2928,7 +2997,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/gempickup
   guid: e854d4f5718b084b8cf3a33e0f03771b
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2969,7 +3038,7 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &114790322109984474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3089,7 +3158,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/doorclose
   guid: a45decdbd394e24391a3a58283cf2780
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3129,7 +3198,7 @@ MonoBehaviour:
   Path: event:/UI/buttonover
   guid: 2683abc52683be4d8f15ebd0692172c7
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3186,7 +3255,7 @@ MonoBehaviour:
   Path: event:/Environment/Emitters/slime
   guid: 07f47346ebd70345abd864d229bac5af
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -3284,7 +3353,7 @@ MonoBehaviour:
   Path: snapshot:/Pause
   guid: 99cf6542b3de20449561f7d6f8882b2c
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -3503,7 +3572,7 @@ MonoBehaviour:
   Path: event:/Environment/overseerloop
   guid: 58fc2ad9e8f8964b831011b59ee84ca0
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3577,7 +3646,7 @@ MonoBehaviour:
   Path: event:/Environment/Interactables/dooropen
   guid: cf5bb64ed95c4144b5a24fb4becb4b53
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3600,7 +3669,7 @@ MonoBehaviour:
   Path: event:/Music/mainmenubgm
   guid: 8fde6786e197684aaab689132cb876df
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -3856,7 +3925,7 @@ MonoBehaviour:
   Path: event:/Player/doublejump
   guid: 2a6acca5c43e914e8f3139a5647ed0f1
   Banks:
-  - {fileID: 114068418446294450}
+  - {fileID: 114595982396549012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

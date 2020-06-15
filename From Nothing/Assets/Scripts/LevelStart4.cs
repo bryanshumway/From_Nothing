@@ -16,6 +16,11 @@ public class LevelStart4 : MonoBehaviour
 
     private void Awake()
     {
+        PlayerController.canJump = true;
+        PlayerController.doubleJumpActive = true;
+        PlayerController.footprintActive = false;
+        PlayerController.canShoot = true;
+        player.GetComponent<PlayerController>().canJumpDouble = true;        
         if (levelEntered)
         {
             pauseScript.SetActive(true);
@@ -37,10 +42,6 @@ public class LevelStart4 : MonoBehaviour
         {
             LevelManager.canPause = false;
             fade.GetComponent<Animation>().Play("FadeIn");
-            PlayerController.canJump = true;
-            PlayerController.doubleJumpActive = true;
-            PlayerController.footprintActive = false;
-            PlayerController.canShoot = true;
             StartCoroutine(DoorOpen());
             GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = false;
         }

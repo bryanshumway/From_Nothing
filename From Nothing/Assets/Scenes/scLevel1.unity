@@ -15575,7 +15575,6 @@ MonoBehaviour:
   sceneSwitch: {fileID: 807926600}
   floor5Door: {fileID: 1762407649}
   floor4Door: {fileID: 365923072}
-  pauseScript: {fileID: 640166313}
 --- !u!1 &1488154388
 GameObject:
   m_ObjectHideFlags: 0
@@ -19455,7 +19454,6 @@ MonoBehaviour:
   player: {fileID: 668068301}
   fade: {fileID: 571722218}
   messagePanel: {fileID: 1355554685}
-  pauseScript: {fileID: 640166313}
   messageName: {fileID: 832788247}
   messageText: {fileID: 2100056419}
 --- !u!1 &1762407649 stripped

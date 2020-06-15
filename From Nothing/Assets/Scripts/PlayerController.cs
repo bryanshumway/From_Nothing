@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         canFootprint = true;
+        canJumpDouble = true;
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<Collider2D>();
