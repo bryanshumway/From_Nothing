@@ -71,7 +71,15 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine("FootPrint");
                 canFootprint = false;
+
+                // plays sound if player hits wall
+                //if (!IsMoveRightPossible())
+                //{
+                //    RuntimeManager.PlayOneShot("event:/Player/wallcollide");
+                //}
             }
+
+            
         }
         //move left
         else if(Input.GetKey(KeyCode.A)){
@@ -83,7 +91,15 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine("FootPrint");
                 canFootprint = false;
+
+                // plays sound if player hits wall
+                //if (!IsMoveLeftPossible())
+                //{
+                //    RuntimeManager.PlayOneShot("event:/Player/wallcollide");
+                //}
             }
+
+            
         }
         //not moving
         else
@@ -99,6 +115,9 @@ public class PlayerController : MonoBehaviour
         //jump
         if(Input.GetButtonDown("Jump") && IsGrounded() && canJump && batteryJumpCurrentCharge > 0)
         {
+            // play sound
+            RuntimeManager.PlayOneShot("event:/Player/jump");
+
             GetComponent<Animator>().SetInteger("JumpStatus", 1);
             playerBoots.GetComponent<Animation>().Stop();
             playerBoots.GetComponent<Animation>().Play();
@@ -118,6 +137,9 @@ public class PlayerController : MonoBehaviour
         //double jump
         if (Input.GetButtonDown("Jump") && !IsGrounded() && doubleJumpActive && canJumpDouble && batteryJumpCurrentCharge > 0)
         {
+            // play sound
+            RuntimeManager.PlayOneShot("event:/Player/doublejump");
+
             canJumpDouble = false;
             GetComponent<Animator>().SetInteger("JumpStatus", 1);
             playerBoots.GetComponent<Animation>().Stop();
@@ -137,6 +159,7 @@ public class PlayerController : MonoBehaviour
         //glove shot
         if (Input.GetButtonDown("Fire1") && canShoot && batteryShootCurrentCharge > 0)
         {
+            RuntimeManager.PlayOneShotAttached("event:/Player/attack", shotSpawn);
             playerGlove.GetComponent<Animation>().Play();
             Instantiate(gloveShot, shotSpawn.transform.position, shotSpawn.transform.rotation);
             StartCoroutine(GloveShoot());
@@ -182,6 +205,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator GloveShoot()
     {
+
         canShoot = false;
         yield return new WaitForSeconds(0.5f);
         canShoot = true;
@@ -195,13 +219,6 @@ public class PlayerController : MonoBehaviour
             Vector3 step = new Vector3(transform.position.x, transform.position.y - .24f, -3);
             Instantiate(footprint, footprintSpot.transform.position, footprintSpot.transform.rotation);
         }
-        //isJumping = false;
-        //FMOD
-        //footstepSound = RuntimeManager.CreateInstance("event:/Player/footsteps");
-        //footstepSound.setParameterByName("GroundMaterial", "STRING FOR GROUND MATERIAL TYPE GOES HERE");
-        //footstepSound.start();
-        //footstepSound.release();
-        //RuntimeManager.PlayOneShot("event:/Player/footsteps");
     }
 
     public void EnableBoots()
@@ -257,6 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("ChargeStation"))
         {
+            RuntimeManager.PlayOneShot("event:/Environment/Interactables/batterycharge");
             for (int i = 0; i < batteryJump.Length; i++)
             {
                 batteryJump[i].SetActive(true);

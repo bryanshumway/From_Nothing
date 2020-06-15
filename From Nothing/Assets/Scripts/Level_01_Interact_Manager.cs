@@ -485,7 +485,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             {
                 // play sound
                 RuntimeManager.PlayOneShot("event:/Environment/Interactables/gemplace");
-
+                
                 Destroy(GameObject.Find("crystal"));
                 GameObject.Find("crystalInserted").GetComponent<MeshRenderer>().enabled = true;
                 messageText.text = "You've inserted the Crystal. You hear something powered on.";
@@ -544,6 +544,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (statusCrystal3 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 messageName.text = "You";
                 messageText.text = "Need a crystal again.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -583,6 +584,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             // button pressed
             else if (statusLauncherLvl3 == 3)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
                 messageName.text = "You";
                 messageText.text = "Seems like this turned off that wall over there.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -596,6 +598,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             // initial message
             if (statusCrystal4 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 messageName.text = "You";
                 messageText.text = "Gotta find the crystal.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -651,6 +654,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal3 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal3 = 1;
             }
         }
@@ -660,6 +666,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal4 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal4 = 1;
             }
         }
@@ -689,6 +698,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusBoots == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found some Boots. You can now jump.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeBoots = true;
@@ -704,6 +716,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusBoots2 == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found an upgrade for your boots. You can now double jump.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeBoots2 = true;
@@ -717,6 +732,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusGlove == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found a power glove. You can now shoot power orbs.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeGlove = true;
@@ -746,6 +764,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 messageText.text = "You found a keycard that allows access to Floor 02.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeKeycard01 = true;
@@ -758,6 +777,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard2 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 activeKeycard02 = true;
                 StartCoroutine(StatusKeycard2());
                 level3Access = true;
@@ -771,6 +791,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard3 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 activeKeycard03 = true;
                 StartCoroutine(StatusKeycard3());
                 level4Access = true;
@@ -789,12 +810,12 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //if crystal hasn't been inserted
                 if (status02 == 0)
                 {
+                    // play sound
+                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                     messageText.text = "You press the button. There seems to be no power running.";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                     active02 = true;
-
-                    // play sound
-                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 }
                 else if (status02 == 1)
                 {
@@ -823,6 +844,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //open elevator panel choices
             if (elevatorStatus == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                 player.GetComponent<PlayerController>().enabled = false;
                 GetComponent<Collider2D>().enabled = false;
                 elevatorPanel.SetActive(true);
