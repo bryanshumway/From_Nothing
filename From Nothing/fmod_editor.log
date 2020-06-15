@@ -2,123 +2,31 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20008 (108014), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.16ms, DSP buffer: 1024 * 4
+[WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000000004C9F8C38 isAsync 0 updatePeriod 0.02
+[WRN] OutputWASAPI::mixerThread                : Starvation detected in WASAPI output buffer!
+[LOG] AsyncManager::init                       : manager 00000000463BB078 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] Thread::initThread                       : Init FMOD profiler thread (recv). Priority: 0, Stack Size: 131072, Semaphore: No, Sleep Time: 0, Looping: No.
-[LOG] Thread::initThread                       : Init FMOD profiler thread (send). Priority: 0, Stack Size: 131072, Semaphore: No, Sleep Time: 0, Looping: No.
-[LOG] LiveUpdate::clientConnected              : client = 000000005E41DFA8
-[LOG] LiveUpdate::readPacket                   : Recieved init packet from client 000000005E41DFA8
-[LOG] LiveUpdate::readPacket                   : Accepting init message for client 000000005E41DFA8
-[LOG] LiveUpdate::transitionToConnected        : 
-[LOG] Manager::sendConnectTimeHash             : 
-[LOG] LiveUpdate::sendBankHash                 : 
-[LOG] LiveUpdate::acceptInitPacket             : Client 000000005E41DFA8 connected, entering connected state
-[LOG] Manager::receiveLiveUpdateBank           : Received live update bank path: fmod:///remote/C:/Users/Matthew/AppData/Local/FMOD Studio/UnsavedProjects/Hotswap-1qJFK8/hotswap_597.bank
-[LOG] ProfileRemoteFile::fileOpen              : Attemping to open remote file 'C:/Users/Matthew/AppData/Local/FMOD Studio/UnsavedProjects/Hotswap-1qJFK8/hotswap_597.bank'
 [LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
-[LOG] SoundI::release                          :  (0000000043622208)
-[LOG] SoundI::release                          :     sx_uni_npc_slimeloop (0000000043B1C218)
-[LOG] SystemI::createSoundInternal             : Create name='fmod:///remote/X:/Matthew/EDCC/CS 185/_From Nothing (Main)/FromNothing FMOD Project/From Nothing/Assets/Environment/sx_uni_npc_slimeloop.wav', mode=0x0200C202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] ProfileRemoteFile::fileOpen              : Attemping to open remote file 'X:/Matthew/EDCC/CS 185/_From Nothing (Main)/FromNothing FMOD Project/From Nothing/Assets/Environment/sx_uni_npc_slimeloop.wav'
-[LOG] SystemI::createSoundInternal             : Sample 0/0: name='(null)', format=3, channels=2, frequency=48000, lengthbytes=5674956, lengthpcm=945826, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.000000.
-[LOG] SoundI::release                          : sx_uni_npc_slimeloop.wav (000000004342E888)
-[LOG] SoundI::release                          :  (000000000CE438B8)
-[LOG] SoundI::release                          :     player_footstep_cement_SCRATCH_01 (0000000043B1B858)
-[LOG] SoundI::release                          :  (000000000CE445A8)
-[LOG] SoundI::release                          :     player_footstep_cement_SCRATCH_02 (0000000043B1BED8)
-[LOG] SoundI::release                          :  (000000000CE442C8)
-[LOG] SoundI::release                          :     player_footstep_metal_SCRATCH_01 (0000000043B1BB98)
-[LOG] SoundI::release                          :  (000000000CE44CD8)
-[LOG] SoundI::release                          :     player_footstep_metal_SCRATCH_02 (0000000043B18E18)
-[LOG] SoundI::release                          :  (000000001379E298)
-[LOG] SoundI::release                          :     player_footstep_wood_SCRATCH_01 (0000000043B192F8)
-[LOG] SoundI::release                          :  (000000000CE44158)
-[LOG] SoundI::release                          :     player_footstep_wood_SCRATCH_02 (0000000043B19638)
-[LOG] SoundI::release                          :  (000000000CE44438)
-[LOG] SoundI::release                          :     player_footstep_waterpuddle_SCRATCH_01 (0000000043B1BD38)
-[LOG] SoundI::release                          :  (000000000CE44888)
-[LOG] SoundI::release                          :     player_footstep_waterpuddle_SCRATCH_02 (0000000043B18FB8)
-[LOG] SoundI::release                          :  (000000000CE43A28)
-[LOG] SoundI::release                          :     player_footstep_glassbroken_SCRATCH_01 (0000000043B1CBD8)
-[LOG] SoundI::release                          :  (000000000CE43E78)
-[LOG] SoundI::release                          :     player_footstep_glassbroken_SCRATCH_02 (0000000043B1B9F8)
-[LOG] SoundI::release                          :  (0000000043622AA8)
-[LOG] SoundI::release                          :     sx_buttonover (0000000043B19FF8)
-[LOG] SoundI::release                          :  (000000000CE449F8)
-[LOG] SoundI::release                          :     sx_uni_plr_jumpdouble (0000000043B1AB58)
-[LOG] SoundI::release                          :  (0000000043622EF8)
-[LOG] SoundI::release                          :     sx_uni_env_overseer_intro (0000000043B1C3B8)
-[LOG] SoundI::release                          :  (000000000CE43D08)
-[LOG] SoundI::release                          :     sx_uni_int_powerup (0000000043B1A4D8)
-[LOG] SoundI::release                          :  (00000000436231D8)
-[LOG] SoundI::release                          :     sx_uni_env_chargeloop (0000000043B1B518)
-[LOG] SoundI::release                          :  (0000000043623908)
-[LOG] SoundI::release                          :     sx_uni_env_overseer_loop (0000000043B1B1D8)
-[LOG] SoundI::release                          :  (0000000043623A78)
-[LOG] SoundI::release                          :     sx_uni_env_doorbutton_fail (0000000043B1AE98)
-[LOG] SoundI::release                          :  (0000000043623EC8)
-[LOG] SoundI::release                          :     fromnothing_music (0000000043B1B378)
-[LOG] SoundI::release                          :  (00000000436227C8)
-[LOG] SoundI::release                          :     sx_uni_plr_jump (0000000043B1A198)
-[LOG] SoundI::release                          :  (0000000043622378)
-[LOG] SoundI::release                          :     sx_uni_plr_attack (0000000043B1B038)
-[LOG] SoundI::release                          :  (00000000436234B8)
-[LOG] SoundI::release                          :     sx_uni_int_chargingstation (0000000043B19B18)
-[LOG] SoundI::release                          :  (0000000043622098)
-[LOG] SoundI::release                          :     fromnothing_music_scratch (0000000043B19CB8)
-[LOG] SoundI::release                          :  (0000000043623D58)
-[LOG] SoundI::release                          :     sx_buttonclick (0000000043B1C558)
-[LOG] SoundI::release                          :  (000000000CE43B98)
-[LOG] SoundI::release                          :     sx_uni_plr_wallcollide (0000000043B1C6F8)
-[LOG] SoundI::release                          :  (000000000CE435D8)
-[LOG] SoundI::release                          :     Thud (0000000043B1C898)
-[LOG] SoundI::release                          :  (0000000043623BE8)
-[LOG] SoundI::release                          :     sx_uni_int_pass_pickup (0000000043B19978)
-[LOG] SoundI::release                          :  (0000000043623798)
-[LOG] SoundI::release                          :     sx_uni_env_door_close (0000000043B1B6B8)
-[LOG] SoundI::release                          :  (0000000043622D88)
-[LOG] SoundI::release                          :     sx_uni_env_doorbutton_success (0000000043B19E58)
-[LOG] SoundI::release                          :  (0000000043623348)
-[LOG] SoundI::release                          :     sx_uni_env_tube-2 (0000000043B1A818)
-[LOG] SoundI::release                          :  (0000000043623068)
-[LOG] SoundI::release                          :     sx_uni_env_door_open (0000000043B19158)
-[LOG] SoundI::release                          :  (000000000CE45298)
-[LOG] SoundI::release                          :     sx_uni_env_gem_placed (0000000043B1A9B8)
-[LOG] SoundI::release                          :  (0000000043622C18)
-[LOG] SoundI::release                          :     sx_uni_env_gem_notplaced (0000000043B1CA38)
-[LOG] SoundI::release                          :  (0000000043622658)
-[LOG] SoundI::release                          :     sx_uni_int_gem_pickup (0000000043B1A338)
-[LOG] SoundI::release                          :  (00000000436224E8)
-[LOG] SoundI::release                          :     sx_uni_env_overseer_hangup (0000000043B1ACF8)
-[LOG] SoundI::release                          :  (000000000CE45408)
-[LOG] SoundI::release                          :     sx_uni_int_gem_place (0000000043B1A678)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] ProfileClient::markForDead               : Closing client connection
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD profiler thread (send) finished.
-[LOG] FMOD_OS_Net_Read                         : Interrupted.[LOG] ProfileClient::recvThreadLoopFunction    : Socket disconnected
-[LOG] Thread::callback                         : FMOD profiler thread (recv) finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
-[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
-[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
-[LOG] Manager::readBank                        : fileversion = 125, compatVersion = 119 (oldest = 44, newest = 125)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6

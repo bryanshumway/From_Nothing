@@ -15,9 +15,11 @@ public class LevelStart3 : MonoBehaviour
     public GameObject crystalInserted;
     public GameObject boots;
     public GameObject gloveIcon;
+    public GameObject pauseScript;
 
     private void Awake()
     {
+        LevelManager.canPause = false;
         fade.GetComponent<Animation>().Play("FadeIn");
         PlayerController.canJump = true;
         PlayerController.doubleJumpActive = true;
@@ -26,6 +28,7 @@ public class LevelStart3 : MonoBehaviour
         GameObject.Find("doorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = false;
         if (levelEntered)
         {
+            pauseScript.SetActive(true);
             GameObject.Find("doorEnter").GetComponent<Level_01_Interact_Manager>().exitEnablePlayer = true;
             dialogue.SetActive(false);
             if (Level_01_Interact_Manager.statusCrystal3 >= 2)
@@ -64,6 +67,8 @@ public class LevelStart3 : MonoBehaviour
     private void Start()
     {
         levelEntered = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     IEnumerator DoorOpen()

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
+    public static bool canInteractS = true;
+
     private GameObject player;
     private GameObject pickupSpot;
     private GameObject interactPanel;
@@ -22,7 +24,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && canInteractS)
         {
             if (canPickup)
             {
@@ -34,6 +36,7 @@ public class Interactable : MonoBehaviour
             }
             else if (canInteract)
             {
+                LevelManager.canPause = false;
                 player.GetComponent<PlayerController>().enabled = false;
                 interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 interactText.color = new Color(255, 255, 255, 0);

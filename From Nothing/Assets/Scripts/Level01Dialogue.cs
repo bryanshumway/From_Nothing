@@ -71,6 +71,7 @@ public class Level01Dialogue : MonoBehaviour
             {
                 messageName.text = "";
                 messageText.text = "";
+                LevelManager.canPause = true;
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 player.GetComponent<PlayerController>().enabled = true;
                 dialogueStatus = 7;
