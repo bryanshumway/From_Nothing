@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using FMODUnity;
 public class Level_01_Interact_Manager : MonoBehaviour
 {
 
@@ -20,7 +20,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
     public GameObject elevatorPanel;
     public GameObject equipmentPanel;
     public bool exitEnablePlayer = true;
-    public GameObject pauseScript;
 
     private GameObject player;
     private GameObject camera;
@@ -123,7 +122,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status01 == 0 || status01 == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -134,7 +132,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //crystal inserted
                 else if (status01 == 1)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -150,7 +147,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal2 == 0 || statusCrystal2 == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -178,7 +174,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal3 == 0 || statusCrystal3 == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -206,7 +201,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal4 == 0 || statusCrystal4 == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -260,7 +254,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //exit message
                 else if (statusLauncherLvl3 == 2 || statusLauncherLvl3 == 4)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -277,7 +270,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status02 == 0)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -292,8 +284,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status03 == 0)
                 {
-                    LevelManager.canPause = true;
-                    print(LevelManager.canPause);
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -327,7 +317,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 }
                 else if (status03 == 5)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -350,7 +339,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusBoots == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -369,7 +357,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusBoots2 == 1)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -391,7 +378,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 else if (statusGlove == 2)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -410,7 +396,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusTube == 0)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -427,7 +412,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard == 0)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -440,7 +424,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard2 == 1)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -453,7 +436,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard3 == 1)
                 {
-                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -467,10 +449,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (elevatorStatus == 0)
                 {
-                    LevelManager.canPause = true;
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    LevelManager.canPause = true;
                     elevatorPanel.SetActive(false);
                     player.GetComponent<PlayerController>().enabled = true;
                     elevatorActive = false;
@@ -495,6 +473,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (status01 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageText.text = "Some sort of pedestal. You notice something can be inserted on top.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active01 = true;
@@ -502,6 +483,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player has crystal
             else if (status01 == 1)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gemplace");
+                
                 Destroy(GameObject.Find("crystal"));
                 GameObject.Find("crystalInserted").GetComponent<MeshRenderer>().enabled = true;
                 messageText.text = "You've inserted the Crystal. You hear something powered on.";
@@ -523,6 +507,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (statusCrystal2 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageName.text = "You";
                 messageText.text = "Another one of those pedestals.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -531,6 +518,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player has crystal
             else if (statusCrystal2 == 1)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gemplace");
+
                 Destroy(GameObject.Find("crystal2"));
                 GameObject.Find("crystalInserted2").GetComponent<MeshRenderer>().enabled = true;
                 GameObject.Find("platformFloating (2)").GetComponent<Animation>().Play();
@@ -554,6 +544,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //no crystal picked up
             if (statusCrystal3 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 messageName.text = "You";
                 messageText.text = "Need a crystal again.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -593,6 +584,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             // button pressed
             else if (statusLauncherLvl3 == 3)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
                 messageName.text = "You";
                 messageText.text = "Seems like this turned off that wall over there.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -606,6 +598,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             // initial message
             if (statusCrystal4 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
                 messageName.text = "You";
                 messageText.text = "Gotta find the crystal.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
@@ -637,6 +630,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (status01 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+                
                 status01 = 1;
             }
         }
@@ -646,6 +642,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal2 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal2 = 1;
             }
         }
@@ -655,6 +654,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal3 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal3 = 1;
             }
         }
@@ -664,6 +666,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if picked up change 01's status
             if (statusCrystal4 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/gempickup");
+
                 statusCrystal4 = 1;
             }
         }
@@ -673,6 +678,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //if player doesn't have pass
             if (status03 == 0)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                 messageText.text = "It's a pass scanner.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active03 = true;
@@ -690,6 +698,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusBoots == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found some Boots. You can now jump.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeBoots = true;
@@ -705,6 +716,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusBoots2 == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found an upgrade for your boots. You can now double jump.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeBoots2 = true;
@@ -718,6 +732,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up boots
             if (statusGlove == 0)
             {
+                //play sound
+                RuntimeManager.PlayOneShot("event:/Environment/powerup");
+
                 messageText.text = "You found a power glove. You can now shoot power orbs.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeGlove = true;
@@ -747,6 +764,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 messageText.text = "You found a keycard that allows access to Floor 02.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 activeKeycard01 = true;
@@ -759,6 +777,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard2 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 activeKeycard02 = true;
                 StartCoroutine(StatusKeycard2());
                 level3Access = true;
@@ -772,6 +791,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //when player picks up keycard
             if (statusKeycard3 == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/passpickup");
                 activeKeycard03 = true;
                 StartCoroutine(StatusKeycard3());
                 level4Access = true;
@@ -784,19 +804,24 @@ public class Level_01_Interact_Manager : MonoBehaviour
         //door buttons
         else if (CompareTag("DoorButton"))
         {
-            LevelManager.canPause = true;
             //door button 01
             if (name == "door01Button")
             {
                 //if crystal hasn't been inserted
                 if (status02 == 0)
                 {
+                    // play sound
+                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonfail");
+
                     messageText.text = "You press the button. There seems to be no power running.";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                     active02 = true;
                 }
                 else if (status02 == 1)
                 {
+                    // play sound
+                    RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                     player.GetComponent<PlayerController>().enabled = true;
                     GetComponent<Collider2D>().enabled = false;
                     DoorOpen();
@@ -805,6 +830,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //any non-specific door button
             else
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                 player.GetComponent<PlayerController>().enabled = true;
                 GetComponent<Collider2D>().enabled = false;
                 DoorOpen();
@@ -816,9 +844,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //open elevator panel choices
             if (elevatorStatus == 0)
             {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                LevelManager.canPause = false;
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorbuttonsuccess");
+
                 player.GetComponent<PlayerController>().enabled = false;
                 GetComponent<Collider2D>().enabled = false;
                 elevatorPanel.SetActive(true);
@@ -889,6 +917,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
     #region
     public void DoorOpen()
     {
+        // play door open sound
+        RuntimeManager.PlayOneShot("event:/Environment/Interactables/dooropen");
+
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Door");
         foreach (GameObject obj in objectsWithTag)
         {
@@ -931,6 +962,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
 
     void DoorEnter()
     {
+        
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("DoorEnterSpot");
         //disable player movement
         player.GetComponent<PlayerController>().enabled = false;
@@ -991,8 +1023,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, -player.transform.localScale.z);
             elevatorButtonPressed = false;
         }
-
-        LevelManager.canPause = true;
         player.transform.position = closestExitSpot.transform.position;
         elevatorStatus = 0;
         StartCoroutine(DoorClose(0));
@@ -1048,6 +1078,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
             closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
         }
         closestDoor.GetComponent<Animator>().SetTrigger("CloseDoor");
+
+        // play door open sound
+        RuntimeManager.PlayOneShot("event:/Environment/Interactables/doorclose");
+
         yield return new WaitForSeconds(1);
         if (doorEntered)
         {
@@ -1097,9 +1131,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 5;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             if (SceneManager.GetActiveScene().name == "scLevel1")
@@ -1130,9 +1161,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 4;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             if (SceneManager.GetActiveScene().name == "scLevel1")
@@ -1170,9 +1198,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 3;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
@@ -1207,9 +1232,6 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 2;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;

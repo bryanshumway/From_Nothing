@@ -14,9 +14,6 @@ using System.Collections;
 public class LevelManager : MonoBehaviour
 {
 
-    public static bool canPause;
-    public bool iCanPause;
-
     public string SceneToLoad;//variable name that will be the name of the next scene
     public string settings;//variable name to go to the settings
     //public Animator animator; //access the animator
@@ -24,34 +21,29 @@ public class LevelManager : MonoBehaviour
     public GameObject PauseMenu; //variable for the pause menu game object
     public GameObject player;  //Variable for the player to disable movement
     public GameObject fade; //fade panel
+    private FMOD.Studio.Bus musicBus;
 
     private void Start()
     {
         GetComponent<Animation>().Play("FadeToClear");//Animation between scenes
-        if (PauseMenu == null)
-        {
-            PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
-        }
+        PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
         PauseMenu.SetActive(false);
         player = GameObject.Find("Player");
+        musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
     }
 
     //Checks for input so often
     private void Update()
     {
-        //Check pause status
-        iCanPause = canPause;
         //Check to see if the escape key has been pressed. MUST BE KEY DOWN
-        if (Input.GetKeyDown("escape") && canPause)
+        if (Input.GetKeyDown("escape"))
         {
             count++;//Add one to the counter to check to see how many times the escape is pressed
 
             //If the count is even then activate the menu, disable player movement
             if (count % 2 == 0)
             {
-                Interactable.canInteractS = false;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                musicBus.setPaused(true);
                 player.GetComponent<PlayerController>().enabled = false;//Disable player movement
                 PauseMenu.SetActive(true);
                 Time.timeScale = 0; // stop time
@@ -59,9 +51,7 @@ public class LevelManager : MonoBehaviour
             //Else If the count is odd then, deactivate the menu, activate player movement
             else
             {
-                Interactable.canInteractS = true;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                musicBus.setPaused(false);
                 player.GetComponent<PlayerController>().enabled = true;//Enable player movement
                 PauseMenu.SetActive(false);
                 Time.timeScale = 1; // resume time

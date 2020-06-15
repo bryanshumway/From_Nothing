@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Level04Dialogue : MonoBehaviour
 {
@@ -9,9 +10,9 @@ public class Level04Dialogue : MonoBehaviour
     public GameObject player;
     public GameObject messagePanel;
     public GameObject boss;
+    public GameObject bossMain;
     public GameObject healthPanel;
     public GameObject bossBattery;
-    public GameObject pauseScript;
     public Text messageName;
     public Text messageText;
 
@@ -29,6 +30,7 @@ public class Level04Dialogue : MonoBehaviour
         {
             if (dialogueStatus == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
                 messageName.text = "Overseer";
                 messageText.text = "You made me do this.";
                 dialogueStatus = 1;
@@ -41,7 +43,7 @@ public class Level04Dialogue : MonoBehaviour
             }
             else if (dialogueStatus == 2)
             {
-                boss.GetComponentInChildren<Animator>().SetBool("isHowling", true);
+                boss.GetComponent<Animator>().SetBool("isHowling", true);
                 StartCoroutine(Howl());
                 dialogueActive = false;
                 messageName.text = "";
@@ -50,6 +52,7 @@ public class Level04Dialogue : MonoBehaviour
             }
             else if (dialogueStatus == 3)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/overseerhangup");
                 messageName.text = "";
                 messageText.text = "The intercom turns off.";
                 dialogueStatus = 4;
@@ -88,13 +91,9 @@ public class Level04Dialogue : MonoBehaviour
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 player.GetComponent<PlayerController>().enabled = true;
                 bossBattery.SetActive(true);
-                boss.GetComponent<Chimera>().enabled = true;
-                boss.GetComponent<Chimera>().SetHealth();
+                bossMain.GetComponent<Chimera>().SetHealth();
                 GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
                 GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
-                LevelManager.canPause = true;
-                pauseScript.SetActive(true);
-                dialogueStatus = 9;
             }
         }
     }
@@ -102,6 +101,7 @@ public class Level04Dialogue : MonoBehaviour
     IEnumerator DialogueStart()
     {
         yield return new WaitForSeconds(3);
+        RuntimeManager.PlayOneShot("event:/Environment/overseerintro");
         dialogueActive = true;
         messageName.text = "";
         messageText.text = "You hear an intercom turn on.";
@@ -111,7 +111,8 @@ public class Level04Dialogue : MonoBehaviour
     IEnumerator Howl()
     {
         yield return new WaitForSeconds(2.5f);
-        boss.GetComponentInChildren<Animator>().SetBool("isHowling", false);
+        boss.GetComponent<Animator>().SetBool("isHowling", false);
+        RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
         dialogueStatus = 3;
         dialogueActive = true;
         messageName.text = "Overseer";
