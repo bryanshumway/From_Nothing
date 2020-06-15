@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Level03Dialogue : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Level03Dialogue : MonoBehaviour
         {
             if (dialogueStatus == 0)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
                 messageName.text = "Overseer";
                 messageText.text = "You better stop trying to leave.";
                 dialogueStatus = 1;
@@ -37,12 +39,14 @@ public class Level03Dialogue : MonoBehaviour
             }
             else if (dialogueStatus == 2)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
                 messageName.text = "Overseer";
                 messageText.text = "You'll regret this.";
                 dialogueStatus = 3;
             }
             else if (dialogueStatus == 3)
             {
+                RuntimeManager.PlayOneShot("event:/Environment/overseerhangup");
                 messageName.text = "";
                 messageText.text = "The intercom turns off.";
                 dialogueStatus = 4;
@@ -67,6 +71,7 @@ public class Level03Dialogue : MonoBehaviour
     IEnumerator DialogueStart()
     {
         yield return new WaitForSeconds(3);
+        RuntimeManager.PlayOneShot("event:/Environment/overseerintro");
         dialogueActive = true;
         messageName.text = "";
         messageText.text = "You hear an intercom turn on.";

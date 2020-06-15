@@ -3541,7 +3541,7 @@ Transform:
   - {fileID: 1852370296}
   - {fileID: 1078965844}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385728689
 GameObject:
@@ -5096,6 +5096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StoryText
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864925812308515547, guid: 214e05c3d959eea4c917bf56c2e683a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6864925813445964088, guid: 214e05c3d959eea4c917bf56c2e683a8,
         type: 3}

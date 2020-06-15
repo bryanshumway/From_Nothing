@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     public GameObject PauseMenu; //variable for the pause menu game object
     public GameObject player;  //Variable for the player to disable movement
     public GameObject fade; //fade panel
+    private FMOD.Studio.Bus musicBus;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class LevelManager : MonoBehaviour
         PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
         PauseMenu.SetActive(false);
         player = GameObject.Find("Player");
+        musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
     }
 
     //Checks for input so often
@@ -41,6 +43,7 @@ public class LevelManager : MonoBehaviour
             //If the count is even then activate the menu, disable player movement
             if (count % 2 == 0)
             {
+                musicBus.setPaused(true);
                 player.GetComponent<PlayerController>().enabled = false;//Disable player movement
                 PauseMenu.SetActive(true);
                 Time.timeScale = 0; // stop time
@@ -48,6 +51,7 @@ public class LevelManager : MonoBehaviour
             //Else If the count is odd then, deactivate the menu, activate player movement
             else
             {
+                musicBus.setPaused(false);
                 player.GetComponent<PlayerController>().enabled = true;//Enable player movement
                 PauseMenu.SetActive(false);
                 Time.timeScale = 1; // resume time
