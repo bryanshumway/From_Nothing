@@ -11,6 +11,7 @@ public class Level04Dialogue : MonoBehaviour
     public GameObject boss;
     public GameObject healthPanel;
     public GameObject bossBattery;
+    public GameObject pauseScript;
     public Text messageName;
     public Text messageText;
 
@@ -91,6 +92,8 @@ public class Level04Dialogue : MonoBehaviour
                 boss.GetComponent<Chimera>().SetHealth();
                 GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
                 GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+                LevelManager.canPause = true;
+                pauseScript.SetActive(true);
                 dialogueStatus = 9;
             }
         }

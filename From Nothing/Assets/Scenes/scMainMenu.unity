@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 75961571}
   m_Layer: 5
   m_Name: btnSettings
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 533769720}
   m_Layer: 5
   m_Name: btnStart
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2981,6 +2981,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1085724666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085724668}
+  - component: {fileID: 1085724667}
+  m_Layer: 0
+  m_Name: MainMenuStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1085724667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085724666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd10844827fcdd4cab879d055f9d332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1085724668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085724666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13879186, y: 0.91354567, z: 0.03181362}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160996650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6864925813445964094, guid: 214e05c3d959eea4c917bf56c2e683a8,
@@ -3545,9 +3588,7 @@ MonoBehaviour:
 
     SPACE - Jump
 
-    Left Click - Shoot
-
-    Right Click - Create Block'
+    Left Click - Shoot'
 --- !u!222 &1441823406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4162,7 +4203,7 @@ GameObject:
   - component: {fileID: 1789063100}
   m_Layer: 5
   m_Name: btnQuit
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4607,6 +4648,7 @@ MonoBehaviour:
   continueText: {fileID: 1160996650}
   player: {fileID: 0}
   PauseMenu: {fileID: 0}
+  buttons: []
 --- !u!4 &2099895755
 Transform:
   m_ObjectHideFlags: 0

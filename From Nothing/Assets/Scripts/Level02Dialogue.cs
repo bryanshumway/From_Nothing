@@ -8,6 +8,7 @@ public class Level02Dialogue : MonoBehaviour
 
     public GameObject player;
     public GameObject messagePanel;
+    public GameObject pauseScript;
     public Text messageName;
     public Text messageText;
 
@@ -57,6 +58,8 @@ public class Level02Dialogue : MonoBehaviour
             {
                 messageName.text = "";
                 messageText.text = "";
+                LevelManager.canPause = true;
+                pauseScript.SetActive(true);
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
                 player.GetComponent<PlayerController>().enabled = true;
                 dialogueStatus = 6;

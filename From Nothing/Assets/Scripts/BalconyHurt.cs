@@ -7,21 +7,13 @@ public class BalconyHurt : MonoBehaviour
 
     public GameObject player;
 
-    private bool hurtActive = false;
-    private bool balconyActive = false;
-    Collider2D boxCollider2D;
-    [SerializeField] LayerMask layerMask;
+    public bool hurtActive = false;
+    public bool balconyActive = false;
 
-    IEnumerator Start()
+    public void Start()
     {
         player = GameObject.Find("Player");
-        yield return new WaitForSeconds(2);
-        balconyActive = true;
-        if (IsGrounded())
-        {
-            hurtActive = true;
-            StartCoroutine("PlayerHurt");
-        }
+        //StartCoroutine(BalconyActive());
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -29,6 +21,7 @@ public class BalconyHurt : MonoBehaviour
         if (other.transform.CompareTag("Player") && balconyActive)
         {
             hurtActive = true;
+            StopCoroutine("PlayerHurt");
             StartCoroutine("PlayerHurt");
         }
     }
@@ -42,13 +35,6 @@ public class BalconyHurt : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
-    {
-        RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.up
-        , .1f, layerMask);
-        return raycastHit2d.collider;
-    }
-
     IEnumerator PlayerHurt()
     {
         while (hurtActive)
@@ -56,6 +42,12 @@ public class BalconyHurt : MonoBehaviour
             player.GetComponent<PlayerController>().HealthLose();
             yield return new WaitForSeconds(1);
         }
+    }
+
+    IEnumerator BalconyActive()
+    {
+        yield return new WaitForSeconds(2);
+        balconyActive = true;
     }
 
 }

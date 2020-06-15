@@ -12,11 +12,14 @@ public class LevelStart4 : MonoBehaviour
     public GameObject dialogue;
     public GameObject boss;
     public GameObject bossBattery;
+    public GameObject pauseScript;
 
     private void Awake()
     {
         if (levelEntered)
         {
+            pauseScript.SetActive(true);
+            LevelManager.canPause = true;
             Chimera.bossStop = false;
             bossBattery.SetActive(true);
             playerHealth.GetComponent<Animation>().Play();
@@ -28,9 +31,11 @@ public class LevelStart4 : MonoBehaviour
             boss.GetComponent<Chimera>().enabled = true;
             GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
             GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+            LevelManager.canPause = true;
         }
         else
         {
+            LevelManager.canPause = false;
             fade.GetComponent<Animation>().Play("FadeIn");
             PlayerController.canJump = true;
             PlayerController.doubleJumpActive = true;
@@ -44,6 +49,8 @@ public class LevelStart4 : MonoBehaviour
     private void Start()
     {
         levelEntered = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     IEnumerator DoorOpen()

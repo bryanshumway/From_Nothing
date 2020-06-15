@@ -20,6 +20,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
     public GameObject elevatorPanel;
     public GameObject equipmentPanel;
     public bool exitEnablePlayer = true;
+    public GameObject pauseScript;
 
     private GameObject player;
     private GameObject camera;
@@ -122,6 +123,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status01 == 0 || status01 == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -132,6 +134,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //crystal inserted
                 else if (status01 == 1)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -147,6 +150,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal2 == 0 || statusCrystal2 == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -174,6 +178,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal3 == 0 || statusCrystal3 == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -201,6 +206,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusCrystal4 == 0 || statusCrystal4 == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -254,6 +260,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //exit message
                 else if (statusLauncherLvl3 == 2 || statusLauncherLvl3 == 4)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -270,6 +277,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status02 == 0)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -284,6 +292,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (status03 == 0)
                 {
+                    LevelManager.canPause = true;
+                    print(LevelManager.canPause);
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -317,6 +327,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 }
                 else if (status03 == 5)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -339,6 +350,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusBoots == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -357,6 +369,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusBoots2 == 1)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -378,6 +391,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 else if (statusGlove == 2)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -396,6 +410,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusTube == 0)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -412,6 +427,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard == 0)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -424,6 +440,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard2 == 1)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -436,6 +453,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard3 == 1)
                 {
+                    LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
                     messageText.text = "";
@@ -449,6 +467,10 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (elevatorStatus == 0)
                 {
+                    LevelManager.canPause = true;
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    LevelManager.canPause = true;
                     elevatorPanel.SetActive(false);
                     player.GetComponent<PlayerController>().enabled = true;
                     elevatorActive = false;
@@ -762,6 +784,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
         //door buttons
         else if (CompareTag("DoorButton"))
         {
+            LevelManager.canPause = true;
             //door button 01
             if (name == "door01Button")
             {
@@ -793,6 +816,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //open elevator panel choices
             if (elevatorStatus == 0)
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                LevelManager.canPause = false;
                 player.GetComponent<PlayerController>().enabled = false;
                 GetComponent<Collider2D>().enabled = false;
                 elevatorPanel.SetActive(true);
@@ -965,6 +991,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
             //player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, -player.transform.localScale.z);
             elevatorButtonPressed = false;
         }
+
+        LevelManager.canPause = true;
         player.transform.position = closestExitSpot.transform.position;
         elevatorStatus = 0;
         StartCoroutine(DoorClose(0));
@@ -1069,6 +1097,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 5;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             if (SceneManager.GetActiveScene().name == "scLevel1")
@@ -1099,6 +1130,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 4;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             if (SceneManager.GetActiveScene().name == "scLevel1")
@@ -1136,6 +1170,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 3;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;
@@ -1170,6 +1207,9 @@ public class Level_01_Interact_Manager : MonoBehaviour
         else
         {
             floor = 2;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            LevelManager.canPause = true;
             elevatorPanel.SetActive(false);
             player.GetComponent<PlayerController>().enabled = true;
             //elevatorEnterSpot = GameObject.Find("enterSpotf01e01").transform.position;

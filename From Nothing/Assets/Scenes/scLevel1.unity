@@ -195,7 +195,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34228
+  m_Name: pb_Mesh176180
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -551,6 +551,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &41845504
@@ -3180,6 +3181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iCanPause: 0
   SceneToLoad: sc
   settings: 
   PauseMenu: {fileID: 0}
@@ -3951,6 +3953,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7199914984313964706, guid: a44f35d6afa47ce4bb56f1d4786f3aba,
+        type: 3}
+      propertyPath: pauseScript
+      value: 
+      objectReference: {fileID: 640166313}
     - target: {fileID: 7199914984382408346, guid: a44f35d6afa47ce4bb56f1d4786f3aba,
         type: 3}
       propertyPath: m_TagString
@@ -4571,6 +4578,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573881094}
   m_CullTransparentMesh: 0
+--- !u!1 &640166313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7500955287762519808, guid: 455cd374c1ab13843afafd815492c10f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1097622774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &654346946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5413,6 +5426,9 @@ MonoBehaviour:
   batteryShoot: []
   batteryShootMaxCharge: 0
   batteryShootCurrentCharge: 0
+  health: []
+  healthMax: 0
+  healthCurrent: 0
 --- !u!1 &668067841
 GameObject:
   m_ObjectHideFlags: 0
@@ -10723,6 +10739,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &824071191
@@ -10980,17 +10997,17 @@ PrefabInstance:
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256125511524622448, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -11070,7 +11087,7 @@ PrefabInstance:
     - target: {fileID: 2256125511958980801, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3022087725794393989, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -11085,37 +11102,37 @@ PrefabInstance:
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7071131331768156005, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -11663,6 +11680,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &950359802
@@ -11993,6 +12011,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 654346946}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 640166313}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1001 &1097622774
@@ -12140,7 +12159,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1097622774}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 640166313}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
@@ -12643,6 +12662,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!4 &1181141003
@@ -14162,6 +14182,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1 &1416736485
@@ -14783,7 +14804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1481403663
 Transform:
   m_ObjectHideFlags: 0
@@ -14823,6 +14844,7 @@ MonoBehaviour:
   sceneSwitch: {fileID: 807926600}
   floor5Door: {fileID: 1762407649}
   floor4Door: {fileID: 365923072}
+  pauseScript: {fileID: 640166313}
 --- !u!1 &1488154388
 GameObject:
   m_ObjectHideFlags: 0
@@ -18672,7 +18694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1752343291
 Transform:
   m_ObjectHideFlags: 0
@@ -18702,6 +18724,7 @@ MonoBehaviour:
   player: {fileID: 668068301}
   fade: {fileID: 571722218}
   messagePanel: {fileID: 1355554685}
+  pauseScript: {fileID: 640166313}
   messageName: {fileID: 832788247}
   messageText: {fileID: 2100056419}
 --- !u!1 &1762407649 stripped
@@ -20524,6 +20547,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &1818590157
@@ -22596,6 +22620,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1 &1962798730
@@ -25203,6 +25228,11 @@ PrefabInstance:
       propertyPath: elevatorPanel
       value: 
       objectReference: {fileID: 654346946}
+    - target: {fileID: 7199914984313964706, guid: a44f35d6afa47ce4bb56f1d4786f3aba,
+        type: 3}
+      propertyPath: pauseScript
+      value: 
+      objectReference: {fileID: 640166313}
     - target: {fileID: 7199914984382408346, guid: a44f35d6afa47ce4bb56f1d4786f3aba,
         type: 3}
       propertyPath: m_TagString

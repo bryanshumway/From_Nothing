@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2365838859735556317}
   messagePanel: {fileID: 297320770}
+  pauseScript: {fileID: 1854920732}
   messageName: {fileID: 934916660}
   messageText: {fileID: 52189}
 --- !u!4 &9928136 stripped
@@ -546,7 +547,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh303266
+  m_Name: pb_Mesh267076
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5718,6 +5719,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &526938337
@@ -5933,6 +5935,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &586753086
@@ -6200,6 +6203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iCanPause: 0
   SceneToLoad: sc
   settings: 
   PauseMenu: {fileID: 0}
@@ -6494,6 +6498,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 465941053}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1001 &759062396
@@ -6605,7 +6610,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh302588
+  m_Name: pb_Mesh266156
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -7498,7 +7503,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh560496
+  m_Name: pb_Mesh266232
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -8035,6 +8040,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManger2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500955287762519808, guid: 455cd374c1ab13843afafd815492c10f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7500955287762519814, guid: 455cd374c1ab13843afafd815492c10f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8148,7 +8158,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 931650733}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1854920732}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
@@ -9763,7 +9773,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh757222
+  m_Name: pb_Mesh266188
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -13714,13 +13724,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1854920732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7500955287762519808, guid: 455cd374c1ab13843afafd815492c10f,
+    type: 3}
+  m_PrefabInstance: {fileID: 931650733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1877883310
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh303048
+  m_Name: pb_Mesh266804
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14298,6 +14314,7 @@ MonoBehaviour:
   crystalInserted: {fileID: 1036243944}
   boots: {fileID: 782354707}
   gloveIcon: {fileID: 1407640440}
+  pauseScript: {fileID: 1854920732}
 --- !u!1 &1976854013
 GameObject:
   m_ObjectHideFlags: 0
@@ -15500,17 +15517,17 @@ PrefabInstance:
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256125511524622448, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -15575,7 +15592,7 @@ PrefabInstance:
     - target: {fileID: 2256125511958980801, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3022087725794393989, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -15590,37 +15607,37 @@ PrefabInstance:
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7071131331768156005, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -18204,6 +18221,9 @@ MonoBehaviour:
   batteryShoot: []
   batteryShootMaxCharge: 0
   batteryShootCurrentCharge: 0
+  health: []
+  healthMax: 0
+  healthCurrent: 0
 --- !u!4 &2365838859735792705
 Transform:
   m_ObjectHideFlags: 0
@@ -21082,6 +21102,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 465941053}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1 &3463637862517338748
@@ -22423,6 +22444,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1001 &7330740892094021365

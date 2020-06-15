@@ -9,6 +9,7 @@ public class Chimera : MonoBehaviour
     public static bool bossDead = false;
 
     public GameObject player;
+    public GameObject bossDeadScript;
     public GameObject attackTrigger;
     public GameObject bossShot;
     public GameObject debris;
@@ -55,6 +56,7 @@ public class Chimera : MonoBehaviour
         #region
         if (healthCurrent == 0)
         {
+            isJumping = false;
             dead = true;
         }
         if (dead)
@@ -229,6 +231,7 @@ public class Chimera : MonoBehaviour
                     add = true;
                     balconies[choice].GetComponent<Animation>().Play("BalconyRed");
                     balconies[choice].GetComponent<BalconyHurt>().enabled = true;
+                    balconies[choice].GetComponent<BalconyHurt>().StartCoroutine("BalconyActive");
                 }
                 else
                 {
@@ -245,6 +248,9 @@ public class Chimera : MonoBehaviour
             {
                 balconies[i].GetComponent<Animation>().Play("BalconyNormal");
             }
+            balconies[i].GetComponent<BalconyHurt>().hurtActive = false;
+            balconies[i].GetComponent<BalconyHurt>().balconyActive = false;
+            balconies[i].GetComponent<BalconyHurt>().StopAllCoroutines();
             balconies[i].GetComponent<BalconyHurt>().enabled = false;
         }
         balconyChoices.Clear();
@@ -452,9 +458,13 @@ public class Chimera : MonoBehaviour
 
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         GetComponentInChildren<Animator>().SetBool("isAttacking", false);
-        player.GetComponent<PlayerController>().HealthLose();
+        print(BossAttackTrigger.playerInRange);
+        if (BossAttackTrigger.playerInRange == true)
+        {
+            player.GetComponent<PlayerController>().HealthLose();
+        }
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(HowlAttack());
     }
@@ -504,7 +514,7 @@ public class Chimera : MonoBehaviour
 
     public void HealthLost()
     {
-        for (int i = 9; i >= 0; i--)
+        for (int i = healthMax - 1; i >= 0; i--)
         {
             if (healthIcons[i].activeInHierarchy)
             {
@@ -519,9 +529,11 @@ public class Chimera : MonoBehaviour
     {
         dead = false;
         StopAllCoroutines();
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponentInChildren<Animator>().SetTrigger("isDead");
         GameObject.Find("Player").GetComponent<PlayerController>().enabled = false;
         bossDead = true;
+        bossDeadScript.SetActive(true);
         GetComponent<Chimera>().enabled = false;
     }
 

@@ -4222,6 +4222,7 @@ MonoBehaviour:
   crystalInserted: {fileID: 0}
   boots: {fileID: 0}
   gloveIcon: {fileID: 1443352940}
+  pauseScript: {fileID: 7500955288053185515}
 --- !u!1001 &601185210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5453,6 +5454,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 1443352940}
   elevatorActive: 0
 --- !u!114 &709532838
@@ -8750,6 +8752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1792094371}
   messagePanel: {fileID: 331316733}
+  pauseScript: {fileID: 7500955288053185515}
   messageName: {fileID: 583199083}
   messageText: {fileID: 701519939}
 --- !u!1001 &1233675485
@@ -8772,17 +8775,17 @@ PrefabInstance:
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2150294125907373893, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256125511524622448, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -8862,7 +8865,7 @@ PrefabInstance:
     - target: {fileID: 2256125511958980801, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3022087725794393989, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -8877,37 +8880,37 @@ PrefabInstance:
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3485377425367556918, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3699720996293736376, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6783629984002797955, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7071131331768156005, guid: 9c1649aea95123a408aaaff4ba6d06e1,
         type: 3}
@@ -9124,6 +9127,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!114 &1273011492
@@ -10365,6 +10369,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 338211308}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1001 &1529892206
@@ -13532,6 +13537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iCanPause: 0
   SceneToLoad: sc
   settings: 
   PauseMenu: {fileID: 0}
@@ -14690,6 +14696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8325b813f2a1f4b935173b99488668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iCanPause: 0
   SceneToLoad: scMainMenu
   settings: scSettings
   PauseMenu: {fileID: 1233675487}
@@ -14882,6 +14889,7 @@ MonoBehaviour:
   elevatorPanel: {fileID: 0}
   equipmentPanel: {fileID: 0}
   exitEnablePlayer: 1
+  pauseScript: {fileID: 0}
   gloveIcon: {fileID: 0}
   elevatorActive: 0
 --- !u!1001 &2567490334732334587
@@ -15412,7 +15420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7500955288053185517
 RectTransform:
   m_ObjectHideFlags: 0

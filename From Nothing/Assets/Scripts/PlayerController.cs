@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = true;
-    public static bool doubleJumpActive = true;
-    public static bool footprintActive = false;
-    public static bool canShoot = true;
+    public static bool canJump = false;
+    public static bool doubleJumpActive = false;
+    public static bool footprintActive = true;
+    public static bool canShoot = false;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator GloveShoot()
     {
         canShoot = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         canShoot = true;
     }
 
@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
 
     public void HealthLose()
     {
-        for (int i = 4; i >= 0; i--)
+        for (int i = healthMax - 1; i >= 0; i--)
         {
             if (health[i].activeInHierarchy)
             {

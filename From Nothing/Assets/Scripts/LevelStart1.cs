@@ -25,6 +25,7 @@ public class LevelStart1 : MonoBehaviour
     {
         PlayerController.canJump = false;
         PlayerController.footprintActive = true;
+        LevelManager.canPause = false;
         if (level1Entered)
         {
             dialogue.SetActive(false);
@@ -67,6 +68,8 @@ public class LevelStart1 : MonoBehaviour
     private void Start()
     {
         level1Entered = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     IEnumerator DoorOpen()

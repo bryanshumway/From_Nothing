@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\BalconyHurt.cs" />
     <Compile Include="Assets\Scripts\BossAttackTrigger.cs" />
     <Compile Include="Assets\Scripts\BossBattery.cs" />
+    <Compile Include="Assets\Scripts\BossDead.cs" />
     <Compile Include="Assets\Scripts\BossShot.cs" />
     <Compile Include="Assets\Scripts\Chimera.cs" />
     <Compile Include="Assets\Scripts\Debris.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\Scripts\LevelStart3.cs" />
     <Compile Include="Assets\Scripts\LevelStart4.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
+    <Compile Include="Assets\Scripts\MainMenuStart.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\MixerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

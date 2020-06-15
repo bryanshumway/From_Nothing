@@ -30,6 +30,7 @@ public class SceneSwitch : MonoBehaviour
                     }
                     else
                     {
+                        LevelManager.canPause = true;
                         GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
                         status = 1;
                         cameraMove = false;
@@ -43,6 +44,7 @@ public class SceneSwitch : MonoBehaviour
                     }
                     else
                     {
+                        LevelManager.canPause = true;
                         GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
                         status = 1;
                         cameraMove = false;
@@ -59,6 +61,7 @@ public class SceneSwitch : MonoBehaviour
                     }
                     else
                     {
+                        LevelManager.canPause = true;
                         GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
                         status = 0;
                         cameraMove = false;
@@ -72,6 +75,7 @@ public class SceneSwitch : MonoBehaviour
                     }
                     else
                     {
+                        LevelManager.canPause = true;
                         GameObject.Find("Player").GetComponent<PlayerController>().enabled = true;
                         status = 0;
                         cameraMove = false;
@@ -85,6 +89,7 @@ public class SceneSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            LevelManager.canPause = false;
             other.GetComponent<Animator>().SetBool("IsWalking", false);
             other.GetComponent<PlayerController>().enabled = false;
             Vector2 stop = new Vector2(0, 0);
