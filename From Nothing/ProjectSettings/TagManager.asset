@@ -25,6 +25,9 @@ TagManager:
   - BossHealth
   - Boss
   - BossSpot
+  - Balcony
+  - Debris
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -37,9 +40,9 @@ TagManager:
   - Platforms
   - Wall
   - Enemy
-  - 
-  - 
-  - 
+  - Debris
+  - Floor
+  - Player
   - 
   - 
   - 

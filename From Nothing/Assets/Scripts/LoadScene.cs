@@ -10,6 +10,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class LoadScene : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class LoadScene : MonoBehaviour
     public GameObject continueText;//press f to continue text
     public GameObject player;  //Variable for the player to disable movement
     public GameObject PauseMenu; //variable for the pause menu game object
+    public GameObject[] buttons; //Buttons to disable
 
     private bool canContinue = false;//allow player to press f to continue
 
@@ -33,6 +35,7 @@ public class LoadScene : MonoBehaviour
     {
         Time.timeScale = 1;
         fade.GetComponent<Animation>().Play("FadeToClear");
+        buttons = GameObject.FindGameObjectsWithTag("Button");
         StartCoroutine(FadeRemove());
         PauseMenu = GameObject.Find("objPauseMenu");//Pause Menu to be able to show it and hide it
         //PauseMenu.SetActive(false);
@@ -92,7 +95,11 @@ public class LoadScene : MonoBehaviour
         //Calls Unity Scene manger to load the specific scene
         //animator.SetTrigger("FadeOut");
         StartCoroutine(anim(scene));
-
+        //disable buttons
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = false;
+        }
     }
 
     IEnumerator anim(string scene)

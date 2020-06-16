@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = true;
-    public static bool doubleJumpActive = true;
-    public static bool footprintActive = false;
-    public static bool canShoot = true;
+    public static bool canJump = false;
+    public static bool doubleJumpActive = false;
+    public static bool footprintActive = true;
+    public static bool canShoot = false;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         canFootprint = true;
+        canJumpDouble = true;
         playerAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<Collider2D>();
@@ -172,6 +173,7 @@ public class PlayerController : MonoBehaviour
         , .1f, layerMask);
         return raycastHit2d.collider;
     }
+
     private bool IsMoveRightPossible()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.right
@@ -259,7 +261,7 @@ public class PlayerController : MonoBehaviour
 
     public void HealthLose()
     {
-        for (int i = 4; i >= 0; i--)
+        for (int i = healthMax - 1; i >= 0; i--)
         {
             if (health[i].activeInHierarchy)
             {
@@ -268,6 +270,16 @@ public class PlayerController : MonoBehaviour
                 break;
             }
         }
+        if (healthCurrent <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        StopAllCoroutines();
+        GameObject.Find("PlayerDeath").GetComponent<PlayerDeath>().StartCoroutine("Death");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
