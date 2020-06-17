@@ -478,7 +478,7 @@ MonoBehaviour:
   crystal: {fileID: 6017397626252410661, guid: cae6edaffd396fd4f81b5216fb7f6f9c, type: 3}
   distanceToMove: 5
   distanceFromPlayer: 8
-  speed: 3
+  speed: 2
   jumpSpeed: 30
   jumpTime: 3
   pushSpeed: 30

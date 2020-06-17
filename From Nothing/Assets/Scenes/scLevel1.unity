@@ -5690,6 +5690,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  layerMask2:
+    serializedVersion: 2
+    m_Bits: 512
   canFootprint: 0
   canJumpDouble: 1
   isJumping: 0

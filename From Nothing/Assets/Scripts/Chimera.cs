@@ -270,10 +270,10 @@ public class Chimera : MonoBehaviour
             yield return null;
         }
         Destroy(shot);
-        ShotSpread();
+        ShotSpread90();
     }
 
-    void ShotSpread()
+    void ShotSpread360()
     {
         Vector3 size = new Vector3(1.5f, 1.5f, 1.5f);
         bossShot.transform.localScale = size;
@@ -285,6 +285,38 @@ public class Chimera : MonoBehaviour
             Vector3 rotation = new Vector3(bossShot.transform.eulerAngles.x,
                 bossShot.transform.eulerAngles.y, bossShot.transform.eulerAngles.z + 30);
             bossShot.transform.eulerAngles = rotation;
+        }
+        Vector3 zero = new Vector3(0, 0, 0);
+        bossShot.transform.localScale = zero;
+    }
+
+    void ShotSpread90()
+    {
+        Vector3 size = new Vector3(1.5f, 1.5f, 1.5f);
+        bossShot.transform.localScale = size;
+        Vector3 difference = player.transform.position - shotSpawn.transform.position;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        shotSpawn.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject shot = (GameObject)Instantiate(bossShot, shotSpawn.transform.position, shotSpawn.transform.rotation);
+            shot.GetComponent<BossShot>().enabled = true;
+            shot.GetComponent<Collider2D>().enabled = true;
+            Vector3 rotation = new Vector3(shotSpawn.transform.eulerAngles.x,
+                shotSpawn.transform.eulerAngles.y, shotSpawn.transform.eulerAngles.z + 15);
+            shotSpawn.transform.eulerAngles = rotation;
+        }
+        Vector3 difference2 = player.transform.position - shotSpawn.transform.position;
+        float rotationZ2 = Mathf.Atan2(difference2.y, difference2.x) * Mathf.Rad2Deg;
+        shotSpawn.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ2);
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject shot = (GameObject)Instantiate(bossShot, shotSpawn.transform.position, shotSpawn.transform.rotation);
+            shot.GetComponent<BossShot>().enabled = true;
+            shot.GetComponent<Collider2D>().enabled = true;
+            Vector3 rotation = new Vector3(shotSpawn.transform.eulerAngles.x,
+                shotSpawn.transform.eulerAngles.y, shotSpawn.transform.eulerAngles.z - 15);
+            shotSpawn.transform.eulerAngles = rotation;
         }
         Vector3 zero = new Vector3(0, 0, 0);
         bossShot.transform.localScale = zero;
@@ -305,40 +337,41 @@ public class Chimera : MonoBehaviour
         {
             GetComponentInChildren<Animator>().SetBool("isHowling", true);
             //StartCoroutine(CeilingAttack());
-            bool chosen = false;
-            while (!chosen)
-            {
-                int choice = Random.Range(1, 4);
-                if (choice == 1)
-                {
-                    StartCoroutine(ShotAttack());
-                    chosen = true;
-                }
-                else if (choice == 2)
-                {
-                    if (!floorActive)
-                    {
-                        StartCoroutine(FloorAttack());
-                        chosen = true;
-                    }
-                    else
-                    {
-                        chosen = false;
-                    }
-                }
-                else if (choice == 3)
-                {
-                    if (!ceilingActive)
-                    {
-                        StartCoroutine(CeilingAttack());
-                        chosen = true;
-                    }
-                    else
-                    {
-                        chosen = false;
-                    }
-                }
-            }
+            //bool chosen = false;
+            //while (!chosen)
+            //{
+            //    int choice = Random.Range(1, 3);
+            //    if (choice == 1)
+            //    {
+            //        StartCoroutine(ShotAttack());
+            //        chosen = true;
+            //    }
+            //    else if (choice == 2)
+            //    {
+            //        if (!floorActive)
+            //        {
+            //            StartCoroutine(FloorAttack());
+            //            chosen = true;
+            //        }
+            //        else
+            //        {
+            //            chosen = false;
+            //        }
+            //    }
+            //    else if (choice == 3)
+            //    {
+            //        if (!ceilingActive)
+            //        {
+            //            StartCoroutine(CeilingAttack());
+            //            chosen = true;
+            //        }
+            //        else
+            //        {
+            //            chosen = false;
+            //        }
+            //    }
+            //}
+            StartCoroutine(ShotAttack());
             yield return new WaitForSeconds(3);
             GetComponentInChildren<Animator>().SetBool("isHowling", false);
             attackStatus = 0;
@@ -537,16 +570,16 @@ public class Chimera : MonoBehaviour
         GetComponent<Chimera>().enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("ChargeStation"))
-        {
-            for (int i = 0; i < healthIcons.Length; i++)
-            {
-                healthIcons[i].SetActive(true);
-            }
-            healthCurrent = healthMax;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("ChargeStation"))
+    //    {
+    //        for (int i = 0; i < healthIcons.Length; i++)
+    //        {
+    //            healthIcons[i].SetActive(true);
+    //        }
+    //        healthCurrent = healthMax;
+    //    }
+    //}
 
 }

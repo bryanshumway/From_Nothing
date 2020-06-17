@@ -64,18 +64,18 @@ public class Enemy_02_movement : MonoBehaviour
             transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) < distanceFromPlayer)
+        if (Vector3.Distance(transform.position, player.transform.position) < distanceFromPlayer && transform.localPosition.y < -5)
         {
             playerNear = true;
             if (!jumpCall)
             {
-                StartCoroutine(SlimeJump());
+                StartCoroutine("SlimeJump");
                 jumpCall = true;
             }
         }
         else
         {
-            StopCoroutine(SlimeJump());
+            StopCoroutine("SlimeJump");
             playerNear = false;
             jumpCall = false;
         }
@@ -101,7 +101,7 @@ public class Enemy_02_movement : MonoBehaviour
         }
         else
         {
-            target = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+            target = new Vector3(player.transform.position.x, transform.position.y, transform.localPosition.z);
             step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target, step);
         }
