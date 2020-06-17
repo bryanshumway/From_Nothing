@@ -34,8 +34,7 @@ public class LevelStart4 : MonoBehaviour
             fade.GetComponent<Animation>().Play("FadeIn");
             dialogue.SetActive(false);
             boss.GetComponent<Chimera>().enabled = true;
-            GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
-            GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+            StartCoroutine(Platforms());
             LevelManager.canPause = true;
         }
         else
@@ -60,4 +59,12 @@ public class LevelStart4 : MonoBehaviour
         GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().DoorEntered();
         GameObject.Find("finalBossDoorEnter").GetComponent<Level_01_Interact_Manager>().DoorOpen();
     }
+
+    IEnumerator Platforms()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject.Find("platformFloating (2)").GetComponent<UpDown>().enabled = true;
+        GameObject.Find("platformFloating (3)").GetComponent<UpDown>().enabled = true;
+    }
+
 }

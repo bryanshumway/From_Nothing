@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool canJump = false;
-    public static bool doubleJumpActive = false;
-    public static bool footprintActive = true;
-    public static bool canShoot = false;
+    public static bool canJump = true;
+    public static bool doubleJumpActive = true;
+    public static bool footprintActive = false;
+    public static bool canShoot = true;
 
     public float moveSpeed = 3f;
     public float jumpSpeed = 1f;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shotSpawn;
 
     [SerializeField] LayerMask layerMask;
+    [SerializeField] LayerMask layerMask2;
     Vector3 original;
     Rigidbody2D rigidBody;
     Animator playerAnimator;
@@ -177,13 +178,14 @@ public class PlayerController : MonoBehaviour
     private bool IsMoveRightPossible()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.right
-        , .1f, layerMask);
+        , .1f, layerMask2);
         return !raycastHit2d.collider;
     }
+
     private bool IsMoveLeftPossible()
-        {
+    {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.left
-        , .1f, layerMask);
+        , .1f, layerMask2);
         return !raycastHit2d.collider;
     }
 
@@ -297,11 +299,11 @@ public class PlayerController : MonoBehaviour
                 batteryShoot[i].SetActive(true);
             }
             batteryShootCurrentCharge = batteryShootMaxCharge;
-            for (int i = 0; i < health.Length; i++)
-            {
-                health[i].SetActive(true);
-            }
-            healthCurrent = healthMax;
+            //for (int i = 0; i < health.Length; i++)
+            //{
+            //    health[i].SetActive(true);
+            //}
+            //healthCurrent = healthMax;
         }
     }
 
