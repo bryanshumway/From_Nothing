@@ -11,7 +11,7 @@ public class CrystalSoundEmitter : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        Debug.Log("crystal sound start");
+        //Debug.Log("crystal sound start");
         crystalEmitter = FMODUnity.RuntimeManager.CreateInstance("event:/Environment/Emitters/crystal");
         crystalEmitter.start();
         crystalEmitter.release();
@@ -20,7 +20,7 @@ public class CrystalSoundEmitter : MonoBehaviour
 
     void OnDestroy()
     {
-        Debug.Log("crystal sound active");
+        //Debug.Log("crystal sound active");
         crystalEmitter.setParameterByName("active", 1);
     }
 }

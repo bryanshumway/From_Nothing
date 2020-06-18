@@ -18,6 +18,7 @@ public class SlimeStation : MonoBehaviour
         while (enemySpawns < slimeCount)
         {
             Instantiate(slime, slimeSpawn.transform.position, slime.transform.rotation);
+            FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Environment/slimespawn", this.gameObject);
             slime.GetComponent<Animation>().Play();
             slimeLight.GetComponent<Animation>().Play();
             enemySpawns += 1;

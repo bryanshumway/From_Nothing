@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class BossDead : MonoBehaviour
 {
@@ -19,8 +20,13 @@ public class BossDead : MonoBehaviour
     private bool endActive;
     private int endStatus;
 
+    FMOD.Studio.EventInstance music;
     IEnumerator Start()
     {
+        music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/levelbgm");
+        music.start();
+        RuntimeManager.PlayOneShot("event:/Environment/overseerintro");
+
         LevelManager.canPause = false;
         pauseScript.SetActive(false);
         yield return new WaitForSeconds(2);
@@ -44,6 +50,7 @@ public class BossDead : MonoBehaviour
                 }
                 else if (dialogueStatus == 1)
                 {
+                    RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
                     messageName.text = "Overseer";
                     messageText.text = "You're sure you want to leave?";
                     dialogueStatus = 2;
@@ -56,12 +63,14 @@ public class BossDead : MonoBehaviour
                 }
                 else if (dialogueStatus == 3)
                 {
+                    RuntimeManager.PlayOneShot("event:/Environment/overseerloop");
                     messageName.text = "Overseer";
                     messageText.text = "Very well, let me show you the exit.";
                     dialogueStatus = 4;
                 }
                 else if (dialogueStatus == 4)
                 {
+                    
                     messageName.text = "";
                     messageText.text = "";
                     messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -87,6 +96,10 @@ public class BossDead : MonoBehaviour
                 }
                 else if (endStatus == 1)
                 {
+                    RuntimeManager.PlayOneShot("event:/Environment/overseerhangup");
+                    music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    music.release();
+
                     endText.GetComponent<Animation>().Play("EndTextFadeOut");
                     StartCoroutine(EndActive("Thanks for playing!"));
                     endStatus = 2;

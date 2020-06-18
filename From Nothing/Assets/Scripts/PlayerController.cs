@@ -136,6 +136,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        else if (Input.GetButtonDown("Jump") && IsGrounded() && canJump && batteryJumpCurrentCharge == 0)
+        {
+            RuntimeManager.PlayOneShot("event:/Player/batterylose");
+        }
         //double jump
         if (Input.GetButtonDown("Jump") && !IsGrounded() && doubleJumpActive && canJumpDouble && batteryJumpCurrentCharge > 0)
         {
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
         //landed
         if (IsGrounded() && isJumping)
         {
+            RuntimeManager.PlayOneShot("event:/Player/wallcollide");
             canJumpDouble = true;
             GetComponent<Animator>().SetInteger("JumpStatus", 3);
             FootPrintStep();
@@ -167,6 +172,10 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GloveShoot());
             ShotLose();
         }
+        //else if (Input.GetButtonDown("Fire1") && canShoot && batteryShootCurrentCharge == 0)
+        //{
+        //    RuntimeManager.PlayOneShot("event:/Player/batterylose");
+        //}
     }
     private bool IsGrounded()
     {
@@ -267,6 +276,7 @@ public class PlayerController : MonoBehaviour
         {
             if (health[i].activeInHierarchy)
             {
+                RuntimeManager.PlayOneShot("event:/Player/healthlose");
                 health[i].SetActive(false);
                 healthCurrent--;
                 break;
@@ -280,6 +290,7 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
+        RuntimeManager.PlayOneShot("event:/Player/death");
         StopAllCoroutines();
         GameObject.Find("PlayerDeath").GetComponent<PlayerDeath>().StartCoroutine("Death");
     }

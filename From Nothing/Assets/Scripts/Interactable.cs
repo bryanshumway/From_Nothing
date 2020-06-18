@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using FMODUnity;
 public class Interactable : MonoBehaviour
 {
     public static bool canInteractS = true;
@@ -50,6 +50,7 @@ public class Interactable : MonoBehaviour
     {
         if (CompareTag("Pickup") && other.CompareTag("Player"))
         {
+            RuntimeManager.PlayOneShot("event:/Environment/interact");
             interactText.text = "Press F to pick up";
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
             interactText.color = new Color(255, 255, 255, 1);
@@ -57,6 +58,7 @@ public class Interactable : MonoBehaviour
         }
         else if (CompareTag("Door") && other.CompareTag("Player") || CompareTag("ElevatorButton") && Level_01_Interact_Manager.elevatorButtonPressed)
         {
+            RuntimeManager.PlayOneShot("event:/Environment/interact");
             interactText.text = "Press F to enter";
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
             interactText.color = new Color(255, 255, 255, 1);
@@ -64,6 +66,7 @@ public class Interactable : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
+            RuntimeManager.PlayOneShot("event:/Environment/interact");
             interactText.text = "Press F to interact";
             interactPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.3f);
             interactText.color = new Color(255, 255, 255, 1);
