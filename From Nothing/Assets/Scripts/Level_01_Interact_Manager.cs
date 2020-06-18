@@ -453,6 +453,13 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 //normal message exit
                 if (statusKeycard3 == 1)
                 {
+                    messageName.text = "You";
+                    messageText.text = "Seems like this keycard has a barcode to scan with.";
+                    statusKeycard3 = 2;
+                }
+                //normal message exit
+                else if (statusKeycard3 == 2)
+                {
                     LevelManager.canPause = true;
                     player.GetComponent<PlayerController>().enabled = true;
                     messageName.text = "";
@@ -817,8 +824,7 @@ public class Level_01_Interact_Manager : MonoBehaviour
                 StartCoroutine(StatusKeycard3());
                 level4Access = true;
                 status03 = 1;
-                messageName.text = "You";
-                messageText.text = "Huh, this keycard seems kinda different...";
+                messageText.text = "You found a keycard that allows access to Floor 00.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
             }
         }
