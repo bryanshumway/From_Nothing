@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using FMODUnity;
 
 public class Chimera : MonoBehaviour
 {
@@ -258,6 +259,9 @@ public class Chimera : MonoBehaviour
 
     IEnumerator ShotAttack()
     {
+        // play sound
+        RuntimeManager.PlayOneShot("event:/Enemies/chimeraalarm");
+
         Vector3 zero = new Vector3(0, 0, 0);
         bossShot.transform.localScale = zero;
         bossShot.GetComponent<BossShot>().enabled = false;
@@ -320,12 +324,18 @@ public class Chimera : MonoBehaviour
         }
         Vector3 zero = new Vector3(0, 0, 0);
         bossShot.transform.localScale = zero;
+
+        // play sound
+        RuntimeManager.PlayOneShot("event:/Enemies/chimerashot");
     }
 
     IEnumerator HowlAttack()
     {
         if (!bossStart)
         {
+            // play sound
+            RuntimeManager.PlayOneShot("event:/Enemies/chimerahowl");
+
             GetComponentInChildren<Animator>().SetBool("isHowling", true);
             bossStart = true;
             yield return new WaitForSeconds(3);
@@ -476,8 +486,12 @@ public class Chimera : MonoBehaviour
 
     IEnumerator Heal()
     {
-        GetComponentInChildren<Animator>().SetTrigger("isHealing");
         GetComponent<Animation>().Play();
+
+        // play sound
+        RuntimeManager.PlayOneShot("event:/Enemies/chimeraheal");
+
+        GetComponentInChildren<Animator>().SetTrigger("isHealing");
         attackStatus = 0;
         yield return new WaitForSeconds(1);
         for (int i = 0; i < healthIcons.Length; i++)
@@ -491,6 +505,9 @@ public class Chimera : MonoBehaviour
 
     IEnumerator Attack()
     {
+        // play sound
+        RuntimeManager.PlayOneShot("event:/Enemies/chimeraattack");
+
         yield return new WaitForSeconds(1);
         GetComponentInChildren<Animator>().SetBool("isAttacking", false);
         print(BossAttackTrigger.playerInRange);
@@ -551,6 +568,9 @@ public class Chimera : MonoBehaviour
         {
             if (healthIcons[i].activeInHierarchy)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Enemies/chimerapain");
+
                 healthIcons[i].SetActive(false);
                 healthCurrent--;
                 break;
@@ -564,6 +584,10 @@ public class Chimera : MonoBehaviour
         StopAllCoroutines();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponentInChildren<Animator>().SetTrigger("isDead");
+
+        // play sound
+        RuntimeManager.PlayOneShot("event:/Enemies/chimeradeath");
+
         GameObject.Find("Player").GetComponent<PlayerController>().enabled = false;
         bossDead = true;
         bossDeadScript.SetActive(true);

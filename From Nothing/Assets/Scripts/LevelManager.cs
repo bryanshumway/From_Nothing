@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
             //Else If the count is odd then, deactivate the menu, activate player movement
             else
             {
+                musicBus.setPaused(false);
                 Interactable.canInteractS = true;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;

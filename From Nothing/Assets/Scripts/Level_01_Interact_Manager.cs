@@ -715,6 +715,8 @@ public class Level_01_Interact_Manager : MonoBehaviour
             }
             else if (status03 == 1)
             {
+                // play sound
+                RuntimeManager.PlayOneShot("event:/Environment/overseerintro");
                 messageText.text = "You hear an intercom turn on.";
                 messagePanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.4f);
                 active03 = true;
